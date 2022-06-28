@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.moshawa.com/sitemap/sitemap-index.xml
+Host: https://www.moshawa.com
