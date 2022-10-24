@@ -18,6 +18,8 @@ body{
   background-color: rgba(3, 5, 150, 0.5);
 }
 
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -40,6 +42,8 @@ h1 {
   line-height: 1.1;
   text-align: center;
   margin: auto;
+  pointer-events: none;
+  user-select: none;
 }
 
 #app {
@@ -47,4 +51,5 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  z-index: 5;
 }

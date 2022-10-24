@@ -1,5 +1,6 @@
 import "./style.css"
 import * as THREE from "three"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 const htmlEl = document.querySelector("html")
 
@@ -13,9 +14,9 @@ const scene = new THREE.Scene()
 // Objects
 */
 
-const geometry = new THREE.SphereGeometry(3, 32, 32)
+const geometry = new THREE.SphereGeometry(2, 24, 24)
 
-const material = new THREE.MeshNormalMaterial()
+const material = new THREE.MeshNormalMaterial({ flatShading: true })
 
 const mesh = new THREE.Mesh(geometry, material)
 
@@ -84,13 +85,24 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setSize(sizes.width, sizes.height)
 renderer.domElement.style.position = "fixed"
-renderer.domElement.style.zIndex = -1
 document.body.appendChild(renderer.domElement)
 renderer.render(scene, camera)
+
+const orbitControls = new OrbitControls(camera, renderer.domElement)
+orbitControls.listenToKeyEvents(window)
+orbitControls.autoRotate = true
+orbitControls.enableDamping = true
+orbitControls.update()
 
 const clock = new THREE.Clock()
 
 const tick = () => {
+	requestAnimationFrame(tick)
+
 	mesh.position.y = Math.sin(clock.getElapsedTime())
-	window.requestAnimationFrame(tick)
+
+	orbitControls.update()
+	renderer.render(scene, camera)
 }
+
+tick()
