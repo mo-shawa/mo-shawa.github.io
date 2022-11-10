@@ -3,8 +3,6 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import GUI from "lil-gui"
 
-const htmlEl = document.querySelector("html")
-
 // debug
 const gui = new GUI()
 
@@ -49,9 +47,11 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.z = 5
 
-document.addEventListener("resize", (evt) => {
+document.addEventListener("resize", () => {
 	sizes.width = window.innerWidth
 	sizes.height = window.innerHeight
+	camera.aspect = sizes.width / sizes.height
+	camera.updateProjectionMatrix()
 })
 
 const cursorMinChange = (prev, curr, diff) => {
@@ -69,9 +69,9 @@ document.addEventListener("mousemove", (evt) => {
 		cursor.x = currentX
 		cursor.y = currentY
 
-		document.body.style.backgroundColor = `rgba(${Math.abs(currentX - 155)}, ${
-			currentY / currentX
-		}, ${255}, 0.7)`
+		document.body.style.backgroundColor = `rgba(${Math.abs(
+			currentX - 155
+		)}, 0, ${Math.max(currentY, 100)}, 0.7)`
 		console.log(document.body.style.backgroundColor)
 	}
 })

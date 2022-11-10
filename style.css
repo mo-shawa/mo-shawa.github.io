@@ -15,10 +15,26 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-body{
-  background-color: rgba(34, 1, 255, 0.7)
+
+
+main{
+  width: 100%;
+  max-width: 900px;
+  /* border: 1px solid #53f2b5 ; */
+  text-align:  left;
 }
 
+section{
+  height: 100vh;
+  width: 100vw;
+}
+
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 1rem;
+}
 
 
 a {
@@ -36,12 +52,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: rgba(34, 1, 255, 0.7)
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  text-align: center;
+  text-align: inherit;
   margin: auto;
   pointer-events: none;
   user-select: none;
