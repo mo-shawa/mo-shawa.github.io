@@ -1,30 +1,30 @@
 import "./style.css"
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import GUI from "lil-gui"
 
 const htmlEl = document.querySelector("html")
 
-/*
-// Scene
-*/
-
-const scene = new THREE.Scene()
-
-/*
-// Objects
-*/
-
-const geometry = new THREE.SphereGeometry(2, 24, 24)
-
-const material = new THREE.MeshNormalMaterial({ flatShading: true })
-
-const mesh = new THREE.Mesh(geometry, material)
-
-scene.add(mesh)
+// debug
+const gui = new GUI()
 
 const parameters = {
 	count: 500,
 }
+
+gui.add(parameters, "count").min(0).max(10000).step(50).onFinishChange()
+
+// Scene
+
+const scene = new THREE.Scene()
+
+// Objects
+
+const geometry = new THREE.SphereGeometry(2, 24, 24)
+const material = new THREE.MeshNormalMaterial({ flatShading: true })
+const mesh = new THREE.Mesh(geometry, material)
+
+// scene.add(mesh)
 
 const sizes = {
 	width: window.innerWidth,
@@ -69,9 +69,9 @@ document.addEventListener("mousemove", (evt) => {
 		cursor.x = currentX
 		cursor.y = currentY
 
-		document.body.style.backgroundColor = `rgba(${Math.abs(
-			currentX - 155
-		)}, ${currentY}, ${currentX}, 0.5)`
+		document.body.style.backgroundColor = `rgba(${Math.abs(currentX - 155)}, ${
+			currentY / currentX
+		}, ${255}, 0.7)`
 		console.log(document.body.style.backgroundColor)
 	}
 })
