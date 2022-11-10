@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
   font-family: 'Quicksand', Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #ffffff;
 
@@ -16,24 +20,38 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-main{
-  width: 100%;
-  max-width: 900px;
-  /* border: 1px solid #53f2b5 ; */
-  text-align:  left;
+#name{
+  color: #53f2b5;
 }
 
 section{
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nav{
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0 1rem;
+  margin: 0;
+  box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(10px) saturate(110%);
+  /* background-color: rgb(100, 76, 255); */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+#navlinks{
+ margin: auto 0;
+ display: flex;
+ justify-content: space-between;
+ width: 50vw
 }
 
 
@@ -52,8 +70,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: rgba(34, 1, 255, 0.7)
+  background-color: rgba(34, 1, 255, 0.7);
+  transition: background-color 300ms linear;
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -69,14 +89,51 @@ p{
   line-height: 1.5rem;
 }
 
-#app {
-  max-width: 1280px;
+ #app {
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
   z-index: 5;
+} 
+/* 
+*{
+  outline: 1px dotted red;
+} */
+
+#hero {
+  padding: 1rem;
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+  column-count: 2;
 }
 
-/* main{
-  -webkit-text-stroke: 1px #000000;
-} */
+#hero > p {
+  max-width: 900px;
+}
+
+#projects{
+  height:60%;
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+  color: #53f2b5;
+  border-radius: 2rem;
+}
+
+.shadow{
+  box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+}
+
+@media only screen and (max-width: 900px ){
+  #hero{
+    column-count: 1;
+    max-width: 90%;
+  }
+}

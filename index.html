@@ -6,26 +6,39 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Vite App</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+		<script type="module" src="/projects.js"></script>
+		<script type="module" src="/gsap.js"></script>
 	</head>
 	<body>
 		<div id="app">
-			<nav>
+			<nav class="">
 				<a href="#"><h2>shawa.dev</h2></a>
+				<div id="navlinks">
+					<a href="">test1</a><a href="">test1</a><a href="">test1</a>
+				</div>
 			</nav>
-			<main>
-				<div>
-					<h1>Hello there👋 <br />I'm Mahmoud</h1>
+
+			<section>
+				<div id="hero">
+					<h1>Hello there👋 <br />I'm <span id="name">Mahmoud</span></h1>
 					<p>
-						I'm currently an <a href="">Assistant Instructor</a> at General
-						Assembly's Software Engineering Immersive Program. I have a passion
-						for creating beautiful websites, and I'm always looking to learn new
-						things.
+						I'm a software developer who has a passion for creating beautiful
+						websites, and learning new things. I'm currently an
+						<a
+							target="_blank"
+							href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
+							>Assistant Instructor</a
+						>
+						at General Assembly's Software Engineering Immersive Program.
 					</p>
 					<!-- <img class="" src="/IMG_1902.webp" alt="" srcset="" /> -->
 				</div>
-			</main>
+			</section>
+			<section>
+				<div id="projects" class="shadow">e</div>
+			</section>
+			<section></section>
 		</div>
 		<script type="module" src="/main.js"></script>
-		<script type="module" src="/gsap.js"></script>
 	</body>
 </html>

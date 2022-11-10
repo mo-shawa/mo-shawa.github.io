@@ -4,13 +4,13 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import GUI from "lil-gui"
 
 // debug
-const gui = new GUI()
+// const gui = new GUI()
 
 const parameters = {
 	count: 500,
 }
 
-gui.add(parameters, "count").min(0).max(10000).step(50).onFinishChange()
+// gui.add(parameters, "count").min(0).max(10000).step(50).onFinishChange()
 
 // Scene
 
@@ -63,8 +63,8 @@ document.addEventListener("mousemove", (evt) => {
 	const currentY = Math.round((evt.clientY / sizes.height) * 255)
 
 	if (
-		cursorMinChange(currentX, cursor.x, 15) ||
-		cursorMinChange(currentY, cursor.y, 15)
+		cursorMinChange(currentX, cursor.x, 25) ||
+		cursorMinChange(currentY, cursor.y, 25)
 	) {
 		cursor.x = currentX
 		cursor.y = currentY
@@ -99,9 +99,9 @@ const clock = new THREE.Clock()
 const tick = () => {
 	requestAnimationFrame(tick)
 
-	mesh.position.y = Math.sin(clock.getElapsedTime())
+	/* mesh.position.y = Math.sin(clock.getElapsedTime())
 
-	orbitControls.update()
+	orbitControls.update() */
 	renderer.render(scene, camera)
 }
 
