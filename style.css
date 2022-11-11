@@ -11,7 +11,7 @@
   font-weight: 400;
 
   color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -70,7 +70,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: rgba(34, 1, 255, 0.7);
+  /* background-color: rgba(34, 1, 255, 0.7); */
   transition: background-color 300ms linear;
 }
 
@@ -94,10 +94,7 @@ p{
   text-align: center;
   z-index: 5;
 } 
-/* 
-*{
-  outline: 1px dotted red;
-} */
+
 
 #hero {
   padding: 1rem;

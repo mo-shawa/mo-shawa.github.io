@@ -18,6 +18,27 @@ const scene = new THREE.Scene()
 
 // Objects
 
+// particles
+const points = new Float32Array(parameters.count * 3)
+for (let i = 0; i < parameters.count; i++) {
+	points[i + 0] = (Math.random() - 0.5) * 5
+	points[i + 1] = (Math.random() - 0.5) * 5
+	points[i + 2] = (Math.random() - 0.5) * 5
+}
+
+const pointsGeometry = new THREE.BufferGeometry()
+pointsGeometry.setAttribute("position", new THREE.BufferAttribute(points, 3))
+
+const pointsMesh = new THREE.Points(
+	pointsGeometry,
+	new THREE.PointsMaterial({
+		size: 2.5,
+		sizeAttenuation: false,
+		// color: new THREE.Color("red"),
+	})
+)
+scene.add(pointsMesh)
+
 const geometry = new THREE.SphereGeometry(2, 24, 24)
 const material = new THREE.MeshNormalMaterial({ flatShading: true })
 const mesh = new THREE.Mesh(geometry, material)
@@ -84,7 +105,8 @@ const renderer = new THREE.WebGLRenderer({
 })
 
 renderer.setSize(sizes.width, sizes.height)
-renderer.domElement.style.position = "fixed"
+// renderer.domElement.style.position = "fixed"
+renderer.domElement.style.cssText = `position: fixed; left: 0; top: 0 `
 document.body.appendChild(renderer.domElement)
 renderer.render(scene, camera)
 
@@ -99,9 +121,9 @@ const clock = new THREE.Clock()
 const tick = () => {
 	requestAnimationFrame(tick)
 
-	/* mesh.position.y = Math.sin(clock.getElapsedTime())
+	mesh.position.y = Math.sin(clock.getElapsedTime())
 
-	orbitControls.update() */
+	orbitControls.update()
 	renderer.render(scene, camera)
 }
 
