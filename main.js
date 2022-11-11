@@ -75,11 +75,20 @@ document.addEventListener("resize", () => {
 	camera.updateProjectionMatrix()
 })
 
+// On mouse move
+
 const cursorMinChange = (prev, curr, diff) => {
 	return curr > prev + diff || curr < prev - diff
 }
 
+let initialMove = false
+
 document.addEventListener("mousemove", (evt) => {
+	if (!initialMove) {
+		document.body.style.color = "var(--light-text-color)"
+		console.log("color changed")
+		initialMove = true
+	}
 	const currentX = Math.round((evt.clientX / sizes.width) * 255)
 	const currentY = Math.round((evt.clientY / sizes.height) * 255)
 
@@ -93,7 +102,6 @@ document.addEventListener("mousemove", (evt) => {
 		document.body.style.backgroundColor = `rgba(${Math.abs(
 			currentX - 155
 		)}, 0, ${Math.max(currentY, 100)}, 0.7)`
-		console.log(document.body.style.backgroundColor)
 	}
 })
 
