@@ -102,9 +102,14 @@ p{
 #hero {
   padding: 1rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   text-align: left;
   column-count: 2;
+  column-gap: 3rem;
+}
+
+#hero > h1 {
+  text-align: right;
 }
 
 #hero > p {
@@ -116,7 +121,7 @@ p{
   width: 100%;
   max-width: 1200px;
   background-color: white;
-  color: #53f2b5;
+  color: #12543b;
   border-radius: 2rem;
 }
 
@@ -135,5 +140,10 @@ p{
   #hero{
     column-count: 1;
     max-width: 90%;
+  }
+
+  #hero > h1 {
+    text-align: left;
+
   }
 }
