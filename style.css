@@ -49,6 +49,7 @@ nav{
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  z-index: 5;
 }
 
 #navlinks{
@@ -61,11 +62,8 @@ nav{
 
 a {
   font-weight: 500;
-  color: #53f2b5;
+  color: var(--main-color);
   text-decoration: inherit;
-}
-a:hover {
-  color: #53f2b5;
 }
 
 body {
@@ -74,7 +72,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  /* background-color: rgba(34, 1, 255, 0.7); */
   transition: background-color 300ms linear;
 }
 

@@ -21,9 +21,9 @@ const scene = new THREE.Scene()
 // particles
 const points = new Float32Array(parameters.count * 3)
 for (let i = 0; i < parameters.count; i++) {
-	points[i + 0] = (Math.random() - 0.5) * 5
-	points[i + 1] = (Math.random() - 0.5) * 5
-	points[i + 2] = (Math.random() - 0.5) * 5
+	points[i + 0] = (Math.random() - 0.5) * 10
+	points[i + 1] = (Math.random() - 0.5) * 10
+	points[i + 2] = (Math.random() - 0.5) * 10
 }
 
 const pointsGeometry = new THREE.BufferGeometry()
