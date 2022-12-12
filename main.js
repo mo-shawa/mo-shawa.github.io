@@ -6,6 +6,9 @@ import GUI from "lil-gui"
 // debug
 // const gui = new GUI()
 
+const textureLoader = new THREE.TextureLoader()
+const pointTexture = textureLoader.load("1.png")
+
 const parameters = {
 	count: 500,
 }
@@ -32,8 +35,11 @@ pointsGeometry.setAttribute("position", new THREE.BufferAttribute(points, 3))
 const pointsMesh = new THREE.Points(
 	pointsGeometry,
 	new THREE.PointsMaterial({
-		size: 2.5,
+		size: 20,
 		sizeAttenuation: false,
+		depthWrite: false,
+		alphaMap: pointTexture,
+		transparent: true,
 		// color: new THREE.Color("red"),
 	})
 )
