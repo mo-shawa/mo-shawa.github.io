@@ -74,11 +74,12 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.z = 5
 
-document.addEventListener("resize", () => {
+window.addEventListener("resize", () => {
 	sizes.width = window.innerWidth
 	sizes.height = window.innerHeight
 	camera.aspect = sizes.width / sizes.height
 	camera.updateProjectionMatrix()
+	renderer.setSize(sizes.width, sizes.height)
 })
 
 // On mouse move
@@ -124,20 +125,13 @@ renderer.domElement.style.cssText = `position: fixed; left: 0; top: 0 `
 document.body.appendChild(renderer.domElement)
 renderer.render(scene, camera)
 
-const orbitControls = new OrbitControls(camera, renderer.domElement)
-orbitControls.listenToKeyEvents(window)
-orbitControls.autoRotate = true
-orbitControls.enableDamping = true
-orbitControls.update()
-
 const clock = new THREE.Clock()
 
 const tick = () => {
 	requestAnimationFrame(tick)
 
-	mesh.position.y = Math.sin(clock.getElapsedTime())
+	pointsMesh.position.y = Math.sin(clock.getElapsedTime())
 
-	orbitControls.update()
 	renderer.render(scene, camera)
 }
 
