@@ -1,6 +1,5 @@
 import "./style.css"
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import GUI from "lil-gui"
 
 // debug
@@ -10,11 +9,10 @@ const textureLoader = new THREE.TextureLoader()
 const pointTexture = textureLoader.load("1.png")
 
 const parameters = {
-	count: 500,
+	count: 700,
 }
 
 // gui.add(parameters, "count").min(0).max(10000).step(50).onFinishChange()
-
 // Scene
 
 const scene = new THREE.Scene()
@@ -24,9 +22,9 @@ const scene = new THREE.Scene()
 // particles
 const points = new Float32Array(parameters.count * 3)
 for (let i = 0; i < parameters.count; i++) {
-	points[i + 0] = (Math.random() - 0.5) * 10
-	points[i + 1] = (Math.random() - 0.5) * 10
-	points[i + 2] = (Math.random() - 0.5) * 10
+	points[i * 3 + 0] = (Math.random() - 0.5) * 50 + 3
+	points[i * 3 + 1] = (Math.random() - 0.5) * 50 + 3
+	points[i * 3 + 2] = (Math.random() - 0.5) * 50 + 3
 }
 
 const pointsGeometry = new THREE.BufferGeometry()
@@ -35,7 +33,7 @@ pointsGeometry.setAttribute("position", new THREE.BufferAttribute(points, 3))
 const pointsMesh = new THREE.Points(
 	pointsGeometry,
 	new THREE.PointsMaterial({
-		size: 20,
+		size: 4,
 		sizeAttenuation: false,
 		depthWrite: false,
 		alphaMap: pointTexture,
@@ -45,11 +43,7 @@ const pointsMesh = new THREE.Points(
 )
 scene.add(pointsMesh)
 
-const geometry = new THREE.SphereGeometry(2, 24, 24)
-const material = new THREE.MeshNormalMaterial({ flatShading: true })
-const mesh = new THREE.Mesh(geometry, material)
-
-// scene.add(mesh)
+console.log(pointsMesh.rotation.y)
 
 const sizes = {
 	width: window.innerWidth,
@@ -66,13 +60,13 @@ const cursor = {
 */
 
 const camera = new THREE.PerspectiveCamera(
-	75,
+	30,
 	sizes.width / sizes.height,
 	1,
 	100
 )
 
-camera.position.z = 5
+camera.position.z = 20
 
 window.addEventListener("resize", () => {
 	sizes.width = window.innerWidth
@@ -96,8 +90,12 @@ document.addEventListener("mousemove", (evt) => {
 		console.log("color changed")
 		initialMove = true
 	}
-	const currentX = Math.round((evt.clientX / sizes.width) * 255)
-	const currentY = Math.round((evt.clientY / sizes.height) * 255)
+
+	const normalizedX = evt.clientX / sizes.width
+	const normalizedY = evt.clientX / sizes.height
+
+	const currentX = Math.round(normalizedX * 255)
+	const currentY = Math.round(normalizedY * 255)
 
 	if (
 		cursorMinChange(currentX, cursor.x, 25) ||
@@ -108,7 +106,7 @@ document.addEventListener("mousemove", (evt) => {
 
 		document.body.style.backgroundColor = `rgba(${Math.abs(
 			currentX - 155
-		)}, 0, ${Math.max(currentY, 100)}, 0.7)`
+		)}, 50, ${Math.max(currentY, 100)}, 0.7)`
 	}
 })
 
@@ -129,8 +127,12 @@ const clock = new THREE.Clock()
 
 const tick = () => {
 	requestAnimationFrame(tick)
+	const elapsedTime = clock.getElapsedTime()
 
-	pointsMesh.position.y = Math.sin(clock.getElapsedTime())
+	const parallaxX = cursor.x
+
+	pointsMesh.position.x = parallaxX
+	pointsMesh.rotation.x = -elapsedTime * 0.02
 
 	renderer.render(scene, camera)
 }

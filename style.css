@@ -4,9 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html{
   scroll-behavior: smooth;
 }
+
 :root {
   font-family: 'Quicksand', Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -21,7 +23,7 @@ html{
   --main-color: #53f2b5;
   --dark-text-color: cadetblue;
   --light-text-color: rgba(255, 255, 255, 0.87);
-  color: var(--dark-text-color)
+    color: var(--dark-text-color)
 }
 
 #name{
@@ -50,13 +52,18 @@ nav{
   justify-content: space-between;
   padding: 1rem;
   z-index: 5;
+
+}
+
+nav a {
+ color: var(--light-text-color)
 }
 
 #navlinks{
  margin: auto 0;
  display: flex;
  justify-content: space-between;
- width: 50vw
+ width: 50vw;
 }
 
 
@@ -65,6 +72,8 @@ a {
   color: var(--main-color);
   text-decoration: inherit;
 }
+
+
 
 body {
   margin: 0;
@@ -118,9 +127,8 @@ p{
   height:60%;
   width: 100%;
   max-width: 1200px;
-  background-color: white;
-  color: #12543b;
   border-radius: 2rem;
+  display: grid
 }
 
 .shadow{

@@ -36,9 +36,17 @@ export const projects = [
 		image: "/OpenAI.webp",
 	},
 ]
-/* 
+
 for (let project of projects) {
-	const el = document.createElement("img")
-	el.src = project.image
-	document.body.appendChild(el)
-} */
+	const card = document.createElement("div")
+	card.classList.add("card")
+
+	const img = document.createElement("img")
+	img.src = project.image
+
+	const pEl = document.createElement("p")
+	pEl.textContent = project.description
+
+	card.append(img, pEl)
+	document.getElementById("projects").appendChild(card)
+}
