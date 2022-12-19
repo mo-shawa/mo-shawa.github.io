@@ -1,4 +1,7 @@
 const sectionEls = document.querySelectorAll('section')
+const cardEls = document.querySelectorAll('.card')
+
+gsap.registerPlugin(Flip, ScrollTrigger)
 
 gsap.from('#hero', {
 	opacity: 0,
@@ -12,16 +15,29 @@ gsap.from('#hero', {
 	},
 })
 
-gsap.from('#projects', {
-	opacity: 0,
-	duration: 1.5,
-	x: -100,
-	ease: 'sine.inOut',
-	scrollTrigger: {
-		trigger: 'section',
-		start: 'top top',
-		toggleActions: 'play pause play pause',
-	},
+cardEls.forEach((card, idx) => {
+	card.addEventListener('click', () => {
+		const state = Flip.getState('.card')
+
+		const isCardActive = card.classList.contains('active')
+
+		cardEls.forEach((innerCard) => {
+			innerCard.classList.remove('active')
+			innerCard.classList.add('inactive')
+			if (isCardActive) innerCard.classList.remove('inactive')
+		})
+
+		if (!isCardActive) {
+			card.classList.remove('inactive')
+			card.classList.add('active')
+		}
+
+		Flip.from(state, {
+			duration: 0.5,
+			ease: 'sine.inOut',
+			absolute: true,
+		})
+	})
 })
 
 gsap.from('#hero ~ div', {

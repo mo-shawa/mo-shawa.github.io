@@ -39,7 +39,10 @@ const projects = [
 
 for (let project of projects) {
 	const card = document.createElement('div')
-	card.classList.add('card')
+	card.classList = 'card'
+
+	const h2 = document.createElement('h2')
+	h2.textContent = project.name
 
 	const img = document.createElement('img')
 	img.src = project.image
@@ -47,6 +50,9 @@ for (let project of projects) {
 	const pEl = document.createElement('p')
 	pEl.textContent = project.description
 
-	card.append(img, pEl)
+	const innerDiv = document.createElement('div')
+	innerDiv.append(h2, pEl)
+
+	card.append(img, innerDiv)
 	document.getElementById('projects').appendChild(card)
 }

@@ -25,6 +25,7 @@ html{
   --light-text-color: rgba(255, 255, 255, 0.87);
   color: var(--dark-text-color);
   --padding-s: 1rem;
+  --max-w: 1200px
 
 }
 
@@ -116,7 +117,7 @@ p{
 #hero {
   padding: var(--padding-s);
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-w);
   text-align: left;
   column-count: 2;
   column-gap: 3rem;
@@ -127,7 +128,7 @@ p{
 }
 
 #hero > p {
-  max-width: 900px;
+  max-width: 700px;
 }
 
 #hero ~ div {
@@ -140,13 +141,6 @@ p{
   display: inline-block;
 }
 
-#projects{
-  height:60%;
-  width: 100%;
-  max-width: 1200px;
-  border-radius: 2rem;
-  display: grid
-}
 
 .shadow{
   box-shadow:
@@ -156,32 +150,70 @@ p{
   22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
   41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
   100px 100px 80px rgba(0, 0, 0, 0.07)
-;
+  ;
+}
+
+#projects{
+  height:60%;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 2rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3rem;
 }
 
 .card{
   padding: var(--padding-s);
-  background-color: #53f2b5;
-  margin: 2rem;
-  border-radius: 2rem;
+  /* background-color: #53f2b5; */
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  grid-column: span 3;
+  gap: 2rem;
+  cursor: pointer;
 }
+
+.card  p{
+  text-align: left;
+  display: none
+}
+
+.card img {
+  border-radius: 1rem
+}
+
+.card.active  p {
+  display:block
+}
+
+.card.active {
+  grid-column: 1 / span 6;
+  grid-row: 1;
+  order: 0;
+  height: auto;
+  flex-direction: row;
+}
+
+.card.inactive{
+  grid-column: span 2;
+}
+
+
 
 
 @media only screen and (max-width: 940px ){
   :root{
-    --padding-s: 2rem
+    --padding-s: 1rem
   }
 
   #hero{
     column-count: 1;
   }
 
-  #hero ~ div {
-    bottom: 0
-  }
-
   #hero > h1 {
     text-align: left;
-
   }
 }
