@@ -165,24 +165,44 @@ p{
 
 .card{
   padding: var(--padding-s);
-  /* background-color: #53f2b5; */
+  background-color: #00000026;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content:center;
   align-items: center;
   grid-column: span 3;
   gap: 2rem;
   cursor: pointer;
+  height:auto;
+  max-width: fit-content;
+  backdrop-filter: hue-rotate(36deg);
 }
 
 .card  p{
   text-align: left;
-  display: none
+  display: none;
 }
 
+.card>div{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card>div>h2{
+  margin-right: auto;
+}
+
+
 .card img {
-  border-radius: 1rem
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 25rem;
+  margin-right: auto;
 }
 
 .card.active  p {
