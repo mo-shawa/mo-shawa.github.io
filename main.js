@@ -1,12 +1,12 @@
-import "./style.css"
-import * as THREE from "three"
-import GUI from "lil-gui"
+import './style.css'
+import * as THREE from 'three'
+import GUI from 'lil-gui'
 
 // debug
 // const gui = new GUI()
 
 const textureLoader = new THREE.TextureLoader()
-const pointTexture = textureLoader.load("1.png")
+const pointTexture = textureLoader.load('1.png')
 
 const parameters = {
 	count: 700,
@@ -28,7 +28,7 @@ for (let i = 0; i < parameters.count; i++) {
 }
 
 const pointsGeometry = new THREE.BufferGeometry()
-pointsGeometry.setAttribute("position", new THREE.BufferAttribute(points, 3))
+pointsGeometry.setAttribute('position', new THREE.BufferAttribute(points, 3))
 
 const pointsMesh = new THREE.Points(
 	pointsGeometry,
@@ -38,7 +38,7 @@ const pointsMesh = new THREE.Points(
 		depthWrite: false,
 		alphaMap: pointTexture,
 		transparent: true,
-		// color: new THREE.Color("red"),
+		color: new THREE.Color('white'),
 	})
 )
 scene.add(pointsMesh)
@@ -66,9 +66,9 @@ const camera = new THREE.PerspectiveCamera(
 	100
 )
 
-camera.position.z = 20
+camera.position.z = 40
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
 	sizes.width = window.innerWidth
 	sizes.height = window.innerHeight
 	camera.aspect = sizes.width / sizes.height
@@ -84,10 +84,10 @@ const cursorMinChange = (prev, curr, diff) => {
 
 let initialMove = false
 
-document.addEventListener("mousemove", (evt) => {
+document.addEventListener('mousemove', (evt) => {
 	if (!initialMove) {
-		document.body.style.color = "var(--light-text-color)"
-		console.log("color changed")
+		document.body.style.color = 'var(--light-text-color)'
+		console.log('color changed')
 		initialMove = true
 	}
 
@@ -118,7 +118,6 @@ const renderer = new THREE.WebGLRenderer({
 })
 
 renderer.setSize(sizes.width, sizes.height)
-// renderer.domElement.style.position = "fixed"
 renderer.domElement.style.cssText = `position: fixed; left: 0; top: 0 `
 document.body.appendChild(renderer.domElement)
 renderer.render(scene, camera)
@@ -131,7 +130,7 @@ const tick = () => {
 
 	const parallaxX = cursor.x
 
-	pointsMesh.position.x = parallaxX
+	pointsMesh.rotation.x += parallaxX
 	pointsMesh.rotation.x = -elapsedTime * 0.02
 
 	renderer.render(scene, camera)

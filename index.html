@@ -2,19 +2,37 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/vite.svg"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
 		<title>Vite App</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-		<script type="module" src="/projects.js"></script>
-		<script type="module" src="/gsap.js"></script>
+		<script
+			type="module"
+			src="/projects.js"
+		></script>
+		<script
+			type="module"
+			src="/gsap.js"
+		></script>
 	</head>
 	<body>
 		<div id="app">
 			<nav class="">
-				<a href="#"><h2>shawa.dev</h2></a>
+				<a href="#app"><h2>shawa.dev</h2></a>
 				<div id="navlinks">
-					<a href="">Projects</a><a href="">Contact</a><a href="">Resume</a>
+					<a href="#projects">Projects</a><a href="#contact">Contact</a
+					><a
+						href="/CV_MahmoudElShawa_2023_1.pdf"
+						download="CV_Mahmoud_Shawa.pdf"
+						>Resume</a
+					>
 				</div>
 			</nav>
 
@@ -23,21 +41,32 @@
 					<h1>Hello there👋 <br />I'm <span id="name">Mahmoud</span></h1>
 					<p>
 						I'm a software developer who has a passion for creating beautiful
-						websites, and learning new things. I'm currently an
+						websites, and learning new things. <br />
+						I'm currently on
 						<a
 							target="_blank"
 							href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
-							>Assistant Instructor</a
+							>The Instructional Team</a
 						>
 						at General Assembly's Software Engineering Immersive Program.
 					</p>
 				</div>
+				<div>
+					<p>Check out my projects!</p>
+					<span class="point">👇</span>
+				</div>
 			</section>
 			<section>
-				<div id="projects" class="shadow"></div>
+				<div
+					id="projects"
+					class="shadow"
+				></div>
 			</section>
 			<section></section>
 		</div>
-		<script type="module" src="/main.js"></script>
+		<script
+			type="module"
+			src="/main.js"
+		></script>
 	</body>
 </html>

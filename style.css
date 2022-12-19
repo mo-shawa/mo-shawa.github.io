@@ -23,7 +23,9 @@ html{
   --main-color: #53f2b5;
   --dark-text-color: cadetblue;
   --light-text-color: rgba(255, 255, 255, 0.87);
-    color: var(--dark-text-color)
+  color: var(--dark-text-color);
+  --padding-s: 1rem;
+
 }
 
 #name{
@@ -34,6 +36,7 @@ section{
   height: 100vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -46,24 +49,28 @@ nav{
   box-shadow:
   2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02);
   backdrop-filter: blur(10px) saturate(110%);
-  /* background-color: rgb(100, 76, 255); */
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: var(--padding-s);
   z-index: 5;
 
 }
 
 nav a {
- color: var(--light-text-color)
+ color: var(--light-text-color);
+ padding: var(--padding-s);
 }
 
 #navlinks{
  margin: auto 0;
  display: flex;
  justify-content: space-between;
- width: 50vw;
+ width: fit-content;
+}
+
+#navlinks a{
+  padding: var(--padding-s);
 }
 
 
@@ -107,7 +114,7 @@ p{
 
 
 #hero {
-  padding: 1rem;
+  padding: var(--padding-s);
   width: 100%;
   max-width: 1200px;
   text-align: left;
@@ -121,6 +128,16 @@ p{
 
 #hero > p {
   max-width: 900px;
+}
+
+#hero ~ div {
+  position: absolute;
+  bottom: 15%;
+  padding: var(--padding-s)
+}
+
+.point{
+  display: inline-block;
 }
 
 #projects{
@@ -142,10 +159,25 @@ p{
 ;
 }
 
-@media only screen and (max-width: 900px ){
+.card{
+  padding: var(--padding-s);
+  background-color: #53f2b5;
+  margin: 2rem;
+  border-radius: 2rem;
+}
+
+
+@media only screen and (max-width: 940px ){
+  :root{
+    --padding-s: 2rem
+  }
+
   #hero{
     column-count: 1;
-    max-width: 90%;
+  }
+
+  #hero ~ div {
+    bottom: 0
   }
 
   #hero > h1 {
