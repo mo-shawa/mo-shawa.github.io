@@ -9,7 +9,7 @@ const textureLoader = new THREE.TextureLoader()
 const pointTexture = textureLoader.load('1.png')
 
 const parameters = {
-	count: 700,
+	count: 1000,
 }
 
 // gui.add(parameters, "count").min(0).max(10000).step(50).onFinishChange()
@@ -131,7 +131,7 @@ const tick = () => {
 	const parallaxX = cursor.x
 
 	pointsMesh.rotation.x += parallaxX
-	pointsMesh.rotation.x = -elapsedTime * 0.02
+	pointsMesh.rotation.x = -elapsedTime * 0.01
 
 	renderer.render(scene, camera)
 }
