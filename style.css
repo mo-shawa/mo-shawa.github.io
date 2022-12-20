@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -31,6 +32,7 @@ html{
 
 #name{
   color: var(--main-color);
+  filter: hue-rotate(25deg);
 }
 
 section{
@@ -155,33 +157,35 @@ p{
 
 #projects{
   height:60%;
-  width: 100%;
-  max-width: 1200px;
+  /* width: 100%; */
+  max-width: 1000px;
   border-radius: 2rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .card{
   padding: var(--padding-s);
-  background-color: #00000026;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content:center;
   align-items: center;
   grid-column: span 3;
-  gap: 2rem;
+  gap: var(--padding-s);
   cursor: pointer;
   height:auto;
   max-width: fit-content;
-  backdrop-filter: hue-rotate(36deg);
+  backdrop-filter: hue-rotate(65deg);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
-.card  p{
+.card  p, .links-container{
   text-align: left;
   display: none;
+  line-height: 1.5;
 }
 
 .card>div{
@@ -191,6 +195,7 @@ p{
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  width: max-content;
 }
 
 .card>div>h2{
@@ -198,14 +203,14 @@ p{
 }
 
 
-.card img {
+.card > img {
   border-radius: 1rem;
   width: 100%;
   max-width: 25rem;
   margin-right: auto;
 }
 
-.card.active  p {
+.card.active  p, .card.active div.links-container {
   display:block
 }
 
@@ -220,6 +225,20 @@ p{
 .card.inactive{
   grid-column: span 2;
 }
+
+.links-container{
+  position:absolute;
+  bottom: var(--padding-s);
+  right: var(--padding-s);
+  height: auto;
+  width: auto;
+}
+
+.links-container > a {
+  margin: 0 var(--padding-s);
+}
+
+
 
 
 
@@ -236,4 +255,26 @@ p{
   #hero > h1 {
     text-align: left;
   }
+
+  #projects{
+    grid-template-columns: 1fr;
+  }
+
+  .card.active {
+    grid-column:  1;
+    grid-row: 1;
+    order: 0;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .card.active  p {
+    display:inline-flex
+  }
+  
+  .card.inactive{
+    grid-column: span 1;
+  }
+
 }

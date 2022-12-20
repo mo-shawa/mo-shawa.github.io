@@ -39,10 +39,9 @@ cardEls.forEach((card, idx) => {
 			absolute: true,
 			stagger: 0.1,
 			simple: true,
-			onComplete: () => {
-				// document.querySelector(".card.active").classList.remove("active")
-			},
 		})
+
+		console.log(card.childNodes[1].childNodes)
 
 		if (!isCardActive) {
 			gsap.from(card.childNodes[1].childNodes, {

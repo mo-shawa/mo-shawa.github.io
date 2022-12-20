@@ -1,4 +1,4 @@
-import './style.css'
+import "./style.css"
 
 const sizes = {
 	width: window.innerWidth,
@@ -10,7 +10,7 @@ const cursor = {
 	y: 0,
 }
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
 	sizes.width = window.innerWidth
 	sizes.height = window.innerHeight
 })
@@ -23,15 +23,15 @@ const cursorMinChange = (prev, curr, diff) => {
 
 let initialMove = false
 
-document.addEventListener('mousemove', (evt) => {
+document.addEventListener("mousemove", (evt) => {
 	if (!initialMove) {
-		document.body.style.color = 'var(--light-text-color)'
-		console.log('color changed')
+		document.body.style.color = "var(--light-text-color)"
+		console.log("color changed")
 		initialMove = true
 	}
 
 	const normalizedX = evt.clientX / sizes.width
-	const normalizedY = evt.clientX / sizes.height
+	const normalizedY = evt.clientY / sizes.height
 
 	const currentX = Math.round(normalizedX * 255)
 	const currentY = Math.round(normalizedY * 255)
@@ -43,8 +43,10 @@ document.addEventListener('mousemove', (evt) => {
 		cursor.x = currentX
 		cursor.y = currentY
 
-		document.body.style.backgroundColor = `rgba(${Math.abs(
-			currentX - 155
-		)}, 50, ${Math.max(currentY, 100)}, 0.7)`
+		console.log(cursor)
+
+		document.body.style.backgroundColor = `rgba(${Math.abs(currentX - 155)}, ${
+			50 + currentY / 10
+		}, ${currentY}, 0.7)`
 	}
 })

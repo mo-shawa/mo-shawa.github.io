@@ -51,8 +51,28 @@ for (let project of projects) {
 	const pEl = document.createElement("p")
 	pEl.textContent = project.description
 
+	const githubImg = document.createElement("img")
+	githubImg.src = "/svg/github.svg"
+
+	const githubLink = document.createElement("a")
+	githubLink.target = "_blank"
+	githubLink.href = project.github
+	githubLink.append(githubImg)
+
+	const linkImg = document.createElement("img")
+	linkImg.src = "/svg/link.svg"
+
+	const deployLink = document.createElement("a")
+	deployLink.target = "_blank"
+	deployLink.href = project.deployment
+	deployLink.append(linkImg)
+
+	const linksDiv = document.createElement("div")
+	linksDiv.classList.add("links-container")
+	linksDiv.append(githubLink, deployLink)
+
 	const innerDiv = document.createElement("div")
-	innerDiv.append(h2, pEl)
+	innerDiv.append(h2, pEl, linksDiv)
 
 	card.append(img, innerDiv)
 	document.getElementById("projects").appendChild(card)
