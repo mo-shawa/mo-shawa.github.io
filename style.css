@@ -26,6 +26,7 @@ html{
   --light-text-color: rgba(255, 255, 255, 0.87);
   color: var(--dark-text-color);
   --padding-s: 1rem;
+  --padding-m: 5rem;
   --padding-l: 10rem;
   --max-w: 1200px
 
@@ -46,10 +47,14 @@ section{
 }
 
 .section-heading{
-  margin:auto;
+  margin: var(--padding-m) 0 auto 0;
   width: 100%; 
   height: 100%;
   text-align: left
+}
+
+#projects-section{
+  justify-content: flex-start;
 }
 
 nav{
