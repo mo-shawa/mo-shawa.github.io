@@ -47,6 +47,8 @@ cardEls.forEach((card, idx) => {
 			gsap.from(card.childNodes[1].childNodes, {
 				delay: 0.5,
 				opacity: 0,
+				stagger: 0.5,
+				x: -20,
 			})
 		}
 	})

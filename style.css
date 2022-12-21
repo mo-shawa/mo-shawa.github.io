@@ -185,7 +185,7 @@ p{
 .card  p, .links-container{
   text-align: left;
   display: none;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 .card>div{
@@ -205,6 +205,7 @@ p{
 
 .card > img {
   border-radius: 1rem;
+  border: 1px solid white;
   width: 100%;
   max-width: 25rem;
   margin-right: auto;
@@ -248,12 +249,17 @@ p{
     --padding-s: 1rem
   }
 
+  section{
+    padding: 0 var(--padding-s);
+  }
+
   #hero{
     column-count: 1;
   }
 
   #hero > h1 {
     text-align: left;
+    margin-bottom: 1rem;
   }
 
   #projects{
@@ -262,19 +268,37 @@ p{
 
   .card.active {
     grid-column:  1;
-    grid-row: 1;
-    order: 0;
+    /* grid-row: 1; */
+    order:initial ;
     height: auto;
     width: 100%;
     flex-direction: column;
   }
 
+  .card.active > img {
+    margin: auto;
+  }
+
   .card.active  p {
-    display:inline-flex
+    display: block
   }
   
   .card.inactive{
     grid-column: span 1;
+  }
+
+  .card>div{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .card>div>p{
+    margin-bottom: 2rem;
   }
 
 }
