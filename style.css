@@ -263,6 +263,11 @@ p{
     --padding-s: 1rem
   }
 
+  #hero ~ div {
+    position: absolute;
+    bottom: var(--padding-m);
+  }
+
   section{
     padding: 0 var(--padding-s);
   }
@@ -274,9 +279,11 @@ p{
   #hero > h1 {
     text-align: left;
     margin-bottom: 1rem;
+    font-size: 2.5rem;
   }
 
   #projects{
+    margin-top: var(--padding-m);
     grid-template-columns: 1fr;
   }
 
