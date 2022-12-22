@@ -45,8 +45,6 @@ document.addEventListener("mousemove", (evt) => {
 		cursor.x = currentX
 		cursor.y = currentY
 
-		console.log(cursor)
-
 		document.body.style.backgroundColor = `rgba(${Math.abs(currentX - 155)}, ${
 			50 + currentY / 10
 		}, ${currentY}, 0.7)`

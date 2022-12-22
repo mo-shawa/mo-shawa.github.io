@@ -38,7 +38,7 @@ html{
 
 section{
   min-height: 100vh;
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,6 +127,10 @@ p{
   margin: 0 auto;
   text-align: center;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 } 
 
 

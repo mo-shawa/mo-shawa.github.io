@@ -36,12 +36,10 @@ cardEls.forEach((card, idx) => {
 		Flip.from(state, {
 			duration: 0.5,
 			ease: "back.inOut",
-			absolute: true,
+			// absolute: true,
 			stagger: 0.1,
 			simple: true,
 		})
-
-		console.log(card.childNodes[1].childNodes)
 
 		if (!isCardActive) {
 			gsap.from(card.childNodes[1].childNodes, {
