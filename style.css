@@ -170,8 +170,7 @@ p{
 
 #projects{
   height:60%;
-  /* width: 100%; */
-  max-width: 1000px;
+  max-width: 940px;
   border-radius: 2rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
