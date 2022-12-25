@@ -174,13 +174,12 @@ p{
 }
 
 #projects{
-  height:60%;
   max-width: 940px;
   border-radius: 2rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
-  margin-bottom: var(--padding-l);
+  margin: var(--padding-l) 0;
 }
 
 .card{
@@ -198,12 +197,14 @@ p{
   backdrop-filter: hue-rotate(65deg);
   border: 1px solid white;
   background-color: rgba(0, 0, 0, 0.35);
+  overflow: hidden;
 }
 
 .card  p, .links-container{
   text-align: left;
   display: none;
   line-height: 1.2;
+  font-size: 1.2rem;
 }
 
 .card>div{
@@ -283,6 +284,30 @@ p{
   background-position: 195% 100%;
 }
 
+.pills-container {
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.card.active .pills-container{
+  width: 70%;
+}
+
+.card.inactive .pills-container{
+  display: none;
+}
+
+
+.pill{
+  background-color: var(--darken-color);
+  border-radius: 6rem;
+  padding: 0.3rem var(--padding-s);
+}
+
 @media only screen and (max-width: 940px ){
   :root{
     --padding-s: 1rem
@@ -308,8 +333,12 @@ p{
   }
 
   #projects{
-    margin-top: var(--padding-m);
+    margin: var(--padding-m) 0;
     grid-template-columns: 1fr;
+  }
+
+  .card{
+    margin:auto
   }
 
   .card.active {

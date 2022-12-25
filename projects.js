@@ -12,7 +12,7 @@ const projects = [
 		name: "SaveQuest",
 		description:
 			"SaveQuest gamifies the budgeting process, and encourages users to consistently track their expenses with EXP, levelling up, and a retro NES-style interface.",
-		technologies: ["React.js", "Express", "MongoDB", "Node.js"],
+		technologies: ["React.js", "Express.js", "MongoDB", "Node.js"],
 		github: "https://github.com/mo-shawa/SaveQuest",
 		deployment: "http://savequest.herokuapp.com/",
 		image: "project-img/SaveQuest_scaled.webp",
@@ -51,6 +51,16 @@ for (let project of projects) {
 	const pEl = document.createElement("p")
 	pEl.textContent = project.description
 
+	const pillsContainer = document.createElement("div")
+	pillsContainer.classList = "pills-container"
+	// pills
+	for (let technology of project.technologies) {
+		const pillEl = document.createElement("small")
+		pillEl.classList.add("pill")
+		pillEl.textContent = technology
+		pillsContainer.append(pillEl)
+	}
+
 	const githubImg = document.createElement("img")
 	githubImg.src = "/svg/github.svg"
 
@@ -72,7 +82,7 @@ for (let project of projects) {
 	linksDiv.append(githubLink, deployLink)
 
 	const innerDiv = document.createElement("div")
-	innerDiv.append(h2, pEl, linksDiv)
+	innerDiv.append(h2, pEl, pillsContainer, linksDiv)
 
 	card.append(img, innerDiv)
 	document.getElementById("projects").appendChild(card)

@@ -3,13 +3,31 @@ const cardEls = gsap.utils.toArray(".card")
 
 gsap.registerPlugin(Flip, ScrollTrigger)
 
-gsap.from("#hero", {
-	opacity: 0,
+const heroTl = gsap.timeline()
+
+heroTl
+	.from("#hero > *", {
+		opacity: 0,
+		duration: 1.5,
+		x: -50,
+		stagger: 1,
+		ease: "elastic.out",
+	})
+	.from("#hero ~ div", {
+		delay: 1.5,
+		opacity: 0,
+		y: 40,
+		duration: 1.5,
+	})
+
+gsap.to(".point", {
 	duration: 1.5,
-	x: -100,
+	y: 20,
+	repeat: -1,
+	yoyo: true,
 	ease: "sine.inOut",
 	scrollTrigger: {
-		trigger: "section",
+		trigger: ".point",
 		start: "top bottom",
 		toggleActions: "play pause play pause",
 	},
@@ -36,38 +54,58 @@ cardEls.forEach((card, idx) => {
 		Flip.from(state, {
 			duration: 0.5,
 			ease: "back.inOut",
-			// absolute: true,
 			stagger: 0.1,
 			simple: true,
 		})
 
 		if (!isCardActive) {
-			gsap.from(card.childNodes[1].childNodes, {
-				delay: 0.5,
+			const timeline = gsap.timeline()
+
+			const standardOptions = {
 				opacity: 0,
-				stagger: 0.5,
+				stagger: 0.3,
 				x: -20,
-			})
+			}
+
+			const children = card.childNodes[1].childNodes
+			timeline
+				.from(children[0], standardOptions)
+				.from(children[1], standardOptions)
+				.from(children[2].children, {
+					...standardOptions,
+					stagger: 0.1,
+				})
+				.from(children[3].children, {
+					...standardOptions,
+					stagger: 0.5,
+					x: 0,
+				})
 		}
+
+		document.getElementById("projects-section").scrollIntoView(true)
 	})
 })
 
-gsap.from("#hero ~ div", {
-	delay: 1.5,
-	opacity: 0,
-	y: 40,
-	duration: 1,
-})
+const contactEl = document.getElementById("contact-section")
 
-gsap.to(".point", {
-	duration: 1.5,
-	y: 20,
-	repeat: -1,
-	yoyo: true,
-	ease: "sine.inOut",
+const contactTimeline = gsap.timeline({
 	scrollTrigger: {
-		trigger: ".point",
-		start: "top bottom",
-		toggleActions: "play pause play pause",
+		trigger: contactEl,
+		start: "top 50%",
 	},
 })
+
+contactTimeline
+	.from(contactEl.children[1], {
+		opacity: 0,
+		duration: 0.5,
+		stagger: 0.1,
+		y: -20,
+	})
+	.from(contactEl.children[2].children, {
+		opacity: 0,
+		duration: 0.3,
+		stagger: 0.3,
+		y: 20,
+		ease: "elastic",
+	})
