@@ -22,6 +22,7 @@ html{
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   --main-color: #53f2b5;
+  --darken-color: rgba(0, 0, 0, 0.35);
   --dark-text-color: cadetblue;
   --light-text-color: rgba(255, 255, 255, 0.87);
   color: var(--dark-text-color);
@@ -33,7 +34,7 @@ html{
 }
 
 #name{
-  color: rgba(0, 0, 0, 0.35);
+  color: var(--darken-color)
 }
 
 section{
@@ -258,15 +259,28 @@ p{
 
 #icon-container{
   padding: var(--padding-m);
-  height:60vh;
+  margin-bottom: auto;
   display: flex;
   gap: var(--padding-m);
+  justify-content: center;
+  align-items: center ;
+  flex-wrap: wrap ;
 }
 
 #icon-container img{
-  height: 4rem;
-  background-color: rgba(255, 255, 255, 0.206);
-  padding: var(--padding-s);
+  background: transparent;
+  background: linear-gradient(to right, var(--darken-color) 50%, transparent 50%);
+  background-position: 98% 100%;
+  background-size: 205% 100%;
+  border-radius: 1rem;
+  height: 5rem;
+  padding:var(--padding-s);
+  transition: all .3s ease-in-out;
+  width: auto;
+}
+
+#icon-container img:hover{
+  background-position: 195% 100%;
 }
 
 @media only screen and (max-width: 940px ){
