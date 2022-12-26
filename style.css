@@ -85,6 +85,8 @@ nav a {
  display: flex;
  justify-content: space-between;
  width: fit-content;
+ overflow: scroll;
+
 }
 
 #navlinks a{
@@ -152,7 +154,7 @@ p{
   max-width: 700px;
 }
 
-#hero ~ div {
+#pointer-container {
   position: absolute;
   bottom: var(--padding-l);
 }
@@ -313,11 +315,6 @@ p{
     --padding-s: 1rem
   }
 
-  #hero ~ div {
-    position: absolute;
-    bottom: var(--padding-m);
-  }
-
   section{
     padding: 0 var(--padding-s);
   }
@@ -375,5 +372,15 @@ p{
   .card>div>p{
     margin-bottom: 2rem;
   }
+
+}
+
+@media only screen and (max-width: 600px ){
+  nav{
+    bottom: 0;
+    left: 0;
+    top:auto;
+  }
+
 
 }

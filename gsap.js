@@ -10,8 +10,8 @@ heroTl
 		opacity: 0,
 		duration: 1.5,
 		x: -50,
-		stagger: 1,
-		ease: "elastic.out",
+		stagger: 1.5,
+		ease: "sine.inOut",
 	})
 	.from("#hero ~ div", {
 		delay: 1.5,
