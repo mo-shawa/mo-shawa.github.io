@@ -25,7 +25,6 @@ html{
   --darken-color: rgba(0, 0, 0, 0.35);
   --dark-text-color: cadetblue;
   --light-text-color: rgba(255, 255, 255, 0.87);
-  color: var(--dark-text-color);
   --padding-s: 1rem;
   --padding-m: 5rem;
   --padding-l: 10rem;
@@ -85,14 +84,10 @@ nav a {
  display: flex;
  justify-content: space-between;
  width: fit-content;
- overflow: scroll;
+ gap: 1rem;
+ overflow:auto;
 
 }
-
-#navlinks a{
-  padding: var(--padding-s);
-}
-
 
 a {
   font-weight: 500;
@@ -108,6 +103,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--dark-text-color);
   transition: background-color 300ms linear;
 }
 
@@ -271,18 +267,23 @@ p{
 }
 
 #icon-container img{
+ 
+  border-radius: 1rem;
+  height: 5rem;
+  padding:var(--padding-s);
+  width: auto;
+}
+
+.hover-effect{
   background: transparent;
   background: linear-gradient(to right, var(--darken-color) 50%, transparent 50%);
   background-position: 98% 100%;
   background-size: 205% 100%;
-  border-radius: 1rem;
-  height: 5rem;
-  padding:var(--padding-s);
   transition: all .3s ease-in-out;
-  width: auto;
+
 }
 
-#icon-container img:hover{
+.hover-effect:hover{
   background-position: 195% 100%;
 }
 
@@ -380,6 +381,10 @@ p{
     bottom: 0;
     left: 0;
     top:auto;
+  }
+
+  #navlinks{
+
   }
 
 

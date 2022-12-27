@@ -26,9 +26,7 @@ let initialMove = false
 document.addEventListener("mousemove", (evt) => {
 	if (!initialMove) {
 		document.body.style.color = "var(--light-text-color)"
-		console.log("color changed")
 		document.querySelector("nav").style.visibility = "visible"
-
 		initialMove = true
 	}
 

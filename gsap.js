@@ -1,19 +1,19 @@
-const sectionEls = document.querySelectorAll("section")
 const cardEls = gsap.utils.toArray(".card")
 
 gsap.registerPlugin(Flip, ScrollTrigger)
 
+const heroEl = document.getElementById("hero")
 const heroTl = gsap.timeline()
 
 heroTl
-	.from("#hero > *", {
+	.from("#hero>*:not(br)", {
 		opacity: 0,
 		duration: 1.5,
 		x: -50,
-		stagger: 1.5,
+		stagger: 1,
 		ease: "sine.inOut",
 	})
-	.from("#hero ~ div", {
+	.from("#pointer-container", {
 		delay: 1.5,
 		opacity: 0,
 		y: 40,
