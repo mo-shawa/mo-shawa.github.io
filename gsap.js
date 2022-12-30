@@ -14,7 +14,6 @@ heroTl
 		ease: "sine.inOut",
 	})
 	.from("#pointer-container", {
-		delay: 1.5,
 		opacity: 0,
 		y: 40,
 		duration: 1.5,
@@ -22,7 +21,7 @@ heroTl
 
 gsap.to(".point", {
 	duration: 1.5,
-	y: 20,
+	y: 15,
 	repeat: -1,
 	yoyo: true,
 	ease: "sine.inOut",
