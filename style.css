@@ -107,6 +107,7 @@ body {
   min-height: 100vh;
   color: var(--dark-text-color);
   transition: background-color 300ms linear;
+  overflow: hidden
 }
 
 
