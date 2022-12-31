@@ -25,7 +25,7 @@ html{
   -webkit-text-size-adjust: 100%;
   --main-color: #53f2b5;
   --darken-color: rgba(0, 0, 0, 0.35);
-  --dark-text-color: cadetblue;
+  --dark-text-color: rgb(0, 41, 41);
   --light-text-color: rgba(255, 255, 255, 0.87);
   --padding-s: 1rem;
   --padding-m: 5rem;

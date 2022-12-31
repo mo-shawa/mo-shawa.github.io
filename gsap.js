@@ -11,7 +11,7 @@ heroTl
 		duration: 1.5,
 		x: -50,
 		stagger: 1,
-		ease: "sine.inOut",
+		ease: "expo.inOut",
 	})
 	.from("#pointer-container", {
 		opacity: 0,
@@ -32,7 +32,7 @@ gsap.to(".point", {
 	},
 })
 
-cardEls.forEach((card, idx) => {
+cardEls.forEach((card) => {
 	card.addEventListener("click", () => {
 		const state = Flip.getState(".card")
 
@@ -100,11 +100,12 @@ contactTimeline
 		duration: 0.5,
 		stagger: 0.1,
 		y: -20,
+		ease: "expo.inOut",
 	})
 	.from(contactEl.children[2].children, {
 		opacity: 0,
 		duration: 0.3,
-		stagger: 0.3,
-		y: 20,
-		ease: "elastic",
+		stagger: 0.1,
+		y: 15,
+		ease: "expo.inOut",
 	})
