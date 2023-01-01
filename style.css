@@ -9,7 +9,7 @@
 html{
   -webkit-scroll-behavior: smooth ;
   scroll-behavior: smooth ;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 :root {
@@ -117,7 +117,7 @@ h1 {
   line-height: 1.1;
   text-align: inherit;
   margin: auto;
-  pointer-events: none;
+  /* pointer-events: none; */
   user-select: none;
 }
 
@@ -161,6 +161,7 @@ p{
 
 .point{
   display: inline-block;
+  visibility: hidden;
 }
 
 
@@ -232,8 +233,12 @@ p{
   margin-right: auto;
 }
 
-.card.active  p, .card.active div.links-container {
+.card.active  p  {
   display:block
+}
+
+.card.active div.links-container{
+  display: flex;
 }
 
 .card.active {
@@ -254,6 +259,7 @@ p{
   right: var(--padding-s);
   height: auto;
   width: auto;
+  gap: 1rem;
 }
 
 .links-container > a {
@@ -389,6 +395,10 @@ p{
 
   #pointer-container {
     bottom: var(--padding-m);
+  }
+
+  .links-container{
+    flex-direction: column;
   }
 
 
