@@ -387,14 +387,9 @@ p{
 }
 
 @media only screen and (max-width: 600px ){
-  nav{
-    bottom: 0;
-    left: 0;
-    top:auto;
-  }
 
   #pointer-container {
-    bottom: var(--padding-m);
+    bottom: var(--padding-s);
   }
 
   .links-container{
