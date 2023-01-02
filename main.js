@@ -23,7 +23,7 @@ const cursorMinChange = (prev, curr, diff) => {
 
 let initialMove = false
 
-document.addEventListener("mousemove", (evt) => {
+document.addEventListener("pointermove", (evt) => {
 	if (!initialMove) {
 		document.body.style.color = "var(--light-text-color)"
 		console.log("color changed")
