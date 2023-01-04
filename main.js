@@ -31,12 +31,6 @@ document.addEventListener("pointermove", (evt) => {
 		document.querySelector("nav").style.visibility = "visible"
 		document.body.style.overflow = "auto"
 
-		document.getElementById(
-			"pointer-message"
-		).innerHTML = `Check out my <a href="#projects-section">projects</a> below!`
-
-		document.querySelector(".point").style.visibility = "visible"
-
 		initialMove = true
 	}
 

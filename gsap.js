@@ -13,9 +13,10 @@ heroTl
 		stagger: 1,
 		ease: "expo.inOut",
 	})
-	.from("#pointer-container", {
+	.from("#pointer-container>*", {
 		opacity: 0,
 		y: 40,
+		stagger: 0.4,
 		duration: 1.5,
 	})
 
