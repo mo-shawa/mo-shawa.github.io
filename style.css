@@ -11,7 +11,7 @@ html{
   scroll-behavior: smooth ;
   /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(168,168,214,0.19380594034488796) 35%, rgba(0,212,255,1) 100%); */
 
-  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(168,168,214,1) 35%, rgba(0,212,255,0.1) 100%);
+  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(168,168,214,1) 35%, rgba(0,212,255,1) 100%);
 
   /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,0.29184515603116246) 100%); */
 
