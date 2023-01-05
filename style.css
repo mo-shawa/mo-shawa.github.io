@@ -10,6 +10,7 @@ html{
   -webkit-scroll-behavior: smooth ;
   scroll-behavior: smooth ;
   /* overflow-x: hidden; */
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(168,168,214,0.19380594034488796) 35%, rgba(0,212,255,1) 100%);
 }
 
 :root {
@@ -36,6 +37,12 @@ html{
 
 #name{
   color: var(--darken-color)
+}
+
+#hero-section{
+ 
+
+
 }
 
 section{
@@ -177,13 +184,15 @@ p{
   ;
 }
 
+
 #projects{
   max-width: 940px;
   border-radius: 2rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
-  /* margin: var(--padding-l) 0; */
+  background: repeating-linear-gradient(45deg, #ffffff1c, transparent var(--padding-l));
+  padding: 2rem
 }
 
 .card{
