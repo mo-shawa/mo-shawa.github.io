@@ -17,23 +17,25 @@ window.addEventListener("resize", () => {
 
 // On mouse move
 
-const cursorMinChange = (prev, curr, diff) => {
-	return curr > prev + diff || curr < prev - diff
-}
-
 let initialMove = false
 
+document.addEventListener(
+	"scroll",
+	(evt) => {
+		if (initialMove) return
+		handleInitialMove()
+		document.body.style.backgroundColor = "rgba(119, 53, 33, 0.7)"
+	},
+	{ once: true }
+)
+
 document.addEventListener("pointermove", (evt) => {
-	if (!initialMove) {
-		document.body.style.color = "var(--light-text-color)"
-		console.log("color changed")
+	handleColorChange(evt)
+	if (initialMove) return
+	handleInitialMove()
+})
 
-		document.querySelector("nav").style.visibility = "visible"
-		document.body.style.overflow = "auto"
-
-		initialMove = true
-	}
-
+function handleColorChange(evt) {
 	const normalizedX = evt.clientX / sizes.width
 	const normalizedY = evt.clientY / sizes.height
 
@@ -51,4 +53,20 @@ document.addEventListener("pointermove", (evt) => {
 			50 + currentY / 10
 		}, ${currentY}, 0.7)`
 	}
-})
+}
+
+function handleInitialMove() {
+	document.body.style.color = "var(--light-text-color)"
+	console.log("color changed")
+
+	document.querySelector("nav").style.visibility = "visible"
+	document.body.style.overflow = "auto"
+
+	document.documentElement.style.setProperty("--main-color", "#53f2b5")
+
+	initialMove = true
+}
+
+function cursorMinChange(prev, curr, diff) {
+	return curr > prev + diff || curr < prev - diff
+}
