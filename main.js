@@ -35,6 +35,19 @@ document.addEventListener("pointermove", (evt) => {
 	handleInitialMove()
 })
 
+document.querySelectorAll("a").forEach((link) => {
+	link.addEventListener("pointerover", () => {
+		const [r, g, b, a] = [
+			getRandomInt(0, 255),
+			getRandomInt(0, 255),
+			getRandomInt(0, 100),
+			0.5,
+		]
+
+		setBackgroundColor(r, g, b, a)
+	})
+})
+
 function handleColorChange(evt) {
 	const normalizedX = evt.clientX / sizes.width
 	const normalizedY = evt.clientY / sizes.height
@@ -49,10 +62,19 @@ function handleColorChange(evt) {
 		cursor.x = currentX
 		cursor.y = currentY
 
-		document.body.style.backgroundColor = `rgba(${Math.abs(currentX - 155)}, ${
-			50 + currentY / 10
-		}, ${currentY}, 0.7)`
+		const [r, g, b, a] = [
+			Math.abs(currentX - 155),
+			50 + currentY / 10,
+			currentY,
+			0.7,
+		]
+
+		setBackgroundColor(r, g, b, a)
 	}
+}
+
+function setBackgroundColor(r, g, b, a) {
+	document.body.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
 function handleInitialMove() {
@@ -69,4 +91,8 @@ function handleInitialMove() {
 
 function cursorMinChange(prev, curr, diff) {
 	return curr > prev + diff || curr < prev - diff
+}
+
+function getRandomInt(min, max) {
+	return Math.round((Math.random() + min) * max)
 }
