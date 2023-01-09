@@ -1,10 +1,5 @@
 import './style.css'
 
-const ua = window.navigator.userAgent
-const iOS = ua.match(/iPad/i) || ua.match(/iPhone/i)
-const webkit = ua.match(/WebKit/i)
-const is_iOSSafari = iOS && webkit && !ua.match(/CriOS/i)
-
 const sizes = {
 	width: window.innerWidth,
 	height: window.innerHeight,
@@ -23,10 +18,16 @@ window.addEventListener('resize', () => {
 // On mouse move
 
 let initialMove = false
+let projectsHovered = false
+
+const projectsEl = document.getElementById('projects')
+
+projectsEl.addEventListener('pointerover', () => (projectsHovered = true))
+projectsEl.addEventListener('pointerleave', () => (projectsHovered = false))
 
 document.addEventListener(
 	'scroll',
-	(evt) => {
+	() => {
 		if (initialMove) return
 		handleInitialMove()
 		document.body.style.backgroundColor = 'rgba(119, 53, 33, 0.7)'
@@ -34,15 +35,12 @@ document.addEventListener(
 	{ once: true }
 )
 
-if (!is_iOSSafari) {
-	document.addEventListener('pointermove', (evt) => {
-		handleColorChange(evt)
-		if (initialMove) return
-		handleInitialMove()
-	})
-} else {
-	console.log('iOS safari no fun')
-}
+document.addEventListener('pointermove', (evt) => {
+	if (projectsHovered) return
+	handleColorChange(evt)
+	if (initialMove) return
+	handleInitialMove()
+})
 
 document.querySelectorAll('a').forEach((link) => {
 	link.addEventListener('pointerover', () => {
@@ -82,19 +80,10 @@ function handleColorChange(evt) {
 	}
 }
 
-function setBackgroundColor(r, g, b, a) {
-	document.body.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`
-}
-
 function handleInitialMove() {
 	document.body.style.color = 'var(--light-text-color)'
-	console.log('color changed')
-
 	document.querySelector('nav').style.visibility = 'visible'
-	document.body.style.overflow = 'auto'
-
 	document.documentElement.style.setProperty('--main-color', '#53f2b5')
-
 	initialMove = true
 }
 
@@ -102,6 +91,10 @@ function cursorMinChange(prev, curr, diff) {
 	return curr > prev + diff || curr < prev - diff
 }
 
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
 	return Math.round((Math.random() + min) * max)
+}
+
+export function setBackgroundColor(r, g, b, a) {
+	document.body.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`
 }
