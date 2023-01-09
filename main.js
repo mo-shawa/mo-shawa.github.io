@@ -1,13 +1,9 @@
 import './style.css'
 
-const isSafari =
-	/constructor/i.test(window.HTMLElement) ||
-	(function (p) {
-		return p.toString() === '[object SafariRemoteNotification]'
-	})(
-		!window['safari'] ||
-			(typeof safari !== 'undefined' && window['safari'].pushNotification)
-	)
+const ua = window.navigator.userAgent
+const iOS = ua.match(/iPad/i) || ua.match(/iPhone/i)
+const webkit = ua.match(/WebKit/i)
+const is_iOSSafari = iOS && webkit && !ua.match(/CriOS/i)
 
 const sizes = {
 	width: window.innerWidth,
@@ -38,14 +34,14 @@ document.addEventListener(
 	{ once: true }
 )
 
-if (!isSafari) {
+if (!is_iOSSafari) {
 	document.addEventListener('pointermove', (evt) => {
 		handleColorChange(evt)
 		if (initialMove) return
 		handleInitialMove()
 	})
 } else {
-	console.log('safari no fun')
+	console.log('iOS safari no fun')
 }
 
 document.querySelectorAll('a').forEach((link) => {
