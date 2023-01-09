@@ -316,7 +316,6 @@ p{
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1rem;
-  margin-bottom: var(--padding-s);
 }
 
 .card.active .pills-container{
@@ -426,4 +425,9 @@ p{
     margin-top: auto;
   }
 
+}
+/* Safari 7.1+ */
+
+_::-webkit-full-page-media, _:future, :root .pills-container {
+  margin-bottom: var(--padding-s);
 }
