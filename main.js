@@ -1,4 +1,13 @@
-import "./style.css"
+import './style.css'
+
+const isSafari =
+	/constructor/i.test(window.HTMLElement) ||
+	(function (p) {
+		return p.toString() === '[object SafariRemoteNotification]'
+	})(
+		!window['safari'] ||
+			(typeof safari !== 'undefined' && window['safari'].pushNotification)
+	)
 
 const sizes = {
 	width: window.innerWidth,
@@ -10,7 +19,7 @@ const cursor = {
 	y: 0,
 }
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
 	sizes.width = window.innerWidth
 	sizes.height = window.innerHeight
 })
@@ -20,23 +29,27 @@ window.addEventListener("resize", () => {
 let initialMove = false
 
 document.addEventListener(
-	"scroll",
+	'scroll',
 	(evt) => {
 		if (initialMove) return
 		handleInitialMove()
-		document.body.style.backgroundColor = "rgba(119, 53, 33, 0.7)"
+		document.body.style.backgroundColor = 'rgba(119, 53, 33, 0.7)'
 	},
 	{ once: true }
 )
 
-document.addEventListener("pointermove", (evt) => {
-	handleColorChange(evt)
-	if (initialMove) return
-	handleInitialMove()
-})
+if (!isSafari) {
+	document.addEventListener('pointermove', (evt) => {
+		handleColorChange(evt)
+		if (initialMove) return
+		handleInitialMove()
+	})
+} else {
+	console.log('safari no fun')
+}
 
-document.querySelectorAll("a").forEach((link) => {
-	link.addEventListener("pointerover", () => {
+document.querySelectorAll('a').forEach((link) => {
+	link.addEventListener('pointerover', () => {
 		const [r, g, b, a] = [
 			getRandomInt(0, 255),
 			getRandomInt(0, 255),
@@ -78,13 +91,13 @@ function setBackgroundColor(r, g, b, a) {
 }
 
 function handleInitialMove() {
-	document.body.style.color = "var(--light-text-color)"
-	console.log("color changed")
+	document.body.style.color = 'var(--light-text-color)'
+	console.log('color changed')
 
-	document.querySelector("nav").style.visibility = "visible"
-	document.body.style.overflow = "auto"
+	document.querySelector('nav').style.visibility = 'visible'
+	document.body.style.overflow = 'auto'
 
-	document.documentElement.style.setProperty("--main-color", "#53f2b5")
+	document.documentElement.style.setProperty('--main-color', '#53f2b5')
 
 	initialMove = true
 }

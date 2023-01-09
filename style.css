@@ -271,12 +271,12 @@ p{
   right: var(--padding-s);
   height: auto;
   width: auto;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.links-container > a {
+/* .links-container > a {
   margin: 0 var(--padding-s);
-}
+} */
 
 #icon-container{
   padding: var(--padding-m);
@@ -396,6 +396,17 @@ p{
     margin-bottom: 2rem;
   }
 
+  /* Safari 7.1+ */
+/* 
+  _::-webkit-full-page-media, _:future, :root .pills-container {
+    margin-bottom: var(--padding-s);
+  } */
+
+  .links-container{
+    bottom: 0;
+    right: 0
+  }
+
 }
 
 @media only screen and (max-width: 600px ){
@@ -425,9 +436,8 @@ p{
     margin-top: auto;
   }
 
-}
-/* Safari 7.1+ */
+  .links-container{
+    gap: 1rem
+  }
 
-_::-webkit-full-page-media, _:future, :root .pills-container {
-  margin-bottom: var(--padding-s);
 }
