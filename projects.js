@@ -48,6 +48,10 @@ for (let project of projects) {
 	img.src = project.image
 	img.alt = project.name
 
+	img.addEventListener("click", () => {
+		window.open(project.deployment, "_blank")
+	})
+
 	const pEl = document.createElement("p")
 	pEl.textContent = project.description
 
