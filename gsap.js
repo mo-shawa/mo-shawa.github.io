@@ -4,7 +4,6 @@ const cardEls = gsap.utils.toArray(".card")
 
 gsap.registerPlugin(Flip, ScrollTrigger)
 
-const heroEl = document.getElementById("hero")
 const heroTl = gsap.timeline()
 
 heroTl
@@ -33,24 +32,6 @@ gsap.to(".point", {
 		start: "top bottom",
 		toggleActions: "play pause play pause",
 	},
-})
-
-const projectsSection = document.getElementById("projects-section")
-
-const observer = new IntersectionObserver(
-	() => {
-		projectsSection.style.height = `${projectsSection.offsetHeight}px`
-	},
-	{
-		root: projectsSection,
-	}
-)
-
-observer.observe(projectsSection)
-
-window.addEventListener("resize", () => {
-	projectsSection.style.height = "100%"
-	projectsSection.style.height = `${projectsSection.offsetHeight}px`
 })
 
 const activeCardTimeline = gsap.timeline()
@@ -114,7 +95,10 @@ cardEls.forEach((card) => {
 		]
 
 		setBackgroundColor(r, g, b, a)
-		document.getElementById("projects-section").scrollIntoView(true)
+
+		if (window.matchMedia("only screen and (max-width: 940px )").matches) {
+			document.getElementById("projects-section").scrollIntoView(true)
+		}
 	})
 })
 

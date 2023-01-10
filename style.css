@@ -67,6 +67,10 @@ section{
   justify-content: flex-start;
 }
 
+#projects-container{
+  min-height: 960px
+}
+
 nav{
   visibility: hidden;
   position: fixed;
@@ -192,7 +196,7 @@ p{
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
   background: rgba(255, 255, 255, 0.1);
-  padding: 2rem
+  padding: 2rem;
 }
 
 .card{
@@ -354,6 +358,10 @@ p{
   #projects{
     margin: var(--padding-m) 0;
     grid-template-columns: 1fr;
+  }
+
+  #projects-container {
+    min-height: 2150px;
   }
 
   .card{
