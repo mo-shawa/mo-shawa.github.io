@@ -34,8 +34,6 @@ gsap.to(".point", {
 	},
 })
 
-const activeCardTimeline = gsap.timeline()
-
 cardEls.forEach((card) => {
 	card.addEventListener("click", (evt) => {
 		if (["IMG", "A"].includes(evt.target.tagName)) return
@@ -57,36 +55,51 @@ cardEls.forEach((card) => {
 		}
 
 		Flip.from(state, {
-			duration: 0.5,
-			ease: "expo.inOut",
-			stagger: 0.1,
+			duration: 0.4,
+			ease: "expo.out",
 			simple: true,
 			absolute: true,
 		})
 
-		if (!isCardActive) {
-			const standardOptions = {
-				opacity: 0,
-				stagger: 0.3,
-				x: -20,
-			}
-
-			const children = card.childNodes[1].childNodes
-			activeCardTimeline.clear(true)
-			activeCardTimeline
-				.from(children[0], standardOptions)
-				.from(children[1], standardOptions)
-				.from(children[2].children, {
-					...standardOptions,
-					stagger: 0.1,
-				})
-				.from(children[3].children, {
-					...standardOptions,
-					stagger: 0.5,
-					x: 0,
-				})
+		const fromOptions = {
+			opacity: 0,
+			stagger: 0.1,
+			x: -20,
+		}
+		const toOptions = {
+			opacity: 1,
+			x: 0,
+			stagger: 0.1,
 		}
 
+		const [titleEl, descriptionEl, technologiesEl, linksEl] =
+			card.children[1].children
+
+		const activeCardTimeline = gsap.timeline({
+			paused: true,
+		})
+
+		if (!isCardActive) {
+			activeCardTimeline
+				.clear(true)
+				.fromTo([titleEl, descriptionEl], fromOptions, toOptions)
+				.fromTo(
+					technologiesEl.children,
+					{ ...fromOptions, stagger: 0.05 },
+					toOptions
+				)
+				.fromTo(linksEl.children, fromOptions, toOptions)
+				.play(0)
+		} else {
+			activeCardTimeline
+				.clear()
+				.fromTo(
+					technologiesEl.children,
+					{ ...fromOptions, stagger: 0.05 },
+					toOptions
+				)
+				.play(0)
+		}
 		const [r, g, b, a] = [
 			getRandomInt(0, 255),
 			getRandomInt(0, 255),
