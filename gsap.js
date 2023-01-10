@@ -36,8 +36,6 @@ gsap.to(".point", {
 
 cardEls.forEach((card) => {
 	card.addEventListener("click", (evt) => {
-		if (["IMG", "A"].includes(evt.target.tagName)) return
-
 		const state = Flip.getState("#projects, .card")
 
 		const isCardActive = card.classList.contains("active")
@@ -81,7 +79,7 @@ cardEls.forEach((card) => {
 
 		if (!isCardActive) {
 			activeCardTimeline
-				.clear(true)
+				.clear()
 				.fromTo([titleEl, descriptionEl], fromOptions, toOptions)
 				.fromTo(
 					technologiesEl.children,

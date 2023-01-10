@@ -49,6 +49,7 @@ for (let project of projects) {
 	img.alt = project.name
 
 	img.addEventListener("click", () => {
+		if (!card.classList.contains("active")) return
 		window.open(project.deployment, "_blank")
 	})
 
