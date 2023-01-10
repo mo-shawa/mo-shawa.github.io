@@ -58,7 +58,7 @@ for (let project of projects) {
 
 	const pillsContainer = document.createElement("div")
 	pillsContainer.classList = "pills-container"
-	// pills
+
 	for (let technology of project.technologies) {
 		const pillEl = document.createElement("small")
 		pillEl.classList.add("pill")
