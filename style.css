@@ -38,8 +38,8 @@ html{
   --padding-s: 1rem;
   --padding-m: 5rem;
   --padding-l: 10rem;
-  --max-w: 1200px
-
+  --max-w: 1200px;
+  --card-size: 25rem
 }
 
 #name{
@@ -244,7 +244,7 @@ p{
   border-radius: 1rem;
   border: 1px solid white;
   width: 100%;
-  max-width: 25rem;
+  max-width: var(--card-size);
   margin-right: auto;
 }
 
@@ -401,14 +401,9 @@ p{
 
   .card>div>p{
     margin-bottom: 2rem;
+    max-width: var(--card-size);
   }
-
-  /* Safari 7.1+ */
-/* 
-  _::-webkit-full-page-media, _:future, :root .pills-container {
-    margin-bottom: var(--padding-s);
-  } */
-
+  
   .links-container{
     bottom: 0;
     right: 0
@@ -447,4 +442,18 @@ p{
     gap: 1rem
   }
 
+  #navlinks>a:first-child {
+    display: none;
+  }
+
+}
+
+@media (max-width: 940px) and (orientation: landscape){
+  #pointer-container {
+    bottom: 0
+  }
+
+  #hero-section{
+    min-height: 120vh;
+  }
 }
