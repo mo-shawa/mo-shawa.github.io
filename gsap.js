@@ -15,7 +15,10 @@ navLinks.forEach((link) => {
 
 		gsap.to(window, {
 			duration: 1,
-			scrollTo: href,
+			scrollTo: {
+				y: href,
+				offsetY: 80,
+			},
 			ease: 'expo.inOut',
 		})
 	})
