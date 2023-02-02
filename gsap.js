@@ -4,7 +4,22 @@ const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
 
 const cardEls = gsap.utils.toArray('.card')
 
-gsap.registerPlugin(Flip, ScrollTrigger)
+gsap.registerPlugin(Flip, ScrollTrigger, ScrollToPlugin)
+
+const navLinks = document.querySelectorAll('.nav-link')
+
+navLinks.forEach((link) => {
+	link.addEventListener('click', (evt) => {
+		evt.preventDefault()
+		const href = link.getAttribute('href')
+
+		gsap.to(window, {
+			duration: 1,
+			scrollTo: href,
+			ease: 'expo.inOut',
+		})
+	})
+})
 
 const heroTl = gsap.timeline()
 
