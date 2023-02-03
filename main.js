@@ -1,5 +1,10 @@
 import './style.css'
 
+export const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
+export const isMobile = window.matchMedia(
+	'only screen and (max-width: 940px )'
+).matches
+
 const sizes = {
 	width: window.innerWidth,
 	height: window.innerHeight,

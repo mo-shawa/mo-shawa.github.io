@@ -1,9 +1,4 @@
-import { getRandomInt, setBackgroundColor } from './main'
-
-const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
-const isMobile = window.matchMedia(
-	'only screen and (max-width: 940px )'
-).matches
+import { getRandomInt, setBackgroundColor, isMobile, isSafari } from './main'
 
 const cardEls = gsap.utils.toArray('.card')
 
@@ -130,13 +125,13 @@ cardEls.forEach((card) => {
 
 		setBackgroundColor(r, g, b, a)
 
-		if (isMobile) {
-			const projectsSection = document.getElementById('projects-section')
+		if (isMobile && !isCardActive) {
+			const projects = document.getElementById('projects')
 			gsap.to(window, {
-				duration: 1,
+				duration: 0.5,
 				scrollTo: {
-					y: projectsSection,
-					offsetY: 80,
+					y: projects,
+					offsetY: 100,
 				},
 				ease: 'expo.inOut',
 			})
