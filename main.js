@@ -35,7 +35,7 @@ document.addEventListener(
 	() => {
 		if (initialMove) return
 		handleInitialMove()
-		document.body.style.backgroundColor = 'rgba(119, 53, 33, 0.7)'
+		setBackgroundColor(119, 53, 33, 0.7)
 	},
 	{ once: true }
 )
@@ -86,10 +86,26 @@ function handleColorChange(evt) {
 }
 
 function handleInitialMove() {
-	document.body.style.color = 'var(--light-text-color)'
-	document.querySelector('nav').style.visibility = 'visible'
-	document.documentElement.style.setProperty('--main-color', '#53f2b5')
 	initialMove = true
+	const nav = document.querySelector('nav')
+	const themeColorEl = document.getElementById('theme-color')
+	const { content: themeColor } = themeColorEl.attributes
+
+	gsap.from('nav', {
+		opacity: 0,
+		yPercent: -100,
+		ease: 'expo.inOut',
+		onStart: () => {
+			document.body.style.color = 'var(--light-text-color)'
+			nav.style.visibility = 'visible'
+			document.documentElement.style.setProperty('--main-color', '#53f2b5')
+		},
+		onComplete: () => {
+			gsap.to(themeColor, {
+				nodeValue: 'rgb(0,0,0)',
+			})
+		},
+	})
 }
 
 function cursorMinChange(prev, curr, diff) {
@@ -101,5 +117,15 @@ export function getRandomInt(min, max) {
 }
 
 export function setBackgroundColor(r, g, b, a) {
+	console.log(initialMove)
 	document.body.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`
+}
+
+function getRGBfromRGBA(r, g, b, a) {
+	const r2 = Math.floor((1 - a) * 255 + a * r)
+	const g2 = Math.floor((1 - a) * 255 + a * g)
+	const b2 = Math.floor((1 - a) * 255 + a * b)
+	const result = `rgb(${r2}, ${g2}, ${b2})`
+	console.log(result)
+	return result
 }
