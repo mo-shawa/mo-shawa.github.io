@@ -1,15 +1,16 @@
-import { getRandomInt, setBackgroundColor, isMobile, isSafari } from './main'
+import { isMobile, isSafari } from "./main"
+import { apply, gen } from "culler"
 
-const cardEls = gsap.utils.toArray('.card')
+const cardEls = gsap.utils.toArray(".card")
 
 gsap.registerPlugin(Flip, ScrollTrigger, ScrollToPlugin)
 
-const navLinks = document.querySelectorAll('.nav-link')
+const navLinks = document.querySelectorAll(".nav-link")
 
 navLinks.forEach((link) => {
-	link.addEventListener('click', (evt) => {
+	link.addEventListener("click", (evt) => {
 		evt.preventDefault()
-		const href = link.getAttribute('href')
+		const href = link.getAttribute("href")
 
 		gsap.to(window, {
 			duration: 1,
@@ -17,7 +18,7 @@ navLinks.forEach((link) => {
 				y: href,
 				offsetY: 80,
 			},
-			ease: 'expo.inOut',
+			ease: "expo.inOut",
 		})
 	})
 })
@@ -25,54 +26,54 @@ navLinks.forEach((link) => {
 const heroTl = gsap.timeline()
 
 heroTl
-	.from('#hero>*:not(br)', {
+	.from("#hero>*:not(br)", {
 		opacity: 0,
 		duration: 1.5,
 		x: -50,
 		stagger: 1,
-		ease: 'expo.inOut',
+		ease: "expo.inOut",
 	})
-	.from('#pointer-container>*', {
+	.from("#pointer-container>*", {
 		opacity: 0,
 		y: 40,
 		stagger: 0.4,
 		duration: 1.5,
 	})
 
-gsap.to('.point', {
+gsap.to(".point", {
 	duration: 1.5,
 	y: 15,
 	repeat: -1,
 	yoyo: true,
-	ease: 'sine.inOut',
+	ease: "sine.inOut",
 	scrollTrigger: {
-		trigger: '.point',
-		start: 'top bottom',
-		toggleActions: 'play pause play pause',
+		trigger: ".point",
+		start: "top bottom",
+		toggleActions: "play pause play pause",
 	},
 })
 
 cardEls.forEach((card) => {
-	card.addEventListener('click', (evt) => {
-		const state = Flip.getState('#projects, .card')
+	card.addEventListener("click", (evt) => {
+		const state = Flip.getState("#projects, .card")
 
-		const isCardActive = card.classList.contains('active')
+		const isCardActive = card.classList.contains("active")
 
 		cardEls.forEach((innerCard) => {
-			innerCard.classList.remove('active')
-			innerCard.classList.add('inactive')
+			innerCard.classList.remove("active")
+			innerCard.classList.add("inactive")
 
-			if (isCardActive) innerCard.classList.remove('inactive')
+			if (isCardActive) innerCard.classList.remove("inactive")
 		})
 
 		if (!isCardActive) {
-			card.classList.remove('inactive')
-			card.classList.add('active')
+			card.classList.remove("inactive")
+			card.classList.add("active")
 		}
 
 		Flip.from(state, {
 			duration: 0.4,
-			ease: 'expo.out',
+			ease: "expo.out",
 			simple: true,
 			absolute: isSafari ? false : true,
 		})
@@ -116,35 +117,29 @@ cardEls.forEach((card) => {
 				)
 				.play(0)
 		}
-		const [r, g, b, a] = [
-			getRandomInt(0, 255),
-			getRandomInt(0, 255),
-			getRandomInt(0, 255),
-			0.5,
-		]
 
-		setBackgroundColor(r, g, b, a)
+		apply(document.body, gen({ a: 0.5 }))
 
 		if (isMobile && !isCardActive) {
-			const projects = document.getElementById('projects')
+			const projects = document.getElementById("projects")
 			gsap.to(window, {
 				duration: 0.5,
 				scrollTo: {
 					y: projects,
 					offsetY: 100,
 				},
-				ease: 'expo.inOut',
+				ease: "expo.inOut",
 			})
 		}
 	})
 })
 
-const contactEl = document.getElementById('contact-section')
+const contactEl = document.getElementById("contact-section")
 
 const contactTimeline = gsap.timeline({
 	scrollTrigger: {
 		trigger: contactEl,
-		start: 'top 50%',
+		start: "top 50%",
 	},
 })
 
@@ -154,12 +149,12 @@ contactTimeline
 		duration: 0.5,
 		stagger: 0.1,
 		y: -20,
-		ease: 'expo.inOut',
+		ease: "expo.inOut",
 	})
 	.from(contactEl.children[2].children, {
 		opacity: 0,
 		duration: 0.3,
 		stagger: 0.1,
 		y: 15,
-		ease: 'expo.inOut',
+		ease: "expo.inOut",
 	})
