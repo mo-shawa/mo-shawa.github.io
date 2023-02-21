@@ -134,6 +134,8 @@ p {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100vw;
+	overflow-x: hidden;
 }
 
 #hero-section {
@@ -145,7 +147,6 @@ p {
 		rgba(74, 146, 255, 0.3) 100%
 	);
 	transition: background-color 300ms linear;
-	/* filter: saturate(250%); */
 }
 
 #hero {
