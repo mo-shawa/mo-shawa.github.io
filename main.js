@@ -50,6 +50,16 @@ document.addEventListener(
 	{ once: true }
 )
 
+// Hero Mask Image
+
+const mask = document.createElement("div")
+mask.style.cssText = `
+	position: absolute;
+`
+const hero = document.getElementById("hero-section")
+
+document.getElementById("hero-section").append(mask)
+
 document.addEventListener("pointermove", (evt) => {
 	if (projectsHovered) return
 	handleColorChange(evt)
@@ -59,7 +69,7 @@ document.addEventListener("pointermove", (evt) => {
 
 document.querySelectorAll("a").forEach((link) => {
 	link.addEventListener("pointerover", () => {
-		culler.apply(document.body, culler.gen({ a: 0.5 }))
+		culler.apply(hero, culler.gen({ a: 0.5 }))
 	})
 })
 
@@ -84,7 +94,7 @@ function handleColorChange(evt) {
 			a: 0.7,
 		})
 
-		culler.apply(document.body, color)
+		culler.apply(hero, color)
 	}
 }
 
