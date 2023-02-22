@@ -9,13 +9,6 @@
 html {
 	-webkit-scroll-behavior: auto;
 	scroll-behavior: auto;
-
-	background: radial-gradient(
-		circle,
-		rgba(2, 0, 36, 90%) 0%,
-		rgba(168, 168, 214, 1) 35%,
-		rgba(0, 212, 255, 1) 100%
-	);
 }
 
 :root {
@@ -46,11 +39,11 @@ html {
 
 section {
 	min-height: 100vh;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border-bottom: 1px dashed white;
 	padding: var(--padding-l) 0;
 }
 
@@ -61,6 +54,12 @@ section {
 }
 
 #projects-section {
+	background: radial-gradient(
+		circle,
+		rgba(2, 0, 36, 90%) 0%,
+		rgba(168, 168, 214, 0.3) 50%,
+		rgba(0, 212, 255, 0.3) 100%
+	);
 	justify-content: flex-start;
 }
 
@@ -142,9 +141,9 @@ p {
 	width: 100%;
 	background: linear-gradient(
 		20deg,
-		rgba(253, 70, 70, 0.165) 0%,
+		rgba(18, 18, 18, 0.2) 0%,
 		transparent 35%,
-		rgba(74, 146, 255, 0.3) 100%
+		rgba(255, 255, 255, 0.5) 100%
 	);
 	transition: background-color 300ms linear;
 }
