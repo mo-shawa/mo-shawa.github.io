@@ -7,7 +7,7 @@ export default function Navbar() {
 				<div className="flex items-center gap-2">
 					<div className="w-5 h-5 bg-yellow-500 rounded-full"></div>
 					<span className="text-sm font-semibold tracking-widest">
-						PORTFOLIO
+						SHAWA.DEV
 					</span>
 				</div>
 				<div className="flex gap-12 text-md text-zinc-400">
