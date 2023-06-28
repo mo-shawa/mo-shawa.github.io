@@ -6,6 +6,7 @@ import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
 import projects from "@/projects"
+import ProjectPreview from "@/components/ProjectPreview"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -57,6 +58,12 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="bg-[url('/me2.jpeg')] bg-cover bg-center  filter saturate-50 grayscale brightness-125 rounded-3xl h-[30rem] hover:grayscale-0 hover:brightness-100 transition-all duration-500 hover:rounded-lg hover:shadow-xl"></div>
+			</section>
+			<section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+				<h2 className="text-3xl font-semibold mb-4">Projects</h2>
+				{projects.map((project) => (
+					<ProjectPreview project={project} />
+				))}
 			</section>
 		</main>
 	)
