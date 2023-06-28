@@ -21,10 +21,10 @@ export default function ProjectPreview({
 			style={{ background: bgColor }}
 		>
 			<div
-				className="h-full w-full px-10 py-6 transition-all duration-500 hover:scale-105 ease-in-out"
-				style={{ backgroundImage: image }}
+				className={`h-full w-full px-10 py-6 transition-all duration-500 hover:scale-105 ease-in-out bg-cover filter relative group`}
+				style={{ backgroundImage: `url(${image})` }}
 			>
-				<div>
+				<div className="bg-zinc-50">
 					<h2>{name}</h2>
 					<p>{description}</p>
 				</div>

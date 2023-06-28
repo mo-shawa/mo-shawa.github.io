@@ -70,7 +70,10 @@ export default function Home() {
 			</section>
 			<section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
 				{projects.map((project) => (
-					<ProjectPreview {...project} />
+					<ProjectPreview
+						key={project.name}
+						{...project}
+					/>
 				))}
 			</section>
 		</main>
