@@ -18,13 +18,15 @@ export default function SocialButton({
 	}
 
 	return (
-		<button
+		<a
+			href={href}
+			target="_blank"
 			className={`h-10 w-10 bg-white ${bgHoverColorClass} rounded-full transition-colors duration-200 ease-in-out flex justify-center items-center group`}
 		>
 			<div className="fill-black transition-colors duration-200 ease-in group-hover:fill-white object-">
 				{children}
 			</div>
-		</button>
+		</a>
 	)
 }
 

@@ -1,14 +1,15 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import Navbar from '@/components/Navbar'
-import SocialButton from '@/components/SocialButton'
-import GithubSVG from '../../public/github.svg'
-import LinkedInSVG from '../../public/linkedin.svg'
-import TwitterSVG from '../../public/twitter.svg'
-import projects from '@/projects'
-import ProjectPreview from '@/components/ProjectPreview'
+import Image from "next/image"
+import { Inter } from "next/font/google"
+import Navbar from "@/components/Navbar"
+import SocialButton from "@/components/SocialButton"
+import GithubSVG from "../../public/github.svg"
+import LinkedInSVG from "../../public/linkedin.svg"
+import TwitterSVG from "../../public/twitter.svg"
+import projects from "@/projects"
+import ProjectPreview from "@/components/ProjectPreview"
+import { motion } from "framer-motion"
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
 	return (
@@ -21,7 +22,7 @@ export default function Home() {
 					</h1>
 					<p className="text-lg flex-1 ">
 						I have a passion for learning new things, and love seeing ideas come
-						to life. Most recently, I worked on{' '}
+						to life. Most recently, I worked on{" "}
 						<a
 							href="https://bountree.app"
 							className="text-blue-500 hover:underline"
@@ -29,14 +30,14 @@ export default function Home() {
 						>
 							Bountree
 						</a>
-						. Before that, I was an{' '}
+						. Before that, I was an{" "}
 						<a
 							target="_blank"
 							className="text-blue-500 hover:underline"
 							href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
 						>
 							Instructional Associate
-						</a>{' '}
+						</a>{" "}
 						at General Assembly.
 					</p>
 
@@ -45,21 +46,18 @@ export default function Home() {
 							Contact me
 						</button>
 						<div className="flex items-center gap-4">
-							<SocialButton
-								bgColor="github"
-								href="#"
-							>
+							<SocialButton bgColor="github" href="https://github.com/mo-shawa">
 								<GithubSVG className="h-5 w-5" />
 							</SocialButton>
 							<SocialButton
 								bgColor="linkedin"
-								href="#"
+								href="https://linkedin.com/in/mo-shawa"
 							>
 								<LinkedInSVG />
 							</SocialButton>
 							<SocialButton
 								bgColor="twitter"
-								href="#"
+								href="https://twitter.com/shawa_dev"
 							>
 								<TwitterSVG />
 							</SocialButton>
@@ -68,14 +66,11 @@ export default function Home() {
 				</div>
 				<div className="bg-[url('/me2.jpeg')] bg-cover bg-center  filter saturate-50 grayscale brightness-125 rounded-3xl h-[30rem] hover:grayscale-0 hover:brightness-100 transition-all duration-500 hover:rounded-lg hover:shadow-xl"></div>
 			</section>
-			<section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+			<motion.section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
 				{projects.map((project) => (
-					<ProjectPreview
-						key={project.name}
-						{...project}
-					/>
+					<ProjectPreview key={project.name} {...project} />
 				))}
-			</section>
+			</motion.section>
 		</main>
 	)
 }

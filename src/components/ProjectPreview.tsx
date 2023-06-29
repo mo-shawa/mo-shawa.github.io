@@ -1,5 +1,6 @@
-import projects from '@/projects'
-import GithubSVG from '../../public/github.svg'
+import projects from "@/projects"
+import GithubSVG from "../../public/github.svg"
+import { motion } from "framer-motion"
 
 type ProjectPreviewProps = (typeof projects)[0] & {
 	bgColor?: string
@@ -13,10 +14,27 @@ export default function ProjectPreview({
 	deployment,
 	image,
 	tags,
-	bgColor = '#e2e2e2',
+	bgColor = "#e2e2e2",
 }: ProjectPreviewProps) {
 	return (
-		<div
+		<motion.div
+			initial={{
+				opacity: 0,
+				y: 30,
+				scale: 0.9,
+			}}
+			whileInView={{
+				opacity: 1,
+				y: 0,
+				scale: 1,
+				transition: {
+					duration: 0.8,
+					ease: [0.6, 0.01, 0.05, 0.95],
+				},
+			}}
+			viewport={{
+				once: true,
+			}}
 			className={`h-[30rem] rounded-3xl overflow-hidden `}
 			style={{ background: bgColor }}
 		>
@@ -44,6 +62,6 @@ export default function ProjectPreview({
 					</svg>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
