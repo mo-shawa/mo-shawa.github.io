@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 export default function SocialButton({
 	href,
 	children,
@@ -18,15 +20,21 @@ export default function SocialButton({
 	}
 
 	return (
-		<a
+		<motion.a
+			whileHover={{
+				scale: 1.1,
+			}}
+			whileTap={{
+				scale: 0.95,
+			}}
 			href={href}
 			target="_blank"
-			className={`h-10 w-10 bg-white ${bgHoverColorClass} rounded-full transition-colors duration-200 ease-in-out flex justify-center items-center group`}
+			className={`h-10 w-10 bg-white ${bgHoverColorClass} rounded-full duration-200 ease-in-out flex justify-center items-center group border shadow-sm hover:shadow-md transition-all`}
 		>
 			<div className="fill-black transition-colors duration-200 ease-in group-hover:fill-white object-">
 				{children}
 			</div>
-		</a>
+		</motion.a>
 	)
 }
 
