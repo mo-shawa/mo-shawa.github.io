@@ -18,7 +18,8 @@ export default function Home() {
 			<section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 mb-4">
 				<div className="bg-red-500 rounded-3xl min-h-[30rem] p-10 flex flex-col gap-16 bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 ">
 					<h1 className="text-4xl font-semibold tracking-tight leading-snug">
-						Hello, I'm Mahmoud. I'm a Frontend-Focused Fullstack Developer.
+						Hello, I'm Mahmoud. <br /> I'm a Frontend-Focused Fullstack
+						Developer.
 					</h1>
 					<p className="text-lg flex-1 ">
 						I have a passion for learning new things, and love seeing ideas come
