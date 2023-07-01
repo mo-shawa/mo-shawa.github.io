@@ -1,4 +1,4 @@
-import projects from "@/projects"
+import projects from "@/data/projects"
 import GithubSVG from "../../public/github.svg"
 import { AnimationProps, motion, useInView } from "framer-motion"
 import { useRef } from "react"

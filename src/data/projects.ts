@@ -10,6 +10,16 @@ export default [
 		tags: [],
 	},
 	{
+		name: "Culler",
+		description:
+			"Bountree is a global recruitment marketplace for deep tech startup jobs. It crowd-sources job roles to a network of recruiters, allowing anyone to earn rewards for successful referrals.",
+		technologies: ["TypeScript"],
+		github: "https://github.com/mo-shawa/openAI-AMA",
+		deployment: "http://openai-ama.herokuapp.com/",
+		image: "/projects/bountree.png",
+		tags: [],
+	},
+	{
 		name: "Ask GPT-3",
 		description:
 			"Ask an advanced AI a question and get a response! Your questions and answers are saved locally in your browser, so you can come back to them later.",

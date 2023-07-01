@@ -4,9 +4,10 @@ import SocialButton from "@/components/SocialButton"
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
-import projects from "@/projects"
-import ProjectPreview from "@/components/ProjectPreview"
+import projects from "@/data/projects"
 import { AnimationProps, motion } from "framer-motion"
+import ProjectTitle from "@/components/projects/ProjectTitle"
+import ProjectCard from "@/components/projects/ProjectCard"
 
 const inter = Inter({ subsets: ["latin"] })
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
@@ -82,46 +83,23 @@ export default function Home() {
 				</div>
 				<div className="bg-[url('/me2.jpeg')] bg-cover bg-center  filter saturate-50 grayscale brightness-125 rounded-3xl h-[30rem] hover:grayscale-0 hover:brightness-100 transition-all duration-500 hover:rounded-lg hover:shadow-xl"></div>
 			</section>
-			<motion.section
-				initial="hidden"
-				animate="visible"
-				variants={containerVariants}
-				className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 my-4"
-			>
-				{projects.map((project, idx) => (
-					<ProjectPreview
-						key={project.name}
-						{...project}
-						isEven={idx % 2 === 0}
-					/>
-				))}
-			</motion.section>
+			<section className="flex w-full max-w-7xl mx-auto gap-20 items-start">
+				<ul className="w-full py-[50vh]">
+					{projects.map((project, idx) => (
+						<li key={idx}>
+							<ProjectTitle name={project.name}>{project.name}</ProjectTitle>
+						</li>
+					))}
+				</ul>
+				<div className="w-full sticky top-0 h-screen flex items-center">
+					<div className="relative aspect-square w-full rounded-3xl bg-gray-100">
+						{projects.map((project, idx) => (
+							<ProjectCard key={idx} gradient="bg-gray-100" project={project} />
+						))}
+					</div>
+				</div>
+			</section>
+			<section className="h-screen bg-red-50"></section>
 		</main>
 	)
-}
-
-const containerVariants: AnimationProps["variants"] = {
-	hidden: {},
-	visible: {
-		transition: {
-			staggerChildren: 0.2,
-		},
-	},
-}
-
-const projectPreviewVariants: AnimationProps["variants"] = {
-	hidden: {
-		opacity: 0,
-		y: 30,
-		scale: 0.98,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		scale: 1,
-		transition: {
-			duration: 0.8,
-			ease: [0.6, 0.01, 0.05, 0.95],
-		},
-	},
 }
