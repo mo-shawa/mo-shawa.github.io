@@ -3,6 +3,7 @@ import GithubSVG from "../../../public/github.svg"
 import type projects from "@/data/projects"
 import { useContext } from "react"
 import { ProjectsContext } from "@/ProjectsContext"
+import { gen } from "culler"
 
 type Props = {
 	project: (typeof projects)[0]
@@ -16,19 +17,28 @@ export default function ProjectCard({ gradient, project }: Props) {
 
 	return (
 		<div
-			className={`w-full aspect-square rounded-3xl bg-gradient-to-br absolute inset-0 h-full overflow-hidden p-4 transition-opacity ${gradient} ${
+			className={`w-full aspect-square rounded-3xl bg-gradient-to-br absolute inset-0 h-full overflow-hidden p-4 transition-opacity duration-500 ${
 				state.inViewProject === project.name ? "opacity-100" : "opacity-0"
 			}`}
+			style={{
+				background: `linear-gradient( 45deg, ${gen({
+					minR: 240,
+					minG: 240,
+					minB: 240,
+					alpha: false,
+				})}, ${gen({
+					minR: 240,
+					minG: 240,
+					minB: 240,
+					alpha: false,
+				})})`,
+			}}
 		>
 			<div className="flex flex-col h-full">
-				<div className="flex-1 flex flex-col justify-center">
-					<p className="text-lg flex-1 ">{project.description}</p>
+				<div className="flex-1 flex flex-col justify-cente">
+					<p className="text-lg flex-1">{project.description}</p>
 				</div>
-				<div className="flex items-center gap-4">
-					<SocialButton bgColor="github" href={project.github}>
-						<GithubSVG className="h-5 w-5" />
-					</SocialButton>
-				</div>
+				<div className="flex items-center gap-4"></div>
 			</div>
 		</div>
 	)
