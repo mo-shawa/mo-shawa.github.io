@@ -4,6 +4,7 @@ import type projects from "@/data/projects"
 import { useContext } from "react"
 import { ProjectsContext } from "@/ProjectsContext"
 import { gen } from "culler"
+import Image from "next/image"
 
 type Props = {
 	project: (typeof projects)[0]
@@ -38,7 +39,15 @@ export default function ProjectCard({ gradient, project }: Props) {
 				<div className="flex-1 flex flex-col justify-cente">
 					<p className="text-lg flex-1">{project.description}</p>
 				</div>
-				<div className="flex items-center gap-4"></div>
+				<div className="flex items-center gap-4">
+					<Image
+						src={project.image}
+						alt={project.name}
+						className="rounded w-full h-auto shadow"
+						width={800}
+						height={600}
+					/>
+				</div>
 			</div>
 		</div>
 	)
