@@ -1,20 +1,22 @@
-import { Inter, Plus_Jakarta_Sans } from "next/font/google"
+import { Plus_Jakarta_Sans } from "next/font/google"
 import Navbar from "@/components/Navbar"
 import SocialButton from "@/components/SocialButton"
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
-import projects from "@/projects"
+import projects from "@/data/projects"
 import ProjectPreview from "@/components/ProjectPreview"
 import { AnimationProps, motion } from "framer-motion"
 import TextMask from "@/components/TextMask"
-import { gen } from "culler"
 import Poppers from "@/components/Poppers"
+import { useState } from "react"
+import ProjectModal from "@/components/ProjectModal"
 
-const inter = Inter({ subsets: ["latin"] })
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Home() {
+	const [selected, setSelected] = useState<Project | null>(null)
+
 	return (
 		<main className={`mx-4 ${plusJakartaSans.className}`}>
 			<Navbar />
@@ -115,6 +117,7 @@ export default function Home() {
 					/>
 				))}
 			</motion.section>
+			<ProjectModal selected={selected} setSelected={setSelected} />
 		</main>
 	)
 }

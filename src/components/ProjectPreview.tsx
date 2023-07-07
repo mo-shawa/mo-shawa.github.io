@@ -1,12 +1,11 @@
-import projects from "@/projects"
+import projects from "@/data/projects"
 import GithubSVG from "../../public/github.svg"
 import { AnimationProps, motion, useInView } from "framer-motion"
-import { useRef } from "react"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
 import { gen } from "culler"
 
-type ProjectPreviewProps = (typeof projects)[0] & {
+type ProjectPreviewProps = Project & {
 	bgColor?: string
 	dark?: boolean
 	isEven?: boolean
@@ -15,11 +14,9 @@ type ProjectPreviewProps = (typeof projects)[0] & {
 export default function ProjectPreview({
 	name,
 	description,
-	technologies,
 	github,
 	deployment,
 	image,
-	tags,
 	isEven,
 }: ProjectPreviewProps) {
 	const gradient = `linear-gradient(to bottom right, ${gen({

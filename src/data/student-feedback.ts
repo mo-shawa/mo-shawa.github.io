@@ -1,4 +1,4 @@
-const feedback = [
+const feedback: string[] = [
 	// SEI-50
 	`Very knowledgeable and helpful. Easy to ask questions too. 
   Nothing to improve on`,
@@ -98,7 +98,5 @@ const feedback = [
 	`Mo was easy to approach, supportive and knowledgeable. Would love to have 
   him as my TA again`,
 ]
-
-console.log(feedback.length)
 
 export default feedback
