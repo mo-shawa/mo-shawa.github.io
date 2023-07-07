@@ -9,6 +9,7 @@ type ProjectPreviewProps = Project & {
 	bgColor?: string
 	dark?: boolean
 	isEven?: boolean
+	setSelected: React.Dispatch<React.SetStateAction<Project | null>>
 }
 
 export default function ProjectPreview({
@@ -17,7 +18,10 @@ export default function ProjectPreview({
 	github,
 	deployment,
 	image,
+	technologies,
+	tags,
 	isEven,
+	setSelected,
 }: ProjectPreviewProps) {
 	const gradient = `linear-gradient(to bottom right, ${gen({
 		type: "rgb",
@@ -33,7 +37,9 @@ export default function ProjectPreview({
 
 	return (
 		<motion.div
-			className={`h-[30rem] rounded-3xl overflow-hidden `}
+			layoutId={`card-${name}`}
+			onClick={() => setSelected({name, description, github, deployment, image, technologies, tags})}
+			className={`min-h-[30rem] rounded-3xl overflow-hidden cursor-pointer`}
 			variants={projectPreviewVariants}
 			initial="hidden"
 			whileHover={{
@@ -60,9 +66,15 @@ export default function ProjectPreview({
 						className="flex flex-col justify-evenly absolute right-0 bottom-0 gap-4  filter backdrop-blur-lg shadow p-6 rounded-tl-3xl"
 						style={{ background: gradient }}
 					>
-						<SocialButton href={github} hoverColor="github">
-							<GithubSVG />
-						</SocialButton>
+						<motion.div
+						
+						>
+							<SocialButton href={github} hoverColor="github">
+								<GithubSVG />
+							</SocialButton>
+						</motion.div>
+						<motion.div
+						>
 						<SocialButton hoverColor="github" href={deployment}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -76,15 +88,18 @@ export default function ProjectPreview({
 								/>
 							</svg>
 						</SocialButton>
+						</motion.div>
 					</div>
 				</div>
-				<Image
-					className="aspect-[4/3] w-full rounded-b-3xl"
-					src={image}
-					alt={name}
-					width={993}
-					height={745}
-				/>
+				<motion.div >
+					<Image
+						className="aspect-[4/3] w-full rounded-b-3xl"
+						src={image}
+						alt={name}
+						width={993}
+						height={745}
+					/>
+				</motion.div>
 			</div>
 		</motion.div>
 	)

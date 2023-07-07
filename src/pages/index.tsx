@@ -9,13 +9,21 @@ import ProjectPreview from "@/components/ProjectPreview"
 import { AnimationProps, motion } from "framer-motion"
 import TextMask from "@/components/TextMask"
 import Poppers from "@/components/Poppers"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ProjectModal from "@/components/ProjectModal"
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Home() {
 	const [selected, setSelected] = useState<Project | null>(null)
+
+	useEffect(() => {
+		if (selected) {
+			document.body.style.overflow = "hidden"
+		} else {
+			document.body.style.overflow = "auto"
+		}
+	}, [selected])
 
 	return (
 		<main className={`mx-4 ${plusJakartaSans.className}`}>
@@ -111,6 +119,7 @@ export default function Home() {
 			>
 				{projects.map((project, idx) => (
 					<ProjectPreview
+						setSelected={setSelected}
 						key={project.name}
 						{...project}
 						isEven={idx % 2 === 0}
