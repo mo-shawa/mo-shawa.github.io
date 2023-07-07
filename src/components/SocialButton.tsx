@@ -3,19 +3,27 @@ import { motion } from "framer-motion"
 export default function SocialButton({
 	href,
 	children,
-	bgColor = "black",
+	hoverColor = "github",
+	bgColor = "white",
 }: SocialButtonProps) {
-	let bgHoverColorClass
+	let bgColorClass
+	let hoverColorClass
 
 	switch (bgColor) {
+		case "white":
+			bgColorClass = "bg-white"
+			break
+	}
+
+	switch (hoverColor) {
 		case "github":
-			bgHoverColorClass = "hover:bg-github"
+			hoverColorClass = "hover:bg-github"
 			break
 		case "twitter":
-			bgHoverColorClass = "hover:bg-twitter"
+			hoverColorClass = "hover:bg-twitter"
 			break
 		case "linkedin":
-			bgHoverColorClass = "hover:bg-linkedin"
+			hoverColorClass = "hover:bg-linkedin"
 			break
 	}
 
@@ -29,7 +37,7 @@ export default function SocialButton({
 			}}
 			href={href}
 			target="_blank"
-			className={`h-10 w-10 bg-white ${bgHoverColorClass} rounded-full duration-200 ease-in-out flex justify-center items-center group border shadow-sm hover:shadow-md transition-all`}
+			className={`h-10 w-10 rounded-full duration-200 ease-in-out flex justify-center items-center group border shadow-sm ${bgColorClass} hover:shadow-md ${hoverColorClass} transition-all`}
 		>
 			<div className="fill-black transition-colors duration-200 ease-in group-hover:fill-white object-">
 				{children}
@@ -41,5 +49,6 @@ export default function SocialButton({
 type SocialButtonProps = {
 	href: string
 	children?: React.ReactNode
+	hoverColor?: string
 	bgColor?: string
 }

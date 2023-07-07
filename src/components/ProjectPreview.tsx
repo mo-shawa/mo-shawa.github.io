@@ -4,6 +4,7 @@ import { AnimationProps, motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
+import { gen } from "culler"
 
 type ProjectPreviewProps = (typeof projects)[0] & {
 	bgColor?: string
@@ -21,6 +22,18 @@ export default function ProjectPreview({
 	tags,
 	isEven,
 }: ProjectPreviewProps) {
+	const gradient = `linear-gradient(to bottom right, ${gen({
+		type: "rgb",
+		minB: 242,
+		minG: 242,
+		minR: 242,
+	})}, ${gen({
+		type: "rgb",
+		minB: 242,
+		minG: 242,
+		minR: 242,
+	})})`
+
 	return (
 		<motion.div
 			className={`h-[30rem] rounded-3xl overflow-hidden `}
@@ -36,19 +49,24 @@ export default function ProjectPreview({
 			whileInView="visible"
 		>
 			<div
-				className={`h-full w-full relative bg-center bg-fixed lg:bg-scroll bg-contain bg-no-repeat rounded-2xl `}
-				// style={{ backgroundImage: `url(${image})` }}
+				className={`h-full w-full relative bg-center bg-fixed lg:bg-scroll bg-contain bg-no-repeat rounded-2xl`}
 			>
 				<div
-					className={`bg-gradient-to-br from-blue-50 via-white to-red-50  filter backdrop-blur-md saturate-150 px-10 py-6 rounded-t-lg`}
+					className={` px-10 py-6 rounded-t-lg`}
+					style={{
+						background: gradient,
+					}}
 				>
 					<h2 className="font-medium text-lg">{name}</h2>
-					<p className="text-sm max-w-[85%]">{description}</p>
-					<div className="flex flex-col justify-evenly absolute right-4 bottom-0 h-full">
-						<SocialButton href={github} bgColor="github">
+					<p className="text-sm ">{description}</p>
+					<div
+						className="flex flex-col justify-evenly absolute right-0 bottom-0 gap-4  filter backdrop-blur-lg shadow p-6 rounded-tl-3xl"
+						style={{ background: gradient }}
+					>
+						<SocialButton href={github} hoverColor="github">
 							<GithubSVG />
 						</SocialButton>
-						<SocialButton bgColor="github" href={deployment}>
+						<SocialButton hoverColor="github" href={deployment}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
@@ -64,11 +82,11 @@ export default function ProjectPreview({
 					</div>
 				</div>
 				<Image
-					className="aspect-[4/3] w-full"
+					className="aspect-[4/3] w-full rounded-b-3xl"
 					src={image}
 					alt={name}
-					width={600}
-					height={450}
+					width={993}
+					height={745}
 				/>
 			</div>
 		</motion.div>

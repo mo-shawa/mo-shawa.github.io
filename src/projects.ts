@@ -44,7 +44,7 @@ export default [
 		technologies: ["Python", "Django", "Bootstrap", "PostgreSQL"],
 		github: "https://github.com/mo-shawa/spot",
 		deployment: "http://hellofren.herokuapp.com/",
-		image: "/projects/hellofren_scaled.webp",
+		image: "/projects/hellofren.png",
 	},
 	{
 		name: "Physics Simulation",
@@ -62,7 +62,7 @@ export default [
 		technologies: ["EJS", "Express.js", "MongoDB", "Bootstrap"],
 		github: "https://github.com/mo-shawa/hall-of-game",
 		deployment: "http://hallofgame.herokuapp.com/",
-		image: "/projects/HoG_scaled.webp",
+		image: "/projects/HoG_scaled.png",
 	},
 	{
 		name: "BlackJack",
