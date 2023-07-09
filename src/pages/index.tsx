@@ -1,158 +1,158 @@
-import { Plus_Jakarta_Sans } from "next/font/google"
-import Navbar from "@/components/Navbar"
-import SocialButton from "@/components/SocialButton"
-import GithubSVG from "../../public/github.svg"
-import LinkedInSVG from "../../public/linkedin.svg"
-import TwitterSVG from "../../public/twitter.svg"
-import projects from "@/data/projects"
-import ProjectPreview from "@/components/ProjectPreview"
-import { AnimationProps, motion } from "framer-motion"
-import TextMask from "@/components/TextMask"
-import Poppers from "@/components/Poppers"
-import { useEffect, useState } from "react"
-import ProjectModal from "@/components/ProjectModal"
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import SocialButton from "@/components/SocialButton";
+import GithubSVG from "../../public/github.svg";
+import LinkedInSVG from "../../public/linkedin.svg";
+import TwitterSVG from "../../public/twitter.svg";
+import projects from "@/data/projects";
+import ProjectPreview from "@/components/ProjectPreview";
+import { AnimationProps, motion } from "framer-motion";
+import TextMask from "@/components/TextMask";
+import Poppers from "@/components/Poppers";
+import { useEffect, useState } from "react";
+import ProjectModal from "@/components/ProjectModal";
 
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export default function Home() {
-	const [selected, setSelected] = useState<Project | null>(null)
+  const [selected, setSelected] = useState<Project | null>(null);
 
-	useEffect(() => {
-		if (selected) {
-			document.body.style.overflow = "hidden"
-		} else {
-			document.body.style.overflow = "auto"
-		}
-	}, [selected])
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selected]);
 
-	return (
-		<main className={`mx-4 ${plusJakartaSans.className}`}>
-			<Navbar />
-			<section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 mb-4">
-				<div className="relative overflow-hidden rounded-3xl min-h-[30rem] p-10 flex flex-col gap-16 bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 ">
-					<Poppers />
-					<TextMask className="text-4xl font-semibold tracking-tight leading-snug pointer-events-none">
-						Hello, I'm Mahmoud. I'm a Frontend-Focused Fullstack Developer.
-					</TextMask>
-					<motion.p
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 0.6 }}
-						className="text-lg flex-1 z-10 pointer-events-none"
-					>
-						I have a passion for learning new things, and love seeing ideas come
-						to life. Most recently, I worked on{" "}
-						<a
-							href="https://bountree.app"
-							className="text-blue-500 hover:underline pointer-events-auto"
-							target="_blank"
-						>
-							Bountree
-						</a>
-						. Before that, I was an{" "}
-						<a
-							target="_blank"
-							className="text-blue-500 hover:underline pointer-events-auto"
-							href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
-						>
-							Instructional Associate
-						</a>{" "}
-						at General Assembly.
-					</motion.p>
+  return (
+    <main className={`mx-4 ${plusJakartaSans.className}`}>
+      <Navbar />
+      <section className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
+        <div className="relative flex min-h-[30rem] flex-col gap-16 overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ">
+          <Poppers />
+          <TextMask className="pointer-events-none text-4xl font-semibold leading-snug tracking-tight">
+            Hello, I'm Mahmoud. I'm a Frontend-Focused Fullstack Developer.
+          </TextMask>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="pointer-events-none z-10 flex-1 text-lg"
+          >
+            I have a passion for learning new things, and love seeing ideas come
+            to life. Most recently, I worked on{" "}
+            <a
+              href="https://bountree.app"
+              className="pointer-events-auto text-blue-500 hover:underline"
+              target="_blank"
+            >
+              Bountree
+            </a>
+            . Before that, I was an{" "}
+            <a
+              target="_blank"
+              className="pointer-events-auto text-blue-500 hover:underline"
+              href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
+            >
+              Instructional Associate
+            </a>{" "}
+            at General Assembly.
+          </motion.p>
 
-					<motion.div className="relative flex flex-col lg:flex-row items-center justify-self-end gap-4 pointer-events-none">
-						<motion.button
-							whileHover={{
-								scale: 1.05,
-								transition: {
-									duration: 0.5,
-									ease: [0.6, 0.01, 0.05, 0.95],
-								},
-							}}
-							whileTap={{
-								scale: 0.95,
-								transition: {
-									ease: [0.6, 0.01, 0.05, 0.95],
-								},
-							}}
-							className="bg-black text-white font-medium py-3 px-12 rounded-full pointer-events-auto"
-						>
-							Contact me
-						</motion.button>
-						<motion.div className="flex items-center gap-4 pointer-events-auto">
-							<SocialButton
-								bgColor="white"
-								hoverColor="github"
-								href="https://github.com/mo-shawa"
-							>
-								<GithubSVG className="h-5 w-5" />
-							</SocialButton>
-							<SocialButton
-								bgColor="white"
-								hoverColor=""
-								href="https://linkedin.com/in/mo-shawa"
-							>
-								<LinkedInSVG />
-							</SocialButton>
-							<SocialButton
-								bgColor="white"
-								hoverColor=""
-								href="https://twitter.com/shawa_dev"
-							>
-								<TwitterSVG />
-							</SocialButton>
-						</motion.div>
-					</motion.div>
-				</div>
-				<motion.div
-					initial={{ opacity: 0, x: 30 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.6 }}
-					className="bg-[url('/me2.jpeg')] bg-cover bg-center  filter saturate-[0.8] grayscale brightness-125 rounded-3xl h-[30rem] hover:grayscale-0 hover:brightness-100 transition-all duration-500 hover:rounded-lg hover:shadow-xl"
-				></motion.div>
-			</section>
-			<motion.section
-				initial="hidden"
-				animate="visible"
-				variants={containerVariants}
-				className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 my-4"
-			>
-				{projects.map((project, idx) => (
-					<ProjectPreview
-						setSelected={setSelected}
-						key={project.name}
-						{...project}
-						isEven={idx % 2 === 0}
-					/>
-				))}
-			</motion.section>
-			<ProjectModal selected={selected} setSelected={setSelected} />
-		</main>
-	)
+          <motion.div className="pointer-events-none relative flex flex-col items-center gap-4 justify-self-end lg:flex-row">
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+                transition: {
+                  duration: 0.5,
+                  ease: [0.6, 0.01, 0.05, 0.95],
+                },
+              }}
+              whileTap={{
+                scale: 0.95,
+                transition: {
+                  ease: [0.6, 0.01, 0.05, 0.95],
+                },
+              }}
+              className="pointer-events-auto rounded-full bg-black px-12 py-3 font-medium text-white"
+            >
+              Contact me
+            </motion.button>
+            <motion.div className="pointer-events-auto flex items-center gap-4">
+              <SocialButton
+                bgColor="white"
+                hoverColor="github"
+                href="https://github.com/mo-shawa"
+              >
+                <GithubSVG className="h-5 w-5" />
+              </SocialButton>
+              <SocialButton
+                bgColor="white"
+                hoverColor=""
+                href="https://linkedin.com/in/mo-shawa"
+              >
+                <LinkedInSVG />
+              </SocialButton>
+              <SocialButton
+                bgColor="white"
+                hoverColor=""
+                href="https://twitter.com/shawa_dev"
+              >
+                <TwitterSVG />
+              </SocialButton>
+            </motion.div>
+          </motion.div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          className="h-[30rem] rounded-3xl bg-[url('/me2.jpeg')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+        ></motion.div>
+      </section>
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
+      >
+        {projects.map((project, idx) => (
+          <ProjectPreview
+            setSelected={setSelected}
+            key={project.name}
+            {...project}
+            isEven={idx % 2 === 0}
+          />
+        ))}
+      </motion.section>
+      <ProjectModal selected={selected} setSelected={setSelected} />
+    </main>
+  );
 }
 
 const containerVariants: AnimationProps["variants"] = {
-	hidden: {},
-	visible: {
-		transition: {
-			staggerChildren: 0.2,
-		},
-	},
-}
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 const projectPreviewVariants: AnimationProps["variants"] = {
-	hidden: {
-		opacity: 0,
-		y: 30,
-		scale: 0.98,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		scale: 1,
-		transition: {
-			duration: 0.8,
-			ease: [0.6, 0.01, 0.05, 0.95],
-		},
-	},
-}
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.6, 0.01, 0.05, 0.95],
+    },
+  },
+};
