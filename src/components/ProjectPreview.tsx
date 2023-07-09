@@ -1,6 +1,5 @@
-import projects from "@/data/projects";
 import GithubSVG from "../../public/github.svg";
-import { AnimationProps, motion, useInView } from "framer-motion";
+import { AnimationProps, motion } from "framer-motion";
 import SocialButton from "./SocialButton";
 import Image from "next/image";
 import { gen } from "culler";
