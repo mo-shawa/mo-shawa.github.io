@@ -9,9 +9,7 @@ import TextMask from "./TextMask"
 
 export default function Navbar() {
   const router = useRouter()
-
   const [scope, animate] = useAnimate()
-
   const [gradient, setGradient] = useState<string>(
     genGradient({
       direction: "to bottom right",
@@ -104,7 +102,7 @@ export default function Navbar() {
                 <motion.span
                   transition={{ duration: 1.5, ease }}
                   layoutId="active-underline"
-                  className="absolute left-0 top-full block h-1 w-full rounded-full bg-zinc-400"
+                  className="absolute left-0 top-full block h-0.5 w-full rounded-full bg-zinc-400"
                 />
               )}
             </Link>

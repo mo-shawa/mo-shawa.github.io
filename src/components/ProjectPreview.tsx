@@ -8,6 +8,7 @@ import { genGradient } from "@/utils/culler"
 
 type ProjectPreviewProps = Project & {
   setSelected: React.Dispatch<React.SetStateAction<Project | null>>
+  gradient: ReturnType<typeof genGradient>
 }
 
 export default function ProjectPreview({
@@ -18,16 +19,9 @@ export default function ProjectPreview({
   image,
   technologies,
   tags,
+  gradient,
   setSelected,
 }: ProjectPreviewProps) {
-  const gradient = genGradient({
-    direction: "to bottom right",
-    type: "rgb",
-    minB: 242,
-    minG: 242,
-    minR: 242,
-  })
-
   function handleOnClick() {
     setSelected({
       name,

@@ -5,17 +5,30 @@ import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
 import projects from "@/data/projects"
 import ProjectPreview from "@/components/ProjectPreview"
-import { AnimationProps, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import TextMask from "@/components/TextMask"
 import Poppers from "@/components/Poppers"
 import { useEffect, useState } from "react"
 import ProjectModal from "@/components/ProjectModal"
 import { projectContainerVariants } from "@/utils/framer"
+import { genGradient } from "@/utils/culler"
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Home() {
   const [selected, setSelected] = useState<Project | null>(null)
+
+  const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
+    return projects.map(() => {
+      return genGradient({
+        direction: "to bottom right",
+        type: "rgb",
+        minB: 242,
+        minG: 242,
+        minR: 242,
+      })
+    })
+  })
 
   useEffect(() => {
     if (selected) {
@@ -121,7 +134,7 @@ export default function Home() {
             setSelected={setSelected}
             key={project.name}
             {...project}
-            isEven={idx % 2 === 0}
+            gradient={gradients[idx]}
           />
         ))}
       </motion.section>
