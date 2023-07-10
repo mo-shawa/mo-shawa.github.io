@@ -1,51 +1,21 @@
-import { AnimationProps, motion } from "framer-motion";
+import { AnimationProps, motion } from "framer-motion"
+import { textMaskVariants, textMaskChildVariants } from "@/utils/framer"
 
 type TextMaskProps = {
-  children: string;
-  className?: string;
-  delay?: number;
-};
+  children: string
+  className?: string
+  delay?: number
+  type?: "word" | "letter"
+}
 
 export default function TextMask({
   children,
   className,
   delay = 0,
+  type = "word",
 }: TextMaskProps) {
-  const textMaskVariants: AnimationProps["variants"] = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-      scale: 0.98,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        delay,
-        staggerChildren: 0.05,
-        duration: 0.5,
-        ease: [0.6, 0.01, 0.05, 0.95],
-      },
-    },
-  };
+  const splitOn = type === "word" ? " " : ""
 
-  const textMaskChildVariants: AnimationProps["variants"] = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-      scale: 0.98,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, 0.01, 0.05, 0.95],
-      },
-    },
-  };
   return (
     <motion.div
       className={`relative overflow-hidden ${className}`}
@@ -53,7 +23,7 @@ export default function TextMask({
       animate="visible"
       variants={textMaskVariants}
     >
-      {children.split(" ").map((child, i) => (
+      {children.split(splitOn).map((child, i) => (
         <>
           <motion.span
             key={i}
@@ -62,9 +32,9 @@ export default function TextMask({
           >
             {child}
           </motion.span>
-          <span> </span>
+          {type === "word" && <span> </span>}
         </>
       ))}
     </motion.div>
-  );
+  )
 }

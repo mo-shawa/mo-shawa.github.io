@@ -1,15 +1,14 @@
-import GithubSVG from "../../public/github.svg";
-import { AnimationProps, motion } from "framer-motion";
-import SocialButton from "./SocialButton";
-import Image from "next/image";
-import { gen } from "culler";
+import GithubSVG from "../../public/github.svg"
+import { motion } from "framer-motion"
+import SocialButton from "./SocialButton"
+import Image from "next/image"
+import { gen } from "culler"
+import { projectPreviewVariants } from "@/utils/framer"
+import { genGradient } from "@/utils/culler"
 
 type ProjectPreviewProps = Project & {
-  bgColor?: string;
-  dark?: boolean;
-  isEven?: boolean;
-  setSelected: React.Dispatch<React.SetStateAction<Project | null>>;
-};
+  setSelected: React.Dispatch<React.SetStateAction<Project | null>>
+}
 
 export default function ProjectPreview({
   name,
@@ -19,60 +18,48 @@ export default function ProjectPreview({
   image,
   technologies,
   tags,
-  isEven,
   setSelected,
 }: ProjectPreviewProps) {
-  const gradient = `linear-gradient(to bottom right, ${gen({
+  const gradient = genGradient({
+    direction: "to bottom right",
     type: "rgb",
     minB: 242,
     minG: 242,
     minR: 242,
-  })}, ${gen({
-    type: "rgb",
-    minB: 242,
-    minG: 242,
-    minR: 242,
-  })})`;
+  })
+
+  function handleOnClick() {
+    setSelected({
+      name,
+      description,
+      github,
+      deployment,
+      image,
+      technologies,
+      tags,
+    })
+  }
 
   return (
     <motion.div
       layoutId={`card-${name}`}
-      onClick={() =>
-        setSelected({
-          name,
-          description,
-          github,
-          deployment,
-          image,
-          technologies,
-          tags,
-        })
-      }
+      onClick={handleOnClick}
       className={`min-h-[30rem] cursor-pointer overflow-hidden rounded-3xl`}
       variants={projectPreviewVariants}
       initial="hidden"
-      whileHover={{
-        y: -10,
-        transition: {
-          ease: [0.6, 0.01, 0.05, 0.95],
-          delay: isEven ? 0.2 : 0,
-        },
-      }}
+      whileHover="hover"
       whileInView="visible"
     >
-      <div
-        className={`relative h-full w-full rounded-2xl bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll`}
-      >
+      <div className="relative h-full w-full rounded-2xl bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
         <div
-          className={` rounded-t-lg px-10 py-6`}
-          style={{
-            background: gradient,
-          }}
+          className="rounded-t-lg px-10 py-6"
+          style={{ background: gradient }}
         >
-          <h2 className="text-lg font-medium">{name}</h2>
-          <p className="text-sm ">{description}</p>
+          <motion.h2 layoutId={`title-${name}`} className="text-xl font-medium">
+            {name}
+          </motion.h2>
           <div
-            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4  rounded-tl-3xl p-6 shadow filter backdrop-blur-lg"
+            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4  rounded-tl-3xl p-6 shadow"
             style={{ background: gradient }}
           >
             <motion.div>
@@ -108,21 +95,5 @@ export default function ProjectPreview({
         </motion.div>
       </div>
     </motion.div>
-  );
+  )
 }
-const projectPreviewVariants: AnimationProps["variants"] = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    scale: 0.98,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.6, 0.01, 0.05, 0.95],
-    },
-  },
-};

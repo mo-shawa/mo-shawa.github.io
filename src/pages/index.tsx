@@ -1,34 +1,33 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import SocialButton from "@/components/SocialButton";
-import GithubSVG from "../../public/github.svg";
-import LinkedInSVG from "../../public/linkedin.svg";
-import TwitterSVG from "../../public/twitter.svg";
-import projects from "@/data/projects";
-import ProjectPreview from "@/components/ProjectPreview";
-import { AnimationProps, motion } from "framer-motion";
-import TextMask from "@/components/TextMask";
-import Poppers from "@/components/Poppers";
-import { useEffect, useState } from "react";
-import ProjectModal from "@/components/ProjectModal";
+import { Plus_Jakarta_Sans } from "next/font/google"
+import SocialButton from "@/components/SocialButton"
+import GithubSVG from "../../public/github.svg"
+import LinkedInSVG from "../../public/linkedin.svg"
+import TwitterSVG from "../../public/twitter.svg"
+import projects from "@/data/projects"
+import ProjectPreview from "@/components/ProjectPreview"
+import { AnimationProps, motion } from "framer-motion"
+import TextMask from "@/components/TextMask"
+import Poppers from "@/components/Poppers"
+import { useEffect, useState } from "react"
+import ProjectModal from "@/components/ProjectModal"
+import { projectContainerVariants } from "@/utils/framer"
 
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Home() {
-  const [selected, setSelected] = useState<Project | null>(null);
+  const [selected, setSelected] = useState<Project | null>(null)
 
   useEffect(() => {
     if (selected) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "auto"
     }
-  }, [selected]);
+  }, [selected])
 
   return (
     <main className={`mx-4 ${plusJakartaSans.className}`}>
-      <Navbar />
-      <section className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
+      <section className="  mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
         <div className="relative flex min-h-[30rem] flex-col gap-16 overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ">
           <Poppers />
           <TextMask className="pointer-events-none text-4xl font-semibold leading-snug tracking-tight">
@@ -114,7 +113,7 @@ export default function Home() {
       <motion.section
         initial="hidden"
         animate="visible"
-        variants={containerVariants}
+        variants={projectContainerVariants}
         className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
       >
         {projects.map((project, idx) => (
@@ -128,31 +127,5 @@ export default function Home() {
       </motion.section>
       <ProjectModal selected={selected} setSelected={setSelected} />
     </main>
-  );
+  )
 }
-
-const containerVariants: AnimationProps["variants"] = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const projectPreviewVariants: AnimationProps["variants"] = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    scale: 0.98,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.6, 0.01, 0.05, 0.95],
-    },
-  },
-};
