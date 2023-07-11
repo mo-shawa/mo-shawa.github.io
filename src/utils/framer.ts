@@ -29,7 +29,7 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
   hover: {
     y: -10,
     transition: {
-      ease: [0.6, 0.01, 0.05, 0.95],
+      ease,
     },
   },
 }
@@ -47,7 +47,7 @@ export const textMaskVariants: AnimationProps["variants"] = {
     transition: {
       staggerChildren: 0.05,
       duration: 0.5,
-      ease: [0.6, 0.01, 0.05, 0.95],
+      ease,
     },
   },
 }
@@ -64,7 +64,23 @@ export const textMaskChildVariants: AnimationProps["variants"] = {
     scale: 1,
     transition: {
       duration: 0.8,
-      ease: [0.6, 0.01, 0.05, 0.95],
+      ease,
+    },
+  },
+}
+
+export const buttonVariants: AnimationProps["variants"] = {
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+  tap: {
+    scale: 0.95,
+    transition: {
+      ease,
     },
   },
 }

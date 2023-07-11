@@ -2,12 +2,13 @@ import GithubSVG from "../../public/github.svg"
 import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
-import { gen } from "culler"
 import { projectPreviewVariants } from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
+import { useRef } from "react"
+import { gen } from "culler"
 
 type ProjectPreviewProps = Project & {
-  setSelected: React.Dispatch<React.SetStateAction<Project | null>>
+  setSelected: React.Dispatch<React.SetStateAction<Partial<Project> | null>>
   gradient: ReturnType<typeof genGradient>
 }
 
@@ -18,10 +19,32 @@ export default function ProjectPreview({
   deployment,
   image,
   technologies,
-  tags,
   gradient,
   setSelected,
 }: ProjectPreviewProps) {
+  const cullerRef = useRef<HTMLDivElement>(null)
+
+  function handleMouseMove(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const { current } = cullerRef
+
+    if (!current) return
+
+    const { clientX, clientY } = evt
+    const { x, y, width, height } = current.getBoundingClientRect()
+
+    const currentX = clientX - x
+    const currentY = clientY - y
+
+    const color = gen({
+      r: Math.abs(currentX - 155),
+      g: 50 + currentY / 10,
+      b: currentY,
+      a: 0.3,
+    })
+
+    current.style.background = color
+  }
+
   function handleOnClick() {
     setSelected({
       name,
@@ -30,7 +53,6 @@ export default function ProjectPreview({
       deployment,
       image,
       technologies,
-      tags,
     })
   }
 
@@ -38,7 +60,7 @@ export default function ProjectPreview({
     <motion.div
       layoutId={`card-${name}`}
       onClick={handleOnClick}
-      className={`min-h-[30rem] cursor-pointer overflow-hidden rounded-3xl`}
+      className={` cursor-pointer overflow-hidden rounded-3xl`}
       variants={projectPreviewVariants}
       initial="hidden"
       whileHover="hover"
@@ -49,19 +71,23 @@ export default function ProjectPreview({
           className="rounded-t-lg px-10 py-6"
           style={{ background: gradient }}
         >
-          <motion.h2 layoutId={`title-${name}`} className="text-xl font-medium">
+          <motion.h2
+            layoutId={`title-${name}`}
+            className="text-3xl font-medium"
+          >
             {name}
           </motion.h2>
-          <div
+          <motion.div
             className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4  rounded-tl-3xl p-6 shadow"
             style={{ background: gradient }}
+            layoutId={`socials-${name}`}
           >
-            <motion.div>
+            <motion.div layoutId={`github-${name}`}>
               <SocialButton href={github} hoverColor="github">
                 <GithubSVG />
               </SocialButton>
             </motion.div>
-            <motion.div>
+            <motion.div layoutId={`deployment-${name}`}>
               <SocialButton hoverColor="github" href={deployment}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -76,16 +102,25 @@ export default function ProjectPreview({
                 </svg>
               </SocialButton>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
-        <motion.div>
-          <Image
-            className="aspect-[4/3] w-full rounded-b-3xl"
-            src={image}
-            alt={name}
-            width={993}
-            height={745}
-          />
+        <motion.div className="bg-gradient-to-br from-slate-200 to-red-200">
+          {image !== "culler" && (
+            <Image
+              className="aspect-video w-full rounded-b-3xl"
+              src={image}
+              alt={name}
+              width={1920}
+              height={1080}
+            />
+          )}
+          {image === "culler" && (
+            <div
+              ref={cullerRef}
+              className="aspect-video h-full w-full rounded-b-3xl"
+              onMouseMove={handleMouseMove}
+            ></div>
+          )}
         </motion.div>
       </div>
     </motion.div>

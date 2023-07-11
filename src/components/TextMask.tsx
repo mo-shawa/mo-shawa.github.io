@@ -6,6 +6,7 @@ type TextMaskProps = {
   className?: string
   delay?: number
   type?: "word" | "letter"
+  layoutId?: string
 }
 
 export default function TextMask({
@@ -13,6 +14,7 @@ export default function TextMask({
   className,
   delay = 0,
   type = "word",
+  layoutId,
 }: TextMaskProps) {
   const splitOn = type === "word" ? " " : ""
 
@@ -22,6 +24,8 @@ export default function TextMask({
       initial="hidden"
       animate="visible"
       variants={textMaskVariants}
+      custom={delay}
+      layoutId={layoutId}
     >
       {children.split(splitOn).map((child, i) => (
         <>

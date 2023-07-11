@@ -1,4 +1,4 @@
-export default [
+const projects = [
   {
     name: "Bountree",
     description:
@@ -6,8 +6,29 @@ export default [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
     github: "https://github.com/mo-shawa/openAI-AMA",
     deployment: "http://openai-ama.herokuapp.com/",
-    image: "/projects/bountree.png",
-    tags: [],
+    image: "/projects/bountree.webp",
+    year: 2023,
+    // tags: [],
+  },
+  {
+    name: "Culler",
+    description:
+      "Culler is a color utility library for JavaScript and TypeScript. It provides a set of functions for working with colors, and is designed to be lightweight, modular, and performant.",
+    technologies: ["Typescript"],
+    github: "https://github.com/mo-shawa/culler",
+    deployment: "http://npmjs.com/package/culler",
+    image: "culler",
+    year: 2023,
+  },
+  {
+    name: "sahba.space",
+    description:
+      "A Custom portfolio website for Sahba El-Shawa, an interdisciplinary researcher and social entrepreneur. Based around an emulation of a galaxy created with Three.js and custom shaders.",
+    technologies: ["TypeScript", "Three.js", "GSAP", "GLSL"],
+    github: "https://github.com/mo-shawa/sahba.space",
+    deployment: "http://sahba.space",
+    year: 2023,
+    image: "/projects/sahba.png",
   },
   {
     name: "Ask GPT-3",
@@ -17,16 +38,7 @@ export default [
     github: "https://github.com/mo-shawa/openAI-AMA",
     deployment: "http://openai-ama.herokuapp.com/",
     image: "/projects/OpenAI.webp",
-    tags: [],
-  },
-  {
-    name: "sahba.space",
-    description:
-      "A Custom portfolio website for Sahba El-Shawa, an interdisciplinary researcher and social entrepreneur. Based around an emulation of a galaxy created with Three.js and custom shaders.",
-    technologies: ["TypeScript", "Three.js", "GSAP", "GLSL"],
-    github: "https://github.com/mo-shawa/sahba.space",
-    deployment: "http://sahba.space",
-    image: "/projects/sahba_space.webp",
+    year: 2022,
   },
   {
     name: "SaveQuest",
@@ -35,7 +47,9 @@ export default [
     technologies: ["React.js", "Express.js", "MongoDB", "Node.js"],
     github: "https://github.com/mo-shawa/SaveQuest",
     deployment: "http://savequest.herokuapp.com/",
-    image: "/projects/SaveQuest_scaled.webp",
+    year: 2023,
+
+    image: "/projects/savequest.jpeg",
   },
   {
     name: "HelloFren",
@@ -44,16 +58,9 @@ export default [
     technologies: ["Python", "Django", "Bootstrap", "PostgreSQL"],
     github: "https://github.com/mo-shawa/spot",
     deployment: "http://hellofren.herokuapp.com/",
+    year: 2023,
+
     image: "/projects/hellofren.png",
-  },
-  {
-    name: "Physics Simulation",
-    description:
-      "A simple earth physics simulation using Three.js and Cannon.js. The spawned objects colors are randomly generated using culler, my own color utility library. ",
-    technologies: ["JavaScript", "Three.js", "Cannon.js"],
-    github: "https://github.com/mo-shawa/physics-sim",
-    deployment: "http://shawa.dev/physics-sim",
-    image: "/projects/physics-sim.webp",
   },
   {
     name: "Hall of Game",
@@ -62,6 +69,7 @@ export default [
     technologies: ["EJS", "Express.js", "MongoDB", "Bootstrap"],
     github: "https://github.com/mo-shawa/hall-of-game",
     deployment: "http://hallofgame.herokuapp.com/",
+    year: 2023,
     image: "/projects/HoG_scaled.png",
   },
   {
@@ -71,6 +79,8 @@ export default [
     technologies: ["JavaScript", "HTML", "CSS", "GSAP"],
     github: "https://github.com/mo-shawa/BlackJack",
     deployment: "https://shawa.dev/Blackjack",
+    year: 2023,
     image: "/projects/blackjack.webp",
   },
-];
+]
+export default projects

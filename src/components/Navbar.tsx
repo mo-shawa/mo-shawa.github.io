@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { gen } from "culler"
-import { motion, useAnimate, AnimatePresence } from "framer-motion"
+import { motion, useAnimate } from "framer-motion"
 import { useRouter } from "next/router"
 import { ease } from "@/utils/framer"
 import { useEffect, useState } from "react"
@@ -10,6 +9,7 @@ import TextMask from "./TextMask"
 export default function Navbar() {
   const router = useRouter()
   const [scope, animate] = useAnimate()
+  const [logoHovered, setLogoHovered] = useState<boolean>(false)
   const [gradient, setGradient] = useState<string>(
     genGradient({
       direction: "to bottom right",
@@ -43,7 +43,6 @@ export default function Navbar() {
       await animate(scope.current, {
         opacity: 1,
         transition: {
-          duration: 6.5,
           ease,
         },
       })
@@ -68,27 +67,61 @@ export default function Navbar() {
   ]
 
   return (
-    <motion.nav className="py-4 filter backdrop-blur-lg">
+    <motion.nav className="fixed top-0 z-50 w-full  bg-white/70 p-4 text-zinc-800 filter backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <motion.div
+            drag
+            dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+            whileDrag={{ scale: 2.1 }}
+            dragElastic={0.1}
             ref={scope}
-            layoutId="logo"
-            className="h-5 w-5 rounded-full"
+            layoutId="orb"
+            className="orb inset-0 h-5 w-5 rounded-full"
             style={{
               background: gradient,
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           />
-          <TextMask
-            type="letter"
-            className="text-sm font-semibold tracking-widest"
-          >
-            SHAWA.DEV
-          </TextMask>
-        </Link>
-        <div className="text-md flex gap-12 text-zinc-400">
+          <motion.div className="relative flex  items-start px-2">
+            {/* {logoHovered && (
+              <motion.div
+                layoutId="orb"
+                className="orb absolute inset-0 h-full w-full rounded-full"
+                style={{
+                  background: gradient,
+                }}
+              />
+            )} */}
+
+            <Link
+              onClick={(e) => {
+                if (router.pathname === "/") {
+                  e.preventDefault()
+                }
+              }}
+              href="/"
+              onMouseOver={() => setLogoHovered(true)}
+              onMouseLeave={() => setLogoHovered(false)}
+            >
+              <TextMask
+                type="letter"
+                className="text-sm font-semibold tracking-widest"
+              >
+                SHAWA.DEV
+              </TextMask>
+              {logoHovered && (
+                <motion.span
+                  transition={{ duration: 1.5, ease }}
+                  layoutId="active-underline"
+                  className="absolute left-0 top-full block h-0.5 w-full rounded-full bg-zinc-400"
+                />
+              )}
+            </Link>
+          </motion.div>
+        </div>
+        <div className="text-md flex gap-12  ">
           {navLinks.map((link) => (
             <Link
               className={`relative hover:text-zinc-500 ${
@@ -100,7 +133,7 @@ export default function Navbar() {
               {link.name}
               {router.pathname === link.link && (
                 <motion.span
-                  transition={{ duration: 1.5, ease }}
+                  transition={{ duration: 0.8, ease }}
                   layoutId="active-underline"
                   className="absolute left-0 top-full block h-0.5 w-full rounded-full bg-zinc-400"
                 />
