@@ -1,6 +1,8 @@
-import { createContext } from "react"
-import { state, dispatch } from "@/reducers/introReducer"
+import { Dispatch, SetStateAction, createContext } from "react"
 
-export const IntroContext = createContext<typeof state>(null)
+export const IntroContext = createContext<IntroContextType | null>(null)
 
-export const IntroDispatchContext = createContext<typeof dispatch>(null)
+export type IntroContextType = {
+  shouldShowIntro: boolean
+  setShouldShowIntro: Dispatch<SetStateAction<boolean>>
+}
