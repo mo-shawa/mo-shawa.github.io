@@ -3,18 +3,16 @@ import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
 import { projectPreviewVariants } from "@/utils/framer"
-import { genGradient } from "@/utils/culler"
+import {
+  Coordinates,
+  genGradient,
+  handleCullerCardMouseMove,
+} from "@/utils/culler"
 import { useRef, useState } from "react"
-import { gen } from "culler"
 
 type ProjectPreviewProps = Project & {
   setSelected: React.Dispatch<React.SetStateAction<Partial<Project> | null>>
   gradient: ReturnType<typeof genGradient>
-}
-
-type Coordinates = {
-  x: number
-  y: number
 }
 
 export default function ProjectPreview({
@@ -33,38 +31,6 @@ export default function ProjectPreview({
     x: 0,
     y: 0,
   })
-
-  function cursorMinChange(prev: number, curr: number, diff: number) {
-    return curr > prev + diff || curr < prev - diff
-  }
-
-  function handleMouseMove(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const { current } = cullerRef
-    if (!current) return
-
-    const { clientX, clientY } = evt
-    const { x, y } = current.getBoundingClientRect()
-
-    const currentX = clientX - x
-    const currentY = clientY - y
-
-    if (
-      cursorMinChange(currentX, cursor.x, 100) ||
-      cursorMinChange(currentY, cursor.y, 100)
-    ) {
-      cursor.x = currentX
-      cursor.y = currentY
-
-      const color = gen({
-        r: Math.abs(currentX - 155),
-        g: 50 + currentY / 10,
-        b: currentY,
-        a: 0.3,
-      })
-
-      current.style.background = color
-    }
-  }
 
   function handleOnClick() {
     setSelected({
@@ -139,8 +105,10 @@ export default function ProjectPreview({
           {image === "culler" && (
             <div
               ref={cullerRef}
-              className="aspect-video h-full w-full rounded-b-3xl"
-              onMouseMove={handleMouseMove}
+              className="aspect-video h-full w-full rounded-b-3xl transition-colors duration-500"
+              onMouseMove={(e) =>
+                handleCullerCardMouseMove(e, cullerRef, cursor, setCursor)
+              }
             ></div>
           )}
         </motion.div>

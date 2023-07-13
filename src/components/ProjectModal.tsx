@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
-import { gen } from "culler"
 import GithubSVG from "../../public/github.svg"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import { Coordinates, handleCullerCardMouseMove } from "@/utils/culler"
 
 type Props = {
   selected: Project | null
@@ -12,27 +12,10 @@ type Props = {
 
 export default function ProjectModal({ selected, setSelected }: Props) {
   const cullerRef = useRef<HTMLDivElement>(null)
-
-  function handleMouseMove(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const { current } = cullerRef
-
-    if (!current) return
-
-    const { clientX, clientY } = evt
-    const { x, y, width, height } = current.getBoundingClientRect()
-
-    const currentX = clientX - x
-    const currentY = clientY - y
-
-    const color = gen({
-      r: Math.abs(currentX - 155),
-      g: 50 + currentY / 10,
-      b: currentY,
-      a: 0.3,
-    })
-
-    current.style.background = color
-  }
+  const [cursor, setCursor] = useState<Coordinates>({
+    x: 0,
+    y: 0,
+  })
 
   if (!selected) return <></>
 
@@ -79,8 +62,10 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             {selected.image === "culler" && (
               <div
                 ref={cullerRef}
-                className="aspect-video h-full w-full "
-                onMouseMove={handleMouseMove}
+                className="aspect-video h-full w-full transition-colors duration-500"
+                onMouseMove={(e) =>
+                  handleCullerCardMouseMove(e, cullerRef, cursor, setCursor)
+                }
               ></div>
             )}
           </motion.div>

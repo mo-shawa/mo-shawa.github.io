@@ -25,6 +25,9 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
       duration: 0.8,
       ease,
     },
+    transitionEnd: {
+      zIndex: 50,
+    },
   },
   hover: {
     y: -10,

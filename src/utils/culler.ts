@@ -23,3 +23,43 @@ export function genGradient(options: GradientOptions): Gradient {
 
   return `${gradientType}(${direction}, ${color1}, ${color2})`
 }
+
+export function handleCullerCardMouseMove(
+  evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  cullerRef: React.RefObject<HTMLDivElement>,
+  cursor: Coordinates,
+  setCursor: React.Dispatch<React.SetStateAction<Coordinates>>
+) {
+  const { current } = cullerRef
+  if (!current) return
+
+  const { clientX, clientY } = evt
+  const { x, y } = current.getBoundingClientRect()
+
+  const currentX = clientX - x
+  const currentY = clientY - y
+
+  if (
+    cursorMinChange(currentX, cursor.x, 100) ||
+    cursorMinChange(currentY, cursor.y, 100)
+  ) {
+    console.log("change")
+    setCursor({ x: currentX, y: currentY })
+    const color = gen({
+      r: Math.abs(currentX - 155),
+      g: 50 + currentY / 10,
+      b: currentY,
+      a: 0.3,
+    })
+
+    current.style.background = color
+  }
+}
+export function cursorMinChange(prev: number, curr: number, diff: number) {
+  return curr > prev + diff || curr < prev - diff
+}
+
+export type Coordinates = {
+  x: number
+  y: number
+}
