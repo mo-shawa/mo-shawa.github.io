@@ -11,6 +11,11 @@ type GradientOptions = GenOptions & {
   direction?: GradientDirection
 }
 
+export type Coordinates = {
+  x: number
+  y: number
+}
+
 // TODO: Implement in culler and replace this
 export function genGradient(options: GradientOptions): Gradient {
   const {
@@ -40,8 +45,8 @@ export function handleCullerCardMouseMove(
   const currentY = clientY - y
 
   if (
-    cursorMinChange(currentX, cursor.x, 100) ||
-    cursorMinChange(currentY, cursor.y, 100)
+    cursorMinChange(currentX, cursor.x, 50) ||
+    cursorMinChange(currentY, cursor.y, 50)
   ) {
     console.log("change")
     setCursor({ x: currentX, y: currentY })
@@ -55,11 +60,7 @@ export function handleCullerCardMouseMove(
     current.style.background = color
   }
 }
-export function cursorMinChange(prev: number, curr: number, diff: number) {
-  return curr > prev + diff || curr < prev - diff
-}
 
-export type Coordinates = {
-  x: number
-  y: number
+function cursorMinChange(prev: number, curr: number, diff: number) {
+  return curr > prev + diff || curr < prev - diff
 }

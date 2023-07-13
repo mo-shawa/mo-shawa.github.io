@@ -4,6 +4,7 @@ import Image from "next/image"
 import GithubSVG from "../../public/github.svg"
 import { useRef, useState } from "react"
 import { Coordinates, handleCullerCardMouseMove } from "@/utils/culler"
+import Pill from "./Pill"
 
 type Props = {
   selected: Project | null
@@ -34,6 +35,12 @@ export default function ProjectModal({ selected, setSelected }: Props) {
       >
         <div className="relative h-full w-full max-w-6xl rounded-3xl bg-white bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
           <div className="rounded-t-lg px-10 py-6 ">
+            <motion.div
+              className="justify-self-start text-sm font-light text-gray-500"
+              layoutId={`year-${selected.name}`}
+            >
+              {selected.year}
+            </motion.div>
             <motion.h2
               layoutId={`title-${selected.name}`}
               className="text-3xl font-medium"
@@ -71,8 +78,13 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           </motion.div>
           <motion.div
             layoutId={`socials-${selected.name}`}
-            className="flex flex-row justify-end gap-4  rounded-tl-3xl p-6 shadow"
+            className="flex w-full flex-row items-center justify-end  gap-4 rounded-tl-3xl p-6 shadow"
           >
+            {selected.technologies.map((tech) => (
+              <motion.div key={tech}>
+                <Pill>{tech}</Pill>
+              </motion.div>
+            ))}
             <motion.div layoutId={`github-${selected.name}`}>
               <SocialButton href={selected.github} hoverColor="github">
                 <GithubSVG />

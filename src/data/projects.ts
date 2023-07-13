@@ -5,7 +5,7 @@ const projects = [
       "Bountree is a global recruitment marketplace for deep tech startup jobs. It crowd-sources job roles to a network of recruiters, allowing anyone to earn rewards for successful referrals.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
     github: "https://github.com/mo-shawa/openAI-AMA",
-    deployment: "http://openai-ama.herokuapp.com/",
+    deployment: "http://bountree.app/",
     image: "/projects/bountree.webp",
     year: 2023,
     // tags: [],
@@ -47,7 +47,7 @@ const projects = [
     technologies: ["React.js", "Express.js", "MongoDB", "Node.js"],
     github: "https://github.com/mo-shawa/SaveQuest",
     deployment: "http://savequest.herokuapp.com/",
-    year: 2023,
+    year: 2022,
 
     image: "/projects/savequest.jpeg",
   },
@@ -58,7 +58,7 @@ const projects = [
     technologies: ["Python", "Django", "Bootstrap", "PostgreSQL"],
     github: "https://github.com/mo-shawa/spot",
     deployment: "http://hellofren.herokuapp.com/",
-    year: 2023,
+    year: 2021,
 
     image: "/projects/hellofren.png",
   },
@@ -69,7 +69,7 @@ const projects = [
     technologies: ["EJS", "Express.js", "MongoDB", "Bootstrap"],
     github: "https://github.com/mo-shawa/hall-of-game",
     deployment: "http://hallofgame.herokuapp.com/",
-    year: 2023,
+    year: 2021,
     image: "/projects/HoG_scaled.png",
   },
   {
@@ -79,7 +79,7 @@ const projects = [
     technologies: ["JavaScript", "HTML", "CSS", "GSAP"],
     github: "https://github.com/mo-shawa/BlackJack",
     deployment: "https://shawa.dev/Blackjack",
-    year: 2023,
+    year: 2021,
     image: "/projects/blackjack.webp",
   },
 ]

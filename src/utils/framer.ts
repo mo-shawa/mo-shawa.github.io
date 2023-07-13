@@ -21,12 +21,10 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
     opacity: 1,
     y: 0,
     scale: 1,
+    zIndex: 40,
     transition: {
       duration: 0.8,
       ease,
-    },
-    transitionEnd: {
-      zIndex: 50,
     },
   },
   hover: {
@@ -34,6 +32,9 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
     transition: {
       ease,
     },
+  },
+  onanimationend: {
+    zIndex: "auto",
   },
 }
 

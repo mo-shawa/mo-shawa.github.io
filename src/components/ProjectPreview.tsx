@@ -11,7 +11,7 @@ import {
 import { useRef, useState } from "react"
 
 type ProjectPreviewProps = Project & {
-  setSelected: React.Dispatch<React.SetStateAction<Partial<Project> | null>>
+  setSelected: React.Dispatch<React.SetStateAction<Project | null>>
   gradient: ReturnType<typeof genGradient>
 }
 
@@ -48,7 +48,7 @@ export default function ProjectPreview({
     <motion.div
       layoutId={`card-${name}`}
       onClick={handleOnClick}
-      className={` cursor-pointer overflow-hidden rounded-3xl`}
+      className={` z-0 cursor-pointer overflow-hidden rounded-3xl`}
       variants={projectPreviewVariants}
       initial="hidden"
       whileHover="hover"
@@ -59,6 +59,12 @@ export default function ProjectPreview({
           className="rounded-t-lg px-10 py-6"
           style={{ background: gradient }}
         >
+          <motion.p
+            layoutId={`year-${name}`}
+            className="text-sm font-light text-gray-500"
+          >
+            {year}
+          </motion.p>
           <motion.h2
             layoutId={`title-${name}`}
             className="text-3xl font-medium"
@@ -66,7 +72,7 @@ export default function ProjectPreview({
             {name}
           </motion.h2>
           <motion.div
-            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4  rounded-tl-3xl p-6 shadow"
+            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4 rounded-tl-3xl p-6 shadow"
             style={{ background: gradient }}
             layoutId={`socials-${name}`}
           >
@@ -92,7 +98,13 @@ export default function ProjectPreview({
             </motion.div>
           </motion.div>
         </div>
-        <motion.div className="bg-gradient-to-br from-slate-200 to-red-200">
+        <motion.div
+          className={
+            image === "culler"
+              ? "bg-gradient-to-br from-slate-200 to-red-200"
+              : ""
+          }
+        >
           {image !== "culler" && (
             <Image
               className="aspect-video w-full rounded-b-3xl"
