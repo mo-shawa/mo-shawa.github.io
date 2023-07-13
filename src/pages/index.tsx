@@ -8,13 +8,12 @@ import { projectContainerVariants } from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
 import HeroCard from "@/components/HeroCard"
 import Loader from "@/components/Loader"
-import Navbar from "@/components/Navbar"
 import { IntroContext } from "@/contexts/introContext"
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Home() {
-  const showIntro = useContext(IntroContext)
+  const state = useContext(IntroContext)
   const [selected, setSelected] = useState<Project | null>(null)
 
   const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
@@ -37,14 +36,12 @@ export default function Home() {
     }
   }, [selected])
 
-  if (showIntro) {
+  if (state.shouldPlayIntroSequence) {
     return <Loader />
   }
 
   return (
     <main className={`mx-4 ${plusJakartaSans.className} pt-16`}>
-      <Navbar />
-
       <section className="  mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
         <HeroCard />
         <motion.div

@@ -3,12 +3,14 @@ import type { AppProps } from "next/app"
 import { AnimatePresence, motion } from "framer-motion"
 import Navbar from "@/components/Navbar"
 import { IntroContext, IntroDispatchContext } from "@/contexts/introContext"
-import { state, dispatch } from "@/reducers/introReducer"
+import { useReducer } from "react"
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [state, dispatch] = useReducer(introReducer, initialState)
   return (
     <IntroContext.Provider value={state}>
       <IntroDispatchContext.Provider value={dispatch}>
+        <Navbar />
         <AnimatePresence mode="wait">
           <motion.div
             key={Component.name}
@@ -33,4 +35,19 @@ export default function App({ Component, pageProps }: AppProps) {
       </IntroDispatchContext.Provider>
     </IntroContext.Provider>
   )
+}
+
+export const initialState = {
+  shouldPlayIntroSequence: true,
+}
+
+export function introReducer(state = initialState, action: "STOP_INTRO") {
+  switch (action) {
+    case "STOP_INTRO":
+      return {
+        shouldPlayIntroSequence: false,
+      }
+    default:
+      return state
+  }
 }

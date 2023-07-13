@@ -2,14 +2,16 @@ import Link from "next/link"
 import { motion, useAnimate } from "framer-motion"
 import { useRouter } from "next/router"
 import { ease } from "@/utils/framer"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { genGradient } from "@/utils/culler"
 import TextMask from "./TextMask"
+import { IntroContext } from "@/contexts/introContext"
 
 export default function Navbar() {
   const router = useRouter()
   const [scope, animate] = useAnimate()
   const [logoHovered, setLogoHovered] = useState<boolean>(false)
+  const state = useContext(IntroContext)
   const [gradient, setGradient] = useState<string>(
     genGradient({
       direction: "to bottom right",
@@ -25,6 +27,7 @@ export default function Navbar() {
       await animate(scope.current, {
         opacity: 0,
         transition: {
+          delay: state.shouldPlayIntroSequence ? 4 : 0,
           duration: 2,
           ease: ease,
         },

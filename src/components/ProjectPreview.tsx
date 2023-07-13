@@ -4,12 +4,17 @@ import SocialButton from "./SocialButton"
 import Image from "next/image"
 import { projectPreviewVariants } from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { gen } from "culler"
 
 type ProjectPreviewProps = Project & {
   setSelected: React.Dispatch<React.SetStateAction<Partial<Project> | null>>
   gradient: ReturnType<typeof genGradient>
+}
+
+type Coordinates = {
+  x: number
+  y: number
 }
 
 export default function ProjectPreview({
@@ -20,29 +25,45 @@ export default function ProjectPreview({
   image,
   technologies,
   gradient,
+  year,
   setSelected,
 }: ProjectPreviewProps) {
   const cullerRef = useRef<HTMLDivElement>(null)
+  const [cursor, setCursor] = useState<Coordinates>({
+    x: 0,
+    y: 0,
+  })
+
+  function cursorMinChange(prev: number, curr: number, diff: number) {
+    return curr > prev + diff || curr < prev - diff
+  }
 
   function handleMouseMove(evt: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const { current } = cullerRef
-
     if (!current) return
 
     const { clientX, clientY } = evt
-    const { x, y, width, height } = current.getBoundingClientRect()
+    const { x, y } = current.getBoundingClientRect()
 
     const currentX = clientX - x
     const currentY = clientY - y
 
-    const color = gen({
-      r: Math.abs(currentX - 155),
-      g: 50 + currentY / 10,
-      b: currentY,
-      a: 0.3,
-    })
+    if (
+      cursorMinChange(currentX, cursor.x, 100) ||
+      cursorMinChange(currentY, cursor.y, 100)
+    ) {
+      cursor.x = currentX
+      cursor.y = currentY
 
-    current.style.background = color
+      const color = gen({
+        r: Math.abs(currentX - 155),
+        g: 50 + currentY / 10,
+        b: currentY,
+        a: 0.3,
+      })
+
+      current.style.background = color
+    }
   }
 
   function handleOnClick() {
@@ -53,6 +74,7 @@ export default function ProjectPreview({
       deployment,
       image,
       technologies,
+      year,
     })
   }
 

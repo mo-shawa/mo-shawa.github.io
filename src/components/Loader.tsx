@@ -12,13 +12,10 @@ export default function Loader() {
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      onAnimationComplete={() =>
-        dispatch({ type: "SET_LOADING", payload: false })
-      }
+      onAnimationComplete={() => dispatch("STOP_INTRO")}
       transition={{ duration: 4, ease }}
       className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll px-4"
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>
       <HeroCard />
     </motion.div>
   )
