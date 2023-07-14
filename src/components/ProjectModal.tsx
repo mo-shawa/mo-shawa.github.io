@@ -2,9 +2,8 @@ import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
 import GithubSVG from "../../public/github.svg"
-import { useRef, useState } from "react"
-import { Coordinates, handleCullerCardMouseMove } from "@/utils/culler"
 import Pill from "./Pill"
+import CullerCard from "./CullerCard"
 
 type Props = {
   selected: Project | null
@@ -12,12 +11,6 @@ type Props = {
 }
 
 export default function ProjectModal({ selected, setSelected }: Props) {
-  const cullerRef = useRef<HTMLDivElement>(null)
-  const [cursor, setCursor] = useState<Coordinates>({
-    x: 0,
-    y: 0,
-  })
-
   if (!selected) return <></>
 
   return (
@@ -66,15 +59,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
                 height={1080}
               />
             )}
-            {selected.image === "culler" && (
-              <div
-                ref={cullerRef}
-                className="aspect-video h-full w-full transition-colors duration-500"
-                onMouseMove={(e) =>
-                  handleCullerCardMouseMove(e, cullerRef, cursor, setCursor)
-                }
-              ></div>
-            )}
+            {selected.image === "culler" && <CullerCard />}
           </motion.div>
           <motion.div
             layoutId={`socials-${selected.name}`}

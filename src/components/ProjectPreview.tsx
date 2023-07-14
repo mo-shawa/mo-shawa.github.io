@@ -3,12 +3,8 @@ import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
 import { projectPreviewVariants } from "@/utils/framer"
-import {
-  Coordinates,
-  genGradient,
-  handleCullerCardMouseMove,
-} from "@/utils/culler"
-import { useRef, useState } from "react"
+import { genGradient } from "@/utils/culler"
+import CullerCard from "./CullerCard"
 
 type ProjectPreviewProps = Project & {
   setSelected: React.Dispatch<React.SetStateAction<Project | null>>
@@ -26,12 +22,6 @@ export default function ProjectPreview({
   year,
   setSelected,
 }: ProjectPreviewProps) {
-  const cullerRef = useRef<HTMLDivElement>(null)
-  const [cursor, setCursor] = useState<Coordinates>({
-    x: 0,
-    y: 0,
-  })
-
   function handleOnClick() {
     setSelected({
       name,
@@ -114,15 +104,7 @@ export default function ProjectPreview({
               height={1080}
             />
           )}
-          {image === "culler" && (
-            <div
-              ref={cullerRef}
-              className="aspect-video h-full w-full rounded-b-3xl transition-colors duration-500"
-              onMouseMove={(e) =>
-                handleCullerCardMouseMove(e, cullerRef, cursor, setCursor)
-              }
-            ></div>
-          )}
+          {image === "culler" && <CullerCard />}
         </motion.div>
       </div>
     </motion.div>
