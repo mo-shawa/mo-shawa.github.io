@@ -6,6 +6,7 @@ export const projectContainerVariants: AnimationProps["variants"] = {
   hidden: {},
   visible: {
     transition: {
+      delay: 1.5,
       staggerChildren: 0.2,
     },
   },
@@ -21,7 +22,6 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
     opacity: 1,
     y: 0,
     scale: 1,
-    zIndex: 40,
     transition: {
       duration: 0.8,
       ease,
@@ -32,9 +32,6 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
     transition: {
       ease,
     },
-  },
-  onanimationend: {
-    zIndex: "auto",
   },
 }
 
@@ -86,5 +83,27 @@ export const buttonVariants: AnimationProps["variants"] = {
     transition: {
       ease,
     },
+  },
+}
+
+export const techPillContainerVariants: AnimationProps["variants"] = {
+  hidden: { width: 0, height: 0 },
+  visible: {
+    width: "auto",
+    height: "auto",
+    transition: {
+      delay: 1,
+      staggerChildren: 0.1,
+      delayChildren: 0.5,
+    },
+  },
+}
+
+export const techPillVariants: AnimationProps["variants"] = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
   },
 }

@@ -13,7 +13,7 @@ export default function Loader() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
       onAnimationComplete={() => setShouldShowIntro(false)}
-      transition={{ duration: 4, ease }}
+      transition={{ duration: 2, ease }}
       className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll px-4"
     >
       <HeroCard />

@@ -61,6 +61,7 @@ export default function Home() {
         <LayoutGroup id="projects">
           {projects.map((project, idx) => (
             <ProjectPreview
+              selected={selected}
               setSelected={setSelected}
               key={project.name}
               {...project}

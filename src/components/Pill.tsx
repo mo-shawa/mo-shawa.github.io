@@ -25,7 +25,7 @@ export default function Pill({ children }: { children: string }) {
 
   return (
     <div
-      className={`mb-2 mr-2 inline-block rounded-full  px-4 py-1 text-sm font-semibold ${pillStyle[randomIndex]}`}
+      className={`whitespace-nowrap rounded-full px-4 py-1 text-sm font-semibold ${pillStyle[randomIndex]}`}
     >
       {children}
     </div>

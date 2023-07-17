@@ -2,11 +2,13 @@ import GithubSVG from "../../public/github.svg"
 import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
-import { projectPreviewVariants } from "@/utils/framer"
+import { ease, projectPreviewVariants } from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
 import CullerCard from "./CullerCard"
+import { useRef } from "react"
 
 type ProjectPreviewProps = Project & {
+  selected: Project | null
   setSelected: React.Dispatch<React.SetStateAction<Project | null>>
   gradient: ReturnType<typeof genGradient>
 }
@@ -20,8 +22,11 @@ export default function ProjectPreview({
   technologies,
   gradient,
   year,
+  selected,
   setSelected,
 }: ProjectPreviewProps) {
+  const ref = useRef<HTMLDivElement>(null)
+
   function handleOnClick() {
     setSelected({
       name,
@@ -33,16 +38,20 @@ export default function ProjectPreview({
       year,
     })
   }
-
   return (
     <motion.div
+      ref={ref}
       layoutId={`card-${name}`}
+      id={name}
       onClick={handleOnClick}
-      className={` z-0 cursor-pointer overflow-hidden rounded-3xl`}
+      className={`cursor-pointer overflow-hidden rounded-3xl`}
       variants={projectPreviewVariants}
       initial="hidden"
       whileHover="hover"
       whileInView="visible"
+      transition={{
+        ease,
+      }}
     >
       <div className="relative h-full w-full rounded-2xl bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
         <div

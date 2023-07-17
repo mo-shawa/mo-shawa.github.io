@@ -27,9 +27,9 @@ export default function Navbar() {
       await animate(scope.current, {
         opacity: 0,
         transition: {
-          delay: shouldShowIntro ? 4 : 0,
           duration: 2,
           ease: ease,
+          delay: shouldShowIntro ? 2 : 0,
         },
       })
 
@@ -37,9 +37,9 @@ export default function Navbar() {
         genGradient({
           direction: "to bottom right",
           type: "rgb",
-          minB: 212,
-          minG: 212,
-          minR: 212,
+          minB: 200,
+          minG: 200,
+          minR: 200,
         })
       )
 
@@ -70,7 +70,12 @@ export default function Navbar() {
   ]
 
   return (
-    <motion.nav className="fixed top-0 z-50 w-full  bg-white/70 p-4 text-zinc-800 filter backdrop-blur-xl">
+    <motion.nav
+      initial={{}}
+      animate={{}}
+      transition={{ ease, delay: shouldShowIntro ? 4 : 0 }}
+      className="fixed top-0 z-50 w-full  bg-white/70 p-4 text-zinc-800 filter backdrop-blur-xl"
+    >
       <div className="mx-auto flex max-w-7xl justify-between">
         <div className="flex items-center gap-2">
           <motion.div
@@ -88,16 +93,6 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
           />
           <motion.div className="relative flex  items-start px-2">
-            {/* {logoHovered && (
-              <motion.div
-                layoutId="orb"
-                className="orb absolute inset-0 h-full w-full rounded-full"
-                style={{
-                  background: gradient,
-                }}
-              />
-            )} */}
-
             <Link
               onClick={(e) => {
                 if (router.pathname === "/") {

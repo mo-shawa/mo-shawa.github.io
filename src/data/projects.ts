@@ -28,7 +28,7 @@ const projects = [
     github: "https://github.com/mo-shawa/sahba.space",
     deployment: "http://sahba.space",
     year: 2023,
-    image: "/projects/sahba.png",
+    image: "/projects/sahba.webp",
   },
   {
     name: "Ask GPT-3",
@@ -37,7 +37,7 @@ const projects = [
     technologies: ["GPT-3", "React.js", "React Spring", "Node.js"],
     github: "https://github.com/mo-shawa/openAI-AMA",
     deployment: "http://openai-ama.herokuapp.com/",
-    image: "/projects/OpenAI.webp",
+    image: "/projects/askgpt3.webp",
     year: 2022,
   },
   {
@@ -49,7 +49,7 @@ const projects = [
     deployment: "http://savequest.herokuapp.com/",
     year: 2022,
 
-    image: "/projects/savequest.jpeg",
+    image: "/projects/savequest.webp",
   },
   {
     name: "HelloFren",
@@ -60,7 +60,7 @@ const projects = [
     deployment: "http://hellofren.herokuapp.com/",
     year: 2021,
 
-    image: "/projects/hellofren.png",
+    image: "/projects/spot.webp",
   },
   {
     name: "Hall of Game",
@@ -70,7 +70,7 @@ const projects = [
     github: "https://github.com/mo-shawa/hall-of-game",
     deployment: "http://hallofgame.herokuapp.com/",
     year: 2021,
-    image: "/projects/HoG_scaled.png",
+    image: "/projects/hallofgame.webp",
   },
   {
     name: "BlackJack",

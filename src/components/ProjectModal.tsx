@@ -4,6 +4,11 @@ import Image from "next/image"
 import GithubSVG from "../../public/github.svg"
 import Pill from "./Pill"
 import CullerCard from "./CullerCard"
+import {
+  ease,
+  techPillContainerVariants,
+  techPillVariants,
+} from "@/utils/framer"
 
 type Props = {
   selected: Project | null
@@ -25,6 +30,11 @@ export default function ProjectModal({ selected, setSelected }: Props) {
       <motion.div
         layoutId={`card-${selected.name}`}
         onClick={(e) => e.stopPropagation()}
+        transition={{
+          duration: 0.5,
+          ease,
+        }}
+        initial={{ zIndex: "auto" }}
       >
         <div className="relative h-full w-full max-w-6xl rounded-3xl bg-white bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
           <div className="rounded-t-lg px-10 py-6 ">
@@ -65,11 +75,23 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             layoutId={`socials-${selected.name}`}
             className="flex w-full flex-row items-center justify-end  gap-4 rounded-tl-3xl p-6 shadow"
           >
-            {selected.technologies.map((tech) => (
-              <motion.div key={tech}>
-                <Pill>{tech}</Pill>
-              </motion.div>
-            ))}
+            <motion.div
+              className="flex h-full flex-row flex-wrap items-center justify-start gap-4"
+              initial="hidden"
+              animate="visible"
+              variants={techPillContainerVariants}
+            >
+              {selected.technologies.map((tech) => (
+                <motion.div
+                  key={tech}
+                  initial="hidden"
+                  animate="visible"
+                  variants={techPillVariants}
+                >
+                  <Pill>{tech}</Pill>
+                </motion.div>
+              ))}
+            </motion.div>
             <motion.div layoutId={`github-${selected.name}`}>
               <SocialButton href={selected.github} hoverColor="github">
                 <GithubSVG />

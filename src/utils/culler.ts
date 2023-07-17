@@ -48,7 +48,6 @@ export function handleCullerCardMouseMove(
     cursorMinChange(currentX, cursor.x, 50) ||
     cursorMinChange(currentY, cursor.y, 50)
   ) {
-    console.log("change")
     setCursor({ x: currentX, y: currentY })
     const color = gen({
       r: Math.abs(currentX - 155),
