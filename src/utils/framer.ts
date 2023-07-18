@@ -87,10 +87,8 @@ export const buttonVariants: AnimationProps["variants"] = {
 }
 
 export const techPillContainerVariants: AnimationProps["variants"] = {
-  hidden: { width: 0, height: 0 },
+  hidden: {},
   visible: {
-    width: "auto",
-    height: "auto",
     transition: {
       delay: 1,
       staggerChildren: 0.1,

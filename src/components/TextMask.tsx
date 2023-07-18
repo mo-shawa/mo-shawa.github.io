@@ -35,8 +35,8 @@ export default function TextMask({
             className="inline-block"
           >
             {child}
+            {type === "word" && <>&nbsp;</>}
           </motion.span>
-          {type === "word" && <span> </span>}
         </>
       ))}
     </motion.div>

@@ -85,7 +85,7 @@ export default function Navbar() {
             dragElastic={0.1}
             ref={scope}
             layoutId="orb"
-            className="orb inset-0 h-5 w-5 rounded-full"
+            className="orb inset-0 aspect-square h-5 w-5 rounded-full"
             style={{
               background: gradient,
             }}
@@ -105,7 +105,7 @@ export default function Navbar() {
             >
               <TextMask
                 type="letter"
-                className="text-sm font-semibold tracking-widest"
+                className="whitespace-nowrap text-sm font-semibold tracking-widest"
               >
                 SHAWA.DEV
               </TextMask>

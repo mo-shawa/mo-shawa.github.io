@@ -1,10 +1,10 @@
-import { GenOptions, gen } from "culler"
+import { GenOptions, gen, Color } from "culler"
 
 type GradientType = "linear-gradient" | "radial-gradiant"
 
 type GradientDirection = "to bottom right" | "to bottom" | "to right"
 
-type Gradient = `${GradientType}(${GradientDirection}, ${string}, ${string})`
+type Gradient = `${GradientType}(${GradientDirection}, ${Color}, ${Color})`
 
 type GradientOptions = GenOptions & {
   gradientType?: GradientType

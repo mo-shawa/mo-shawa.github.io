@@ -1,3 +1,6 @@
+import { techPillVariants } from "@/utils/framer"
+import { motion } from "framer-motion"
+
 export default function Pill({ children }: { children: string }) {
   const pillStyle = [
     "bg-blue-100 text-blue-800",
@@ -24,10 +27,13 @@ export default function Pill({ children }: { children: string }) {
   const randomIndex = Math.floor(Math.random() * pillStyle.length)
 
   return (
-    <div
+    <motion.div
+      variants={techPillVariants}
+      animate="visible"
+      initial="hidden"
       className={`whitespace-nowrap rounded-full px-4 py-1 text-sm font-semibold ${pillStyle[randomIndex]}`}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }

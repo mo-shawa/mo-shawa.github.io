@@ -111,6 +111,7 @@ export default function ProjectPreview({
               alt={name}
               width={1920}
               height={1080}
+              quality={100}
             />
           )}
           {image === "culler" && <CullerCard />}
