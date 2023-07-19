@@ -1,7 +1,7 @@
 import { Plus_Jakarta_Sans } from "next/font/google"
 import projects from "@/data/projects"
 import ProjectPreview from "@/components/ProjectPreview"
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
+import { AnimatePresence, LayoutGroup, motion, useAnimate } from "framer-motion"
 import { useEffect, useState, useContext } from "react"
 import ProjectModal from "@/components/ProjectModal"
 import { projectContainerVariants } from "@/utils/framer"
@@ -58,20 +58,18 @@ export default function Home() {
         variants={projectContainerVariants}
         className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
       >
-        <LayoutGroup id="projects">
-          {projects.map((project, idx) => (
-            <ProjectPreview
-              selected={selected}
-              setSelected={setSelected}
-              key={project.name}
-              {...project}
-              gradient={gradients[idx]}
-            />
-          ))}
-          <AnimatePresence>
-            <ProjectModal selected={selected} setSelected={setSelected} />
-          </AnimatePresence>
-        </LayoutGroup>
+        {projects.map((project, idx) => (
+          <ProjectPreview
+            selected={selected}
+            setSelected={setSelected}
+            key={project.name}
+            {...project}
+            gradient={gradients[idx]}
+          />
+        ))}
+        <AnimatePresence>
+          <ProjectModal selected={selected} setSelected={setSelected} />
+        </AnimatePresence>
       </motion.section>
     </main>
   )

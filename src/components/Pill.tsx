@@ -29,9 +29,7 @@ export default function Pill({ children }: { children: string }) {
   return (
     <motion.div
       variants={techPillVariants}
-      animate="visible"
-      initial="hidden"
-      className={`whitespace-nowrap rounded-full px-4 py-1 text-sm font-semibold ${pillStyle[randomIndex]}`}
+      className={`pill whitespace-nowrap rounded-full px-4 py-1 text-sm font-semibold ${pillStyle[randomIndex]}`}
     >
       {children}
     </motion.div>

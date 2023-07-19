@@ -90,9 +90,9 @@ export const techPillContainerVariants: AnimationProps["variants"] = {
   hidden: {},
   visible: {
     transition: {
-      delay: 1,
-      staggerChildren: 0.1,
+      when: "beforeChildren",
       delayChildren: 0.5,
+      staggerChildren: 0.05,
     },
   },
 }
@@ -100,8 +100,14 @@ export const techPillContainerVariants: AnimationProps["variants"] = {
 export const techPillVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
+    x: 50,
   },
   visible: {
     opacity: 1,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    x: -20,
   },
 }

@@ -82,14 +82,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
               variants={techPillContainerVariants}
             >
               {selected.technologies.map((tech) => (
-                <motion.div
-                  key={tech}
-                  initial="hidden"
-                  animate="visible"
-                  variants={techPillVariants}
-                >
-                  <Pill>{tech}</Pill>
-                </motion.div>
+                <Pill>{tech}</Pill>
               ))}
             </motion.div>
             <motion.div layoutId={`github-${selected.name}`}>
