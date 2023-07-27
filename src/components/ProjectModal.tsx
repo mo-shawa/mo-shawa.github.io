@@ -40,7 +40,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
         }}
       >
         <div className="relative h-full w-full max-w-6xl rounded-3xl bg-white/90 bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
-          <div className="rounded-t-lg px-10 py-6 ">
+          <div className="flex flex-col gap-4 rounded-t-lg px-10 py-6">
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -76,15 +76,15 @@ export default function ProjectModal({ selected, setSelected }: Props) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className=" "
+              className="font-light"
             >
               {selected.description}
             </motion.p>
           </div>
-          <motion.div>
+          <motion.div layout="preserve-aspect">
             {selected.image !== "culler" && (
               <Image
-                className="aspect-video  w-full"
+                className="aspect-video w-full"
                 src={selected.image}
                 alt={selected.name}
                 width={1920}

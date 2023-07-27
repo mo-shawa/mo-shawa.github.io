@@ -74,7 +74,7 @@ export default function Navbar() {
       initial={{}}
       animate={{}}
       transition={{ ease, delay: shouldShowIntro ? 4 : 0 }}
-      className="fixed  top-0 z-50 w-full bg-white/70 p-4 text-zinc-800 filter backdrop-blur-xl"
+      className="fixed z-50 h-16 w-full bg-white/70 p-4 text-slate-800 filter backdrop-blur-xl"
     >
       <motion.div className="relative mx-auto flex max-w-7xl justify-between">
         <div className="flex items-center gap-2">

@@ -1,4 +1,3 @@
-import { Plus_Jakarta_Sans } from "next/font/google"
 import projects from "@/data/projects"
 import ProjectPreview from "@/components/ProjectPreview"
 import { AnimatePresence, LayoutGroup, motion, useAnimate } from "framer-motion"
@@ -40,8 +39,8 @@ export default function Home() {
   }
 
   return (
-    <main className="mx-4 pt-16">
-      <section className="  mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
+    <>
+      <section className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
         <HeroCard />
         <motion.div
           initial={{ opacity: 0, x: 30 }}
@@ -69,6 +68,6 @@ export default function Home() {
           <ProjectModal selected={selected} setSelected={setSelected} />
         </AnimatePresence>
       </motion.section>
-    </main>
+    </>
   )
 }

@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
             initial="pageInitial"
             animate="pageAnimate"
             exit="pageExit"
-            className={plusJakartaSans.className}
+            className={`${plusJakartaSans.className} overflow-hidden`}
             variants={{
               pageInitial: {
                 opacity: 0,
@@ -37,7 +37,9 @@ export default function App({ Component, pageProps }: AppProps) {
               },
             }}
           >
-            <Component {...pageProps} />
+            <main className="no-scrollbar mx-4 h-[calc(100vh-4rem)] overflow-auto pt-16">
+              <Component {...pageProps} />
+            </main>
           </motion.div>
         </AnimatePresence>
       </IntroContext.Provider>
