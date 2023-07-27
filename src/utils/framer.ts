@@ -2,6 +2,49 @@ import { AnimationProps } from "framer-motion"
 
 export const ease = [0.6, 0.01, 0.05, 0.95]
 
+export const heroCardVariants: AnimationProps["variants"] = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.5,
+      delay: 1.5,
+    },
+  },
+}
+
+export const heroCardButtonVariants: AnimationProps["variants"] = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+  tap: {
+    scale: 0.95,
+    transition: {
+      ease,
+    },
+  },
+}
+
 export const projectContainerVariants: AnimationProps["variants"] = {
   hidden: {},
   visible: {
@@ -70,21 +113,7 @@ export const textMaskChildVariants: AnimationProps["variants"] = {
   },
 }
 
-export const buttonVariants: AnimationProps["variants"] = {
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.5,
-      ease,
-    },
-  },
-  tap: {
-    scale: 0.95,
-    transition: {
-      ease,
-    },
-  },
-}
+export const buttonVariants: AnimationProps["variants"] = {}
 
 export const techPillContainerVariants: AnimationProps["variants"] = {
   hidden: {},

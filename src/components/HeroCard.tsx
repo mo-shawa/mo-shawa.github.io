@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import Poppers from "./Poppers"
 import TextMask from "./TextMask"
-import { buttonVariants, ease } from "@/utils/framer"
+import { heroCardButtonVariants, ease, heroCardVariants } from "@/utils/framer"
 import SocialButton from "./SocialButton"
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
@@ -14,22 +14,32 @@ export default function HeroCard() {
 
   return (
     <motion.div
+      layout
       layoutId="hero-card"
       className="relative flex min-h-[30rem] max-w-5xl flex-col gap-16 overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10"
       transition={{
-        duration: 1,
+        duration: 3,
         ease,
       }}
     >
       <Poppers />
-      <TextMask
-        layoutId="hero-card-title"
-        className="mix pointer-events-none text-4xl font-semibold leading-snug tracking-tight"
-      >
-        Hello, I'm Mahmoud. I'm a Frontend-Focused Fullstack Developer.
-      </TextMask>
+      {shouldShowIntro ? (
+        <TextMask
+          layoutId="hero-card-title"
+          className="mix pointer-events-none z-10 inline-block  text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+        >
+          Hello, I'm Mahmoud. I'm a Frontend-Focused Fullstack Developer.
+        </TextMask>
+      ) : (
+        <motion.h1
+          layoutId="hero-card-title"
+          className="mix pointer-events-none z-10 inline-block  text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+        >
+          Hello, I'm Mahmoud. I'm a Frontend-Focused Fullstack Developer.
+        </motion.h1>
+      )}
       <motion.p
-        initial={{ opacity: 0 }}
+        initial={shouldShowIntro ? { opacity: 0 } : { opacity: 1 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
         className="pointer-events-none z-10 flex-1 text-lg"
@@ -58,25 +68,14 @@ export default function HeroCard() {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={{
-            hidden: {
-              opacity: 0,
-              y: 20,
-            },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                staggerChildren: 0.5,
-              },
-            },
-          }}
+          layout="position"
+          variants={heroCardVariants}
           className="pointer-events-none relative flex flex-col items-center gap-4 justify-self-end lg:flex-row"
         >
           <motion.button
             whileHover="hover"
             whileTap="tap"
-            variants={buttonVariants}
+            variants={heroCardButtonVariants}
             className="pointer-events-auto rounded-full bg-black px-12 py-3 font-medium text-white"
           >
             Contact me

@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar"
 import { IntroContext } from "@/contexts/introContext"
 import { useState } from "react"
 import Head from "next/head"
+import { Plus_Jakarta_Sans } from "next/font/google"
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function App({ Component, pageProps }: AppProps) {
   const [shouldShowIntro, setShouldShowIntro] = useState(true)
@@ -22,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
             initial="pageInitial"
             animate="pageAnimate"
             exit="pageExit"
+            className={plusJakartaSans.className}
             variants={{
               pageInitial: {
                 opacity: 0,

@@ -44,7 +44,7 @@ export default function ProjectPreview({
       layoutId={`card-${name}`}
       id={name}
       onClick={handleOnClick}
-      className={`cursor-pointer overflow-hidden rounded-3xl`}
+      className={`transform cursor-pointer overflow-hidden rounded-3xl`}
       variants={projectPreviewVariants}
       initial="hidden"
       whileHover="hover"
@@ -53,25 +53,27 @@ export default function ProjectPreview({
         ease,
       }}
     >
-      <div className="relative h-full w-full rounded-2xl bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
+      <div className="relative h-full w-full bg-contain bg-fixed bg-center bg-no-repeat">
         <div
           className="rounded-t-lg px-10 py-6"
           style={{ background: gradient }}
         >
           <motion.p
             layoutId={`year-${name}`}
+            layout="position"
             className="text-sm font-light text-gray-500"
           >
             {year}
           </motion.p>
           <motion.h2
+            layout="position"
             layoutId={`title-${name}`}
             className="text-3xl font-medium"
           >
             {name}
           </motion.h2>
           <motion.div
-            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4 rounded-tl-3xl p-6 shadow"
+            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4 rounded-br-3xl rounded-tl-3xl p-6 shadow"
             style={{ background: gradient }}
             layoutId={`socials-${name}`}
           >
@@ -97,16 +99,10 @@ export default function ProjectPreview({
             </motion.div>
           </motion.div>
         </div>
-        <motion.div
-          className={
-            image === "culler"
-              ? "bg-gradient-to-br from-slate-200 to-red-200"
-              : ""
-          }
-        >
+        <motion.div>
           {image !== "culler" && (
             <Image
-              className="aspect-video w-full rounded-b-3xl"
+              className="aspect-video max-h-[95%] w-full  rounded-b-3xl"
               src={image}
               alt={name}
               width={1920}

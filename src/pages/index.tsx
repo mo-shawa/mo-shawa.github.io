@@ -10,8 +10,6 @@ import HeroCard from "@/components/HeroCard"
 import Loader from "@/components/Loader"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
 
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
-
 export default function Home() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
 
@@ -42,7 +40,7 @@ export default function Home() {
   }
 
   return (
-    <main className={`mx-4 ${plusJakartaSans.className} pt-16`}>
+    <main className="mx-4 pt-16">
       <section className="  mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
         <HeroCard />
         <motion.div

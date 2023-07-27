@@ -74,9 +74,9 @@ export default function Navbar() {
       initial={{}}
       animate={{}}
       transition={{ ease, delay: shouldShowIntro ? 4 : 0 }}
-      className="fixed top-0 z-50 w-full  bg-white/70 p-4 text-zinc-800 filter backdrop-blur-xl"
+      className="fixed  top-0 z-50 w-full bg-white/70 p-4 text-zinc-800 filter backdrop-blur-xl"
     >
-      <div className="mx-auto flex max-w-7xl justify-between">
+      <motion.div className="relative mx-auto flex max-w-7xl justify-between">
         <div className="flex items-center gap-2">
           <motion.div
             drag
@@ -139,7 +139,7 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-      </div>
+      </motion.div>
     </motion.nav>
   )
 }

@@ -1,4 +1,4 @@
-import { AnimationProps, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { textMaskVariants, textMaskChildVariants } from "@/utils/framer"
 
 type TextMaskProps = {
@@ -28,16 +28,14 @@ export default function TextMask({
       layoutId={layoutId}
     >
       {children.split(splitOn).map((child, i) => (
-        <>
-          <motion.span
-            key={i}
-            variants={textMaskChildVariants}
-            className="inline-block"
-          >
-            {child}
-            {type === "word" && <>&nbsp;</>}
-          </motion.span>
-        </>
+        <motion.span
+          key={i}
+          variants={textMaskChildVariants}
+          className="inline-block"
+        >
+          {child}
+          {type === "word" && <>&nbsp;</>}
+        </motion.span>
       ))}
     </motion.div>
   )

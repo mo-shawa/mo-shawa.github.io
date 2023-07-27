@@ -10,7 +10,7 @@ export default function CullerCard() {
   return (
     <div
       ref={ref}
-      className="aspect-video h-full w-full transition-colors duration-500"
+      className="aspect-video h-full w-full bg-slate-50 transition-colors duration-500"
       onMouseMove={(e) => handleCullerCardMouseMove(e, ref, cursor, setCursor)}
     ></div>
   )
