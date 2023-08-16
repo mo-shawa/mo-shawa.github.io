@@ -27,7 +27,6 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             delay: 0.5,
           },
         }}
-        exit={{ opacity: 0 }}
         onClick={() => setSelected(null)}
         className="absolute inset-0 bg-black/20 filter backdrop-blur-md"
       ></motion.div>
@@ -39,7 +38,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           ease,
         }}
       >
-        <div className="relative h-full w-full max-w-6xl rounded-3xl bg-white/90 bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
+        <div className="relative h-full w-full max-w-6xl rounded-3xl bg-white bg-contain bg-fixed bg-center bg-no-repeat lg:bg-scroll">
           <div className="flex flex-col gap-4 rounded-t-lg px-10 py-6">
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +80,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
               {selected.description}
             </motion.p>
           </div>
-          <motion.div layout="preserve-aspect">
+          <motion.div layoutId={`image-${selected.name}`}>
             {selected.image !== "culler" && (
               <Image
                 className="aspect-video w-full"
@@ -96,7 +95,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           </motion.div>
           <motion.div
             layoutId={`socials-${selected.name}`}
-            className="z-10 flex w-full flex-row items-center  justify-end gap-4 rounded-b-3xl rounded-tl-3xl p-6"
+            className="flex w-full flex-row items-center  justify-end gap-4 rounded-b-3xl rounded-tl-3xl p-6"
           >
             <motion.div
               className="flex h-full flex-row flex-wrap items-center justify-start gap-2 sm:gap-4"
@@ -108,7 +107,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
                 <Pill>{tech}</Pill>
               ))}
             </motion.div>
-            <motion.div className="flex  flex-wrap justify-end gap-2 sm:gap-4">
+            <motion.div className="flex flex-wrap justify-end gap-2 sm:gap-4">
               <motion.div layoutId={`github-${selected.name}`}>
                 <SocialButton href={selected.github} hoverColor="github">
                   <GithubSVG />

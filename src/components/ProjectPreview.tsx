@@ -2,7 +2,7 @@ import GithubSVG from "../../public/github.svg"
 import { motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import Image from "next/image"
-import { ease, projectPreviewVariants } from "@/utils/framer"
+import { projectPreviewVariants } from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
 import CullerCard from "./CullerCard"
 import { useRef } from "react"
@@ -22,7 +22,6 @@ export default function ProjectPreview({
   technologies,
   gradient,
   year,
-  selected,
   setSelected,
 }: ProjectPreviewProps) {
   const ref = useRef<HTMLDivElement>(null)
@@ -44,14 +43,11 @@ export default function ProjectPreview({
       layoutId={`card-${name}`}
       id={name}
       onClick={handleOnClick}
+      initial="hidden"
+      whileInView="visible"
+      whileHover="hover"
       className={`transform cursor-pointer overflow-hidden rounded-3xl`}
       variants={projectPreviewVariants}
-      initial="hidden"
-      whileHover="hover"
-      whileInView="visible"
-      transition={{
-        ease,
-      }}
     >
       <div className="relative h-full w-full bg-contain bg-fixed bg-center bg-no-repeat">
         <div
@@ -99,10 +95,10 @@ export default function ProjectPreview({
             </motion.div>
           </motion.div>
         </div>
-        <motion.div>
+        <motion.div layoutId={`image-${name}`}>
           {image !== "culler" && (
             <Image
-              className="aspect-video max-h-[95%] w-full  rounded-b-3xl"
+              className="aspect-video w-full  rounded-b-3xl"
               src={image}
               alt={name}
               width={1920}

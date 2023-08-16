@@ -1,6 +1,6 @@
 import projects from "@/data/projects"
 import ProjectPreview from "@/components/ProjectPreview"
-import { AnimatePresence, LayoutGroup, motion, useAnimate } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState, useContext } from "react"
 import ProjectModal from "@/components/ProjectModal"
 import { projectContainerVariants } from "@/utils/framer"
@@ -64,9 +64,7 @@ export default function Home() {
             gradient={gradients[idx]}
           />
         ))}
-        <AnimatePresence>
-          <ProjectModal selected={selected} setSelected={setSelected} />
-        </AnimatePresence>
+        <ProjectModal selected={selected} setSelected={setSelected} />
       </motion.section>
     </>
   )

@@ -6,6 +6,8 @@ import { useContext, useEffect, useState } from "react"
 import { genGradient } from "@/utils/culler"
 import TextMask from "./TextMask"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import { Plus_Jakarta_Sans } from "next/font/google"
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Navbar() {
   const router = useRouter()
@@ -29,7 +31,7 @@ export default function Navbar() {
         transition: {
           duration: 2,
           ease: ease,
-          delay: shouldShowIntro ? 2 : 0,
+          delay: shouldShowIntro ? 4 : 0,
         },
       })
 
@@ -71,10 +73,10 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{}}
-      animate={{}}
-      transition={{ ease, delay: shouldShowIntro ? 4 : 0 }}
-      className="fixed z-50 h-16 w-full bg-white/70 p-4 text-slate-800 filter backdrop-blur-xl"
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      transition={{ ease, delay: shouldShowIntro ? 4 : 0, duration: 2 }}
+      className={`fixed inset-0 z-50 h-16 w-full bg-white/70 p-4 text-slate-800 filter backdrop-blur-xl ${plusJakartaSans.className}`}
     >
       <motion.div className="relative mx-auto flex max-w-7xl justify-between">
         <div className="flex items-center gap-2">
