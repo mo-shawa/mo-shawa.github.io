@@ -15,7 +15,7 @@ import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
 
 const titleClasses =
-  "mix pointer-events-none z-20  max-w-xl text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+  "mix pointer-events-none z-20  w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
 
 export default function HeroCard() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType

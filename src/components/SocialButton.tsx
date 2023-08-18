@@ -6,6 +6,7 @@ export default function SocialButton({
   children,
   hoverColor = "github",
   bgColor = "white",
+  isProject = false,
 }: SocialButtonProps) {
   let bgColorClass
   let hoverColorClass
@@ -38,7 +39,7 @@ export default function SocialButton({
         scale: 0.95,
       }}
       href={href}
-      variants={socialsVariants}
+      {...(!isProject && { variants: socialsVariants })}
       target="_blank"
       className={`group flex h-10 w-10 items-center justify-center rounded-full border shadow-sm duration-200 ease-in-out ${bgColorClass} hover:shadow-md ${hoverColorClass} transition-all`}
     >
@@ -54,4 +55,5 @@ type SocialButtonProps = {
   children?: React.ReactNode
   hoverColor?: string
   bgColor?: string
+  isProject?: boolean
 }

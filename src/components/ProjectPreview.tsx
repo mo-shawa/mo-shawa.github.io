@@ -69,7 +69,7 @@ export default function ProjectPreview({
             {name}
           </motion.h2>
           <motion.div
-            className="absolute bottom-0 right-0 flex flex-col justify-evenly gap-4 rounded-br-3xl rounded-tl-3xl p-6 shadow"
+            className="absolute bottom-0 right-0 z-20 flex flex-col justify-evenly gap-4 rounded-br-3xl rounded-tl-3xl p-6 shadow"
             style={{ background: gradient }}
             layoutId={`socials-${name}`}
           >
@@ -95,7 +95,7 @@ export default function ProjectPreview({
             </motion.div>
           </motion.div>
         </div>
-        <motion.div layoutId={`image-${name}`}>
+        <motion.div className="z-10" layoutId={`image-${name}`}>
           {image !== "culler" && (
             <Image
               className="aspect-video w-full  rounded-b-3xl"

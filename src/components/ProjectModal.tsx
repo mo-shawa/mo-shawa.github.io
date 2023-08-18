@@ -95,7 +95,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           </motion.div>
           <motion.div
             layoutId={`socials-${selected.name}`}
-            className="flex w-full flex-row items-center  justify-end gap-4 rounded-b-3xl rounded-tl-3xl p-6"
+            className="z-20 flex w-full flex-row  items-center justify-end gap-4 rounded-b-3xl rounded-tl-3xl p-6"
           >
             <motion.div
               className="flex h-full flex-row flex-wrap items-center justify-start gap-2 sm:gap-4"
@@ -109,12 +109,20 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             </motion.div>
             <motion.div className="flex flex-wrap justify-end gap-2 sm:gap-4">
               <motion.div layoutId={`github-${selected.name}`}>
-                <SocialButton href={selected.github} hoverColor="github">
+                <SocialButton
+                  isProject
+                  href={selected.github}
+                  hoverColor="github"
+                >
                   <GithubSVG />
                 </SocialButton>
               </motion.div>
               <motion.div layoutId={`deployment-${selected.name}`}>
-                <SocialButton hoverColor="github" href={selected.deployment}>
+                <SocialButton
+                  isProject
+                  hoverColor="github"
+                  href={selected.deployment}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
