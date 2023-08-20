@@ -75,26 +75,6 @@ export default function Navbar() {
     },
   ]
 
-  const dataToggler = (
-    <>
-      <button
-        onClick={() => {
-          setCurrentDataSource(
-            currentDataSource === "projects" ? "testimonials" : "projects"
-          )
-        }}
-        className="relative hover:text-zinc-500"
-      >
-        {currentDataSource === "projects" ? "Testimonials" : "Projects"}
-        <motion.span
-          transition={{ duration: 0.8, ease }}
-          layoutId="active-underline"
-          className="absolute left-0 top-full block h-0.5 w-full rounded-full bg-zinc-400"
-        />
-      </button>
-    </>
-  )
-
   return (
     <motion.nav
       initial={{ y: "-100%" }}
@@ -164,7 +144,6 @@ export default function Navbar() {
               )}
             </Link>
           ))}
-          <AnimatePresence mode="wait">{dataToggler}</AnimatePresence>
         </div>
       </motion.div>
     </motion.nav>

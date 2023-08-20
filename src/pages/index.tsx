@@ -4,7 +4,10 @@ import ProjectPreview from "@/components/ProjectPreview"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState, useContext } from "react"
 import ProjectModal from "@/components/ProjectModal"
-import { projectContainerVariants } from "@/utils/framer"
+import {
+  projectContainerVariants,
+  testimonialsContainerVariants,
+} from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
 import HeroCard from "@/components/HeroCard"
 import Loader from "@/components/Loader"
@@ -39,6 +42,7 @@ export default function Home() {
 
   const projects = (
     <motion.section
+      key="projects-container"
       initial="hidden"
       animate="visible"
       variants={projectContainerVariants}
@@ -60,14 +64,15 @@ export default function Home() {
 
   const testimonials = (
     <motion.section
+      key="testimonials-container"
       initial="hidden"
       animate="visible"
-      variants={projectContainerVariants}
+      variants={testimonialsContainerVariants}
       exit={{ opacity: 0 }}
-      className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
+      className="mx-auto my-4 grid max-w-7xl  auto-rows-max grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(15rem,_1fr))]"
     >
-      {testimonialData.map((testimonial, idx) => (
-        <Testimonial>{testimonial}</Testimonial>
+      {testimonialData.map((testimonial) => (
+        <Testimonial text={testimonial} />
       ))}
     </motion.section>
   )

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Poppers from "./Poppers"
 import TextMask from "./TextMask"
 import {
@@ -13,12 +13,16 @@ import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
+import { DataContext, DataContextType } from "@/contexts/dataContext"
 
 const titleClasses =
   "mix pointer-events-none z-20  w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
 
 export default function HeroCard() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
+  const { currentDataSource, setCurrentDataSource } = useContext(
+    DataContext
+  ) as DataContextType
   return (
     <motion.div
       layout
@@ -124,6 +128,33 @@ export default function HeroCard() {
             >
               <TwitterSVG />
             </SocialButton>
+          </motion.div>
+          <motion.div>
+            <AnimatePresence mode="wait">
+              {currentDataSource === "projects" ? (
+                <motion.button
+                  key="switch-to-testimonials"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0, transition: { ease } }}
+                  exit={{ opacity: 0, x: 30, transition: { ease } }}
+                  onClick={() => setCurrentDataSource("testimonials")}
+                  className="pointer-events-auto rounded-full bg-black px-12 py-3 font-medium text-white"
+                >
+                  Testimonials
+                </motion.button>
+              ) : (
+                <motion.button
+                  key="switch-to-projects"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0, transition: { ease } }}
+                  exit={{ opacity: 0, x: 30, transition: { ease } }}
+                  onClick={() => setCurrentDataSource("projects")}
+                  className="pointer-events-auto rounded-full bg-black px-12 py-3 font-medium text-white"
+                >
+                  Projects
+                </motion.button>
+              )}
+            </AnimatePresence>
           </motion.div>
         </motion.div>
       )}
