@@ -34,7 +34,7 @@ export default function Testimonial({ text }: Props) {
     <motion.div
       drag
       variants={testimonialVariants}
-      className={`col-span-1 row-span-1 flex flex-col justify-between rounded-3xl transition-colors duration-500 ${spanClass(
+      className={`col-span-1 row-span-1 flex cursor-grab flex-col justify-between rounded-3xl transition-colors duration-500 active:cursor-grabbing ${spanClass(
         text
       )}`}
       style={{ backgroundColor }}

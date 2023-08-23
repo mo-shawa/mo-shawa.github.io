@@ -11,9 +11,9 @@ import { Plus_Jakarta_Sans } from "next/font/google"
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Navbar() {
-  const router = useRouter()
+  // const router = useRouter()
+  // const [logoHovered, setLogoHovered] = useState<boolean>(false)
   const [scope, animate] = useAnimate()
-  const [logoHovered, setLogoHovered] = useState<boolean>(false)
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
   // const { currentDataSource, setCurrentDataSource } = useContext(
   //   DataContext
@@ -79,10 +79,10 @@ export default function Navbar() {
       initial={{ y: "-100%" }}
       animate={{ y: 0 }}
       transition={{ ease, delay: shouldShowIntro ? 2 : 0, duration: 2 }}
-      className={`fixed inset-0 z-50 h-16 w-full bg-white/70 p-4 text-slate-800 filter backdrop-blur-xl ${plusJakartaSans.className}`}
+      className={`fixed inset-0 z-50 h-16 w-full text-slate-800  ${plusJakartaSans.className} flex items-center`}
     >
-      <motion.div className="relative mx-auto flex max-w-7xl justify-center">
-        <div className="flex items-center gap-2">
+      <motion.div className="relative mx-auto flex max-w-7xl items-center justify-center">
+        <div className="flex items-center gap-2 rounded-3xl bg-white/70 p-4  filter backdrop-blur-xl">
           <motion.div
             drag
             onClick={orbAnimation}
@@ -91,7 +91,7 @@ export default function Navbar() {
             dragElastic={0.1}
             ref={scope}
             layoutId="orb"
-            className="orb inset-0 aspect-square h-5 w-5 rounded-full"
+            className="orb inset-0 aspect-square h-5 w-5 cursor-pointer rounded-full active:cursor-grabbing"
             style={{
               background: gradient,
             }}
@@ -99,13 +99,12 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
           />
           <motion.div className="relative flex  items-start px-2">
-            <Link
+            <div
               // onClick={(e) => {
               //   if (router.pathname === "/") {
               //     e.preventDefault()
               //   }
               // }}
-              href="/"
               onClick={orbAnimation}
               // onMouseOver={() => setLogoHovered(true)}
               // onMouseLeave={() => setLogoHovered(false)}
@@ -116,14 +115,14 @@ export default function Navbar() {
               >
                 SHAWA.DEV
               </TextMask>
-              {logoHovered && (
+              {/* {logoHovered && (
                 <motion.span
                   transition={{ duration: 1.5, ease }}
                   layoutId="active-underline"
                   className="absolute left-0 top-full block h-0.5 w-full rounded-full bg-zinc-400"
                 />
-              )}
-            </Link>
+              )} */}
+            </div>
           </motion.div>
         </div>
         {/* <div className="text-md flex gap-12  ">

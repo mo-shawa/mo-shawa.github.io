@@ -5,8 +5,8 @@
 html,
 body,
 #root {
-  overflow: hidden;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 p {

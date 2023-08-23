@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 },
               }}
             >
-              <main className="no-scrollbar mx-4 h-screen overflow-auto pt-16">
+              <main className="mx-4 pt-16">
                 <Component {...pageProps} />
               </main>
             </motion.div>
