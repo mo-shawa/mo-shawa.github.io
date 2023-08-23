@@ -23,6 +23,7 @@ export default function TextMask({
       className={`relative overflow-hidden ${className}`}
       initial="hidden"
       animate="visible"
+      exit="exit"
       variants={textMaskVariants}
       custom={delay}
       layoutId={layoutId}
@@ -31,7 +32,7 @@ export default function TextMask({
         <motion.span
           key={i}
           variants={textMaskChildVariants}
-          className="inline-block"
+          className="inline-block py-0"
         >
           {child}
           {type === "word" && <>&nbsp;</>}

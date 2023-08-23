@@ -1,4 +1,4 @@
-import { projectPreviewVariants, testimonialVariants } from "@/utils/framer"
+import { testimonialVariants } from "@/utils/framer"
 import { gen } from "culler"
 import { motion } from "framer-motion"
 
@@ -32,8 +32,9 @@ export default function Testimonial({ text }: Props) {
 
   return (
     <motion.div
+      drag
       variants={testimonialVariants}
-      className={`col-span-1 row-span-1 flex flex-col justify-between rounded-3xl ${spanClass(
+      className={`col-span-1 row-span-1 flex flex-col justify-between rounded-3xl transition-colors duration-500 ${spanClass(
         text
       )}`}
       style={{ backgroundColor }}

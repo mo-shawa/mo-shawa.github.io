@@ -145,6 +145,16 @@ export const textMaskVariants: AnimationProps["variants"] = {
       ease,
     },
   },
+  exit: {
+    opacity: 0,
+    y: -10,
+    scale: 0.98,
+    transition: {
+      staggerChildren: 0.05,
+      duration: 0.5,
+      ease,
+    },
+  },
 }
 
 export const textMaskChildVariants: AnimationProps["variants"] = {

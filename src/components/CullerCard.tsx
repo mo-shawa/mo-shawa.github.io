@@ -10,8 +10,12 @@ export default function CullerCard() {
   return (
     <div
       ref={ref}
-      className="aspect-video h-full w-full bg-slate-50 transition-colors duration-500"
+      className="relative aspect-video h-full w-full bg-slate-50 transition-colors duration-500"
       onMouseMove={(e) => handleCullerCardMouseMove(e, ref, cursor, setCursor)}
-    ></div>
+    >
+      <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        Tap or mouse over
+      </h1>
+    </div>
   )
 }

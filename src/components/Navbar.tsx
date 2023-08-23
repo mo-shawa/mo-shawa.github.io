@@ -15,9 +15,9 @@ export default function Navbar() {
   const [scope, animate] = useAnimate()
   const [logoHovered, setLogoHovered] = useState<boolean>(false)
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
-  const { currentDataSource, setCurrentDataSource } = useContext(
-    DataContext
-  ) as DataContextType
+  // const { currentDataSource, setCurrentDataSource } = useContext(
+  //   DataContext
+  // ) as DataContextType
   const [gradient, setGradient] = useState<string>(
     genGradient({
       direction: "to bottom right",
@@ -28,64 +28,64 @@ export default function Navbar() {
     })
   )
 
+  const orbAnimation = async () => {
+    await animate(scope.current, {
+      opacity: 0,
+      transition: {
+        duration: 2,
+        ease: ease,
+        delay: shouldShowIntro ? 4 : 0,
+      },
+    })
+
+    setGradient(
+      genGradient({
+        direction: "to bottom right",
+        type: "rgb",
+        minB: 200,
+        minG: 200,
+        minR: 200,
+      })
+    )
+
+    await animate(scope.current, {
+      opacity: 1,
+      transition: {
+        ease,
+      },
+    })
+  }
   useEffect(() => {
-    const orbAnimation = async () => {
-      await animate(scope.current, {
-        opacity: 0,
-        transition: {
-          duration: 2,
-          ease: ease,
-          delay: shouldShowIntro ? 4 : 0,
-        },
-      })
-
-      setGradient(
-        genGradient({
-          direction: "to bottom right",
-          type: "rgb",
-          minB: 200,
-          minG: 200,
-          minR: 200,
-        })
-      )
-
-      await animate(scope.current, {
-        opacity: 1,
-        transition: {
-          ease,
-        },
-      })
-    }
-
     orbAnimation()
-  }, [router.pathname])
+  }, [])
 
-  const navLinks = [
-    {
-      name: "Home",
-      link: "/",
-    },
-    {
-      name: "Resume",
-      link: "/resume",
-    },
-    {
-      name: "Contact",
-      link: "/contact",
-    },
-  ]
+  // const navLinks = [
+  //   {
+  //     name: "Home",
+  //     link: "/",
+  //   },
+  //   {
+  //     name: "Resume",
+  //     link: "/resume",
+  //   },
+  //   {
+  //     name: "Contact",
+  //     link: "/contact",
+  //   },
+  // ]
 
   return (
     <motion.nav
       initial={{ y: "-100%" }}
       animate={{ y: 0 }}
-      transition={{ ease, delay: shouldShowIntro ? 4 : 0, duration: 2 }}
+      transition={{ ease, delay: shouldShowIntro ? 2 : 0, duration: 2 }}
       className={`fixed inset-0 z-50 h-16 w-full bg-white/70 p-4 text-slate-800 filter backdrop-blur-xl ${plusJakartaSans.className}`}
     >
-      <motion.div className="relative mx-auto flex max-w-7xl justify-between">
+      <motion.div className="relative mx-auto flex max-w-7xl justify-center">
         <div className="flex items-center gap-2">
           <motion.div
             drag
+            onClick={orbAnimation}
             dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
             whileDrag={{ scale: 2.1 }}
             dragElastic={0.1}
@@ -100,14 +100,15 @@ export default function Navbar() {
           />
           <motion.div className="relative flex  items-start px-2">
             <Link
-              onClick={(e) => {
-                if (router.pathname === "/") {
-                  e.preventDefault()
-                }
-              }}
+              // onClick={(e) => {
+              //   if (router.pathname === "/") {
+              //     e.preventDefault()
+              //   }
+              // }}
               href="/"
-              onMouseOver={() => setLogoHovered(true)}
-              onMouseLeave={() => setLogoHovered(false)}
+              onClick={orbAnimation}
+              // onMouseOver={() => setLogoHovered(true)}
+              // onMouseLeave={() => setLogoHovered(false)}
             >
               <TextMask
                 type="letter"
@@ -125,7 +126,7 @@ export default function Navbar() {
             </Link>
           </motion.div>
         </div>
-        <div className="text-md flex gap-12  ">
+        {/* <div className="text-md flex gap-12  ">
           {navLinks.map((link) => (
             <Link
               className={`relative hover:text-zinc-500 ${
@@ -144,7 +145,7 @@ export default function Navbar() {
               )}
             </Link>
           ))}
-        </div>
+        </div> */}
       </motion.div>
     </motion.nav>
   )
