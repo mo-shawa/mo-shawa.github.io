@@ -4,7 +4,7 @@ const projects = [
     description:
       "Bountree is a global recruitment marketplace for deep tech startup jobs. It crowd-sources job roles to a network of recruiters, allowing anyone to earn rewards for successful referrals.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
-    github: "https://github.com/mo-shawa/openAI-AMA",
+    github: "https://github.com/mo-shawa/bountree",
     deployment: "http://bountree.app/",
     image: "/projects/bountree.webp",
     year: 2023,
@@ -13,7 +13,7 @@ const projects = [
   {
     name: "Culler",
     description:
-      "Culler is a color utility library for JavaScript and TypeScript. It provides a set of functions for working with colors, and is designed to be lightweight, modular, and performant.",
+      "Culler is a color utility library for JavaScript and TypeScript. It provides a set of functions for working with colors, and is designed to be lightweight, modular, and performant. (Culler is used for all the dynamic colors on this site! 👀)",
     technologies: ["Typescript"],
     github: "https://github.com/mo-shawa/culler",
     deployment: "http://npmjs.com/package/culler",

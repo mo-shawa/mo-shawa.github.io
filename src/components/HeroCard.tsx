@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import Poppers from "./Poppers"
 import TextMask from "./TextMask"
 import {
@@ -13,16 +13,21 @@ import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
-import { DataContext, DataContextType } from "@/contexts/dataContext"
 
 const titleClasses =
   "mix pointer-events-none z-20 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
 
-export default function HeroCard() {
+type Props = {
+  contactModalOpen: boolean
+  setContactModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function HeroCard({
+  contactModalOpen,
+  setContactModalOpen,
+}: Props) {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
-  const { currentDataSource, setCurrentDataSource } = useContext(
-    DataContext
-  ) as DataContextType
+
   return (
     <motion.div
       layout
@@ -93,42 +98,51 @@ export default function HeroCard() {
           variants={heroCardVariants}
           className="pointer-events-none relative flex flex-col items-center gap-4 self-center justify-self-end lg:flex-row lg:self-start"
         >
-          <motion.button
-            whileHover="hover"
-            whileTap="tap"
-            variants={heroCardButtonVariants}
-            className="pointer-events-auto rounded-full bg-black px-12 py-3 font-medium text-white"
-          >
-            Contact me
-          </motion.button>
-          <motion.div
-            variants={socialsContainerVariants}
-            initial="hidden"
-            animate="visible"
-            className="pointer-events-auto flex items-center gap-4"
-          >
-            <SocialButton
-              bgColor="white"
-              hoverColor="github"
-              href="https://github.com/mo-shawa"
-            >
-              <GithubSVG className="h-5 w-5" />
-            </SocialButton>
-            <SocialButton
-              bgColor="white"
-              hoverColor="linkedin"
-              href="https://linkedin.com/in/mo-shawa"
-            >
-              <LinkedInSVG />
-            </SocialButton>
-            <SocialButton
-              bgColor="white"
-              hoverColor="twitter"
-              href="https://twitter.com/shawa_dev"
-            >
-              <TwitterSVG />
-            </SocialButton>
-          </motion.div>
+          {!contactModalOpen && (
+            <>
+              <motion.div
+                layoutId="contact"
+                onClick={() => setContactModalOpen(true)}
+                whileHover="hover"
+                whileTap="tap"
+                variants={heroCardButtonVariants}
+                className="pointer-events-auto z-20 cursor-pointer rounded-full bg-black px-12 py-3 font-medium text-white"
+              >
+                <motion.h1 layout="position" layoutId="contact-me-heading">
+                  Contact me
+                </motion.h1>
+              </motion.div>
+              <motion.div
+                layoutId="contact-me-links"
+                variants={socialsContainerVariants}
+                initial="hidden"
+                animate="visible"
+                className="pointer-events-auto flex items-center gap-4"
+              >
+                <SocialButton
+                  bgColor="white"
+                  hoverColor="github"
+                  href="https://github.com/mo-shawa"
+                >
+                  <GithubSVG className="h-5 w-5" />
+                </SocialButton>
+                <SocialButton
+                  bgColor="white"
+                  hoverColor="linkedin"
+                  href="https://linkedin.com/in/mo-shawa"
+                >
+                  <LinkedInSVG />
+                </SocialButton>
+                <SocialButton
+                  bgColor="white"
+                  hoverColor="twitter"
+                  href="https://twitter.com/shawa_dev"
+                >
+                  <TwitterSVG />
+                </SocialButton>
+              </motion.div>
+            </>
+          )}
         </motion.div>
       )}
     </motion.div>

@@ -22,7 +22,7 @@ export const socialsContainerVariants: AnimationProps["variants"] = {
   visible: {
     transition: {
       staggerChildren: 0.3,
-      delayChildren: 1.2,
+      delayChildren: 0.7,
     },
   },
 }

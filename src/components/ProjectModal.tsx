@@ -83,7 +83,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           <motion.div layoutId={`image-${selected.name}`}>
             {selected.image !== "culler" && (
               <Image
-                className="aspect-video w-auto"
+                className="aspect-video"
                 src={selected.image}
                 alt={selected.name}
                 width={1920}

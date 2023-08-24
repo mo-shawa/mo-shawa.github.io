@@ -15,10 +15,10 @@ import Loader from "@/components/Loader"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { DataContext, DataContextType } from "@/contexts/dataContext"
 import Testimonial from "@/components/Testimonial"
-import { gen } from "culler"
 import TextMask from "@/components/TextMask"
+import ContactModal from "@/components/ContactModal"
 
-const dataButtonProps = {
+export const dataButtonProps = {
   exit: { opacity: 0, x: 30, transition: { ease } },
   initial: { opacity: 0, x: 30 },
   animate: { opacity: 1, x: 0, transition: { ease } },
@@ -34,6 +34,7 @@ export default function Home() {
     DataContext
   ) as DataContextType
   const [selected, setSelected] = useState<Project | null>(null)
+  const [contactModalOpen, setContactModalOpen] = useState<boolean>(false)
 
   const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
     return projectData.map(() => {
@@ -48,9 +49,9 @@ export default function Home() {
   })
 
   useEffect(() => {
-    if (selected) document.body.style.overflow = "hidden"
+    if (selected || contactModalOpen) document.body.style.overflow = "hidden"
     else document.body.style.overflow = "auto"
-  }, [selected])
+  }, [selected, contactModalOpen])
 
   if (shouldShowIntro) return <Loader />
 
@@ -96,7 +97,10 @@ export default function Home() {
   return (
     <>
       <section className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
-        <HeroCard />
+        <HeroCard
+          contactModalOpen={contactModalOpen}
+          setContactModalOpen={setContactModalOpen}
+        />
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -160,6 +164,9 @@ export default function Home() {
       <AnimatePresence mode="sync">
         {currentDataSource === "projects" ? projects : testimonials}
       </AnimatePresence>
+      {contactModalOpen && (
+        <ContactModal setContactModalOpen={setContactModalOpen} />
+      )}
     </>
   )
 }
