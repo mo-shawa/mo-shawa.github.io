@@ -25,7 +25,9 @@ export default function App({ Component, pageProps }: AppProps) {
           value={{ currentDataSource, setCurrentDataSource }}
         >
           <Navbar />
-          <AnimatePresence mode="wait">
+          {/* Going with single page layout for now, may revert. */}
+
+          {/* <AnimatePresence mode="wait">
             <motion.div
               key={Component.name}
               initial="pageInitial"
@@ -43,12 +45,12 @@ export default function App({ Component, pageProps }: AppProps) {
                   opacity: 0,
                 },
               }}
-            >
-              <main className="mx-4 pt-16">
-                <Component {...pageProps} />
-              </main>
-            </motion.div>
-          </AnimatePresence>
+            > */}
+          <main className={`mx-4 pt-16 ${plusJakartaSans.className}`}>
+            <Component {...pageProps} />
+          </main>
+          {/* </motion.div>
+          </AnimatePresence> */}
         </DataContext.Provider>
       </IntroContext.Provider>
     </>

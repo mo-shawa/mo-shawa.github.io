@@ -6,6 +6,7 @@ import {
   ease,
   heroCardVariants,
   socialsContainerVariants,
+  contactModalButtonVariants,
 } from "@/utils/framer"
 import SocialButton from "./SocialButton"
 import GithubSVG from "../../public/github.svg"
@@ -15,7 +16,7 @@ import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
 
 const titleClasses =
-  "mix pointer-events-none z-20 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+  "pointer-events-none z-10 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
 
 type Props = {
   contactModalOpen: boolean
@@ -32,7 +33,7 @@ export default function HeroCard({
     <motion.div
       layout
       layoutId="hero-card"
-      className={`relative flex  max-w-5xl flex-col gap-16 overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
+      className={`relative flex max-w-5xl flex-col gap-16 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
         shouldShowIntro ? "items-center" : "min-h-[30rem] items-start"
       }`}
       transition={{
@@ -62,10 +63,10 @@ export default function HeroCard({
       )}
       {!shouldShowIntro && (
         <motion.p
-          initial={shouldShowIntro ? { opacity: 0 } : { opacity: 1 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 1, duration: 2, ease } }}
-          transition={{ delay: 1, duration: 2, ease }}
-          className="pointer-events-none max-w-xl flex-1 text-lg leading-relaxed tracking-wide"
+          transition={{ delay: 1, duration: 1, ease }}
+          className="pointer-events-none z-10 max-w-xl flex-1 text-lg leading-relaxed tracking-wide"
           layoutId="hero-card-description"
           layout="position"
         >
@@ -105,8 +106,12 @@ export default function HeroCard({
                 onClick={() => setContactModalOpen(true)}
                 whileHover="hover"
                 whileTap="tap"
-                variants={heroCardButtonVariants}
-                className="pointer-events-auto z-20 cursor-pointer rounded-full bg-black px-12 py-3 font-medium text-white"
+                variants={contactModalButtonVariants}
+                transition={{
+                  duration: 0.6,
+                  ease,
+                }}
+                className="pointer-events-auto z-20 cursor-pointer bg-black px-12 py-3 font-medium text-white"
               >
                 <motion.h1 layout="position" layoutId="contact-me-heading">
                   Contact me

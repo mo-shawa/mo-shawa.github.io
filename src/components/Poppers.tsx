@@ -18,31 +18,24 @@ export default function Poppers() {
   }
 
   return (
-    <div className="absolute inset-0 flex h-full w-full ">
-      {[...Array(20)].map((_, outerIdx) => (
-        <div key={outerIdx} className="h-full  w-[5%] min-w-[3vh]">
-          {[...Array(20)].map((_, innerIdx) => {
-            const trueIdx = outerIdx * 20 + innerIdx
-
-            return (
-              <div
-                ref={(node) => (ref.current[trueIdx] = node!)}
-                key={trueIdx}
-                onMouseOver={() => handleMouseOver(ref.current[trueIdx])}
-                className={`aspect-square rounded-full mix-blend-multiply transition-colors duration-300`}
-                // style={{
-                // 	backgroundColor: gen({
-                // 		type: "rgb",
-                // 		minB: 230,
-                // 		minG: 230,
-                // 		minR: 230,
-                // 	}),
-                // }}
-              ></div>
-            )
-          })}
-        </div>
-      ))}
+    <div className="absolute inset-0 h-full w-full overflow-hidden">
+      <div className="flex h-full w-full ">
+        {[...Array(20)].map((_, outerIdx) => (
+          <div key={outerIdx} className="h-full w-[5%] min-w-[3vh]">
+            {[...Array(20)].map((_, innerIdx) => {
+              const trueIdx = outerIdx * 20 + innerIdx
+              return (
+                <div
+                  ref={(node) => (ref.current[trueIdx] = node!)}
+                  key={trueIdx}
+                  onMouseOver={() => handleMouseOver(ref.current[trueIdx])}
+                  className={`aspect-square rounded-full  transition-colors duration-300`}
+                ></div>
+              )
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,18 +1,21 @@
 import { testimonialVariants } from "@/utils/framer"
 import { gen } from "culler"
 import { motion } from "framer-motion"
+import { useState } from "react"
 
 type Props = {
   text: string
 }
 
 export default function Testimonial({ text }: Props) {
-  const backgroundColor = gen({
-    type: "rgb",
-    minB: 245,
-    minG: 245,
-    minR: 245,
-  })
+  const [background, setBackground] = useState(
+    gen({
+      type: "rgb",
+      minB: 244,
+      minG: 244,
+      minR: 244,
+    })
+  )
 
   const spanBreak = 100
 
@@ -32,12 +35,21 @@ export default function Testimonial({ text }: Props) {
 
   return (
     <motion.div
-      drag
       variants={testimonialVariants}
-      className={`col-span-1 row-span-1 flex cursor-grab flex-col justify-between rounded-3xl transition-colors duration-500 active:cursor-grabbing ${spanClass(
+      className={`col-span-1 row-span-1 flex cursor-pointer  flex-col justify-between rounded-3xl transition-colors duration-500 ${spanClass(
         text
       )}`}
-      style={{ backgroundColor }}
+      style={{ background }}
+      onClick={() => {
+        setBackground(
+          gen({
+            type: "rgb",
+            minB: 244,
+            minG: 244,
+            minR: 244,
+          })
+        )
+      }}
     >
       <div className="h-min p-6 text-lg">
         <p>{text}</p>

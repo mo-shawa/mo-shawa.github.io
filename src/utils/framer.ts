@@ -40,6 +40,35 @@ export const socialsVariants: AnimationProps["variants"] = {
   },
 }
 
+export const contactModalButtonVariants: AnimationProps["variants"] = {
+  hidden: {
+    borderRadius: "3rem",
+    opacity: 0,
+    x: 20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+  tap: {
+    scale: 0.95,
+    transition: {
+      ease,
+    },
+  },
+}
+
 export const heroCardButtonVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,

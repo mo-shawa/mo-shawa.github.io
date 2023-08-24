@@ -18,7 +18,7 @@ import Testimonial from "@/components/Testimonial"
 import TextMask from "@/components/TextMask"
 import ContactModal from "@/components/ContactModal"
 
-export const dataButtonProps = {
+const dataButtonProps = {
   exit: { opacity: 0, x: 30, transition: { ease } },
   initial: { opacity: 0, x: 30 },
   animate: { opacity: 1, x: 0, transition: { ease } },
