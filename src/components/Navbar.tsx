@@ -1,16 +1,19 @@
-import Link from "next/link"
+// import Link from "next/link"
 import { AnimatePresence, motion, useAnimate } from "framer-motion"
-import { useRouter } from "next/router"
+// import { useRouter } from "next/router"
 import { ease } from "@/utils/framer"
 import { useContext, useEffect, useState } from "react"
 import { genGradient } from "@/utils/culler"
 import TextMask from "./TextMask"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { DataContext, DataContextType } from "@/contexts/dataContext"
+// import { DataContext, DataContextType } from "@/contexts/dataContext"
 import { Plus_Jakarta_Sans } from "next/font/google"
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Navbar() {
+  {
+    /* Commented out code required for multipage setup in the future */
+  }
   // const router = useRouter()
   // const [logoHovered, setLogoHovered] = useState<boolean>(false)
   const [scope, animate] = useAnimate()
@@ -55,9 +58,6 @@ export default function Navbar() {
       },
     })
   }
-  useEffect(() => {
-    orbAnimation()
-  }, [])
 
   // const navLinks = [
   //   {
@@ -76,9 +76,9 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: "-100%" }}
-      animate={{ y: 0 }}
-      transition={{ ease, delay: shouldShowIntro ? 2 : 0, duration: 2 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease, delay: shouldShowIntro ? 2 : 0, duration: 1 }}
       className={`fixed inset-0 z-50 h-16 w-full text-slate-800  ${plusJakartaSans.className} flex items-center`}
     >
       <motion.div className="relative mx-auto flex max-w-7xl items-center justify-center">

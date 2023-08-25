@@ -62,8 +62,8 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 1 } }}
         >
-          I'm currently open to new opportunities, so feel free to reach out to
-          me if you have any questions or just want to say hi {":)"}
+          I&apos;m currently open to new opportunities, so feel free to reach
+          out to me if you have any questions or just want to say hi 😁
         </motion.p>
 
         <motion.span

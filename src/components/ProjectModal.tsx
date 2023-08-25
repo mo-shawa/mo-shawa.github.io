@@ -104,7 +104,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
               variants={techPillContainerVariants}
             >
               {selected.technologies.map((tech) => (
-                <Pill>{tech}</Pill>
+                <Pill key={`${tech}-${selected.name}`}>{tech}</Pill>
               ))}
             </motion.div>
             <motion.div className="flex flex-wrap justify-end gap-2 sm:gap-4">

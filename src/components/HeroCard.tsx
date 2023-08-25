@@ -44,19 +44,19 @@ export default function HeroCard({
       {shouldShowIntro ? (
         <motion.div>
           <TextMask layoutId="hero-card-title-1" className={titleClasses}>
-            Hello, I'm Mahmoud.
+            Hello, I&apos;m Mahmoud.
           </TextMask>
           <TextMask layoutId="hero-card-title-2" className={titleClasses}>
-            I'm a Fullstack Developer and Educator.
+            I&apos;m a Fullstack Developer and Educator.
           </TextMask>
         </motion.div>
       ) : (
         <motion.div className={titleClasses}>
           <motion.h1 layoutId="hero-card-title-1" className={titleClasses}>
-            Hello, I'm Mahmoud.
+            Hello, I&apos;m Mahmoud.
           </motion.h1>
           <motion.h1 layoutId="hero-card-title-2" className={titleClasses}>
-            I'm a Fullstack Developer and Educator.
+            I&apos;m a Fullstack Developer and Educator.
           </motion.h1>
         </motion.div>
       )}

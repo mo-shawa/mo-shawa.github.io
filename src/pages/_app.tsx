@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Mahmoud Shawa's Portfolio</title>
+        <title>Mahmoud Shawa&apos;s Portfolio</title>
         <meta name="description" content="Mahmoud Shawa's Portfolio" />
       </Head>
       {/* About commented out code: Going with single page layout for now, may revert . */}

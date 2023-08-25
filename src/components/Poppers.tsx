@@ -8,9 +8,9 @@ export default function Poppers() {
     if (!divRef) return
     divRef.style.backgroundColor = gen({
       type: "rgb",
-      minB: 230,
-      minG: 230,
-      minR: 230,
+      minB: 235,
+      minG: 235,
+      minR: 235,
     })
     setTimeout(() => {
       divRef.style.backgroundColor = "transparent"
