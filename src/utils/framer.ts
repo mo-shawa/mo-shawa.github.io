@@ -42,7 +42,6 @@ export const socialsVariants: AnimationProps["variants"] = {
 
 export const contactModalButtonVariants: AnimationProps["variants"] = {
   hidden: {
-    borderRadius: "3rem",
     opacity: 0,
     x: 20,
   },

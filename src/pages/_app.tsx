@@ -20,13 +20,14 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Mahmoud Shawa's Portfolio</title>
         <meta name="description" content="Mahmoud Shawa's Portfolio" />
       </Head>
+      {/* About commented out code: Going with single page layout for now, may revert . */}
+      {/* IntroContext would be used to prevent intro animation from playing when navigating between pages, and only on initial load. Will  */}
       <IntroContext.Provider value={{ shouldShowIntro, setShouldShowIntro }}>
         <DataContext.Provider
           value={{ currentDataSource, setCurrentDataSource }}
         >
           <Navbar />
-          {/* Going with single page layout for now, may revert. */}
-
+          {/* Page transitions but no pages 😳 */}
           {/* <AnimatePresence mode="wait">
             <motion.div
               key={Component.name}

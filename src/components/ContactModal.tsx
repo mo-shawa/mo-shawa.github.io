@@ -1,18 +1,28 @@
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import SocialButton from "./SocialButton"
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
 import { ease, socialsContainerVariants } from "@/utils/framer"
+import { useState } from "react"
 type Props = {
   setContactModalOpen: (open: boolean) => void
 }
 
 export default function ContactModal({ setContactModalOpen }: Props) {
+  const [emailCopied, setEmailCopied] = useState(false)
+  const copiedText = ["copied!", "👍", "👌", "👏", "🤙", "🤘", "🤞"]
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("mahmoud@shawa.dev")
+    setEmailCopied(true)
+    setTimeout(() => setEmailCopied(false), 2000)
+  }
+
   return (
     <motion.div
       onClick={() => setContactModalOpen(false)}
-      className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center overflow-y-scroll px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll px-4"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -30,7 +40,6 @@ export default function ContactModal({ setContactModalOpen }: Props) {
         className="absolute inset-0 bg-black/50 filter backdrop-blur-md"
       ></motion.div>
       <motion.div
-        initial={{ borderRadius: "3rem" }}
         layoutId="contact"
         onClick={(e) => e.stopPropagation()}
         transition={{
@@ -56,6 +65,34 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           I'm currently open to new opportunities, so feel free to reach out to
           me if you have any questions or just want to say hi {":)"}
         </motion.p>
+
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 2 } }}
+          className="select-none font-mono text-xs text-white/50"
+        >
+          In case you prefer to copy/paste my email{" "}
+          <motion.span
+            onClick={copyEmail}
+            className="cursor-pointer select-text font-bold text-white"
+          >
+            👉 mahmoud@shawa.dev
+          </motion.span>
+          <AnimatePresence>
+            {emailCopied && (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+                className="text-white/50"
+              >
+                {" - "}
+                copied!
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.span>
 
         <div className="flex flex-wrap justify-evenly gap-4 gap-y-10 ">
           <motion.div

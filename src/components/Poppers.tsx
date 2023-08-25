@@ -18,7 +18,7 @@ export default function Poppers() {
   }
 
   return (
-    <div className="absolute inset-0 h-full w-full overflow-hidden">
+    <div className="absolute inset-0 h-full w-full overflow-hidden rounded-3xl">
       <div className="flex h-full w-full ">
         {[...Array(20)].map((_, outerIdx) => (
           <div key={outerIdx} className="h-full w-[5%] min-w-[3vh]">

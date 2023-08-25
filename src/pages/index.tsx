@@ -88,8 +88,8 @@ export default function Home() {
       exit={{ opacity: 0 }}
       className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]"
     >
-      {testimonialData.map((testimonial) => (
-        <Testimonial text={testimonial} />
+      {testimonialData.map((testimonial, idx) => (
+        <Testimonial key={idx} text={testimonial} />
       ))}
     </motion.section>
   )

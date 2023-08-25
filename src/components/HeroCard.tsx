@@ -2,7 +2,6 @@ import { motion } from "framer-motion"
 import Poppers from "./Poppers"
 import TextMask from "./TextMask"
 import {
-  heroCardButtonVariants,
   ease,
   heroCardVariants,
   socialsContainerVariants,
@@ -16,7 +15,7 @@ import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
 
 const titleClasses =
-  "pointer-events-none z-10 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+  "pointer-events-none z-20 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
 
 type Props = {
   contactModalOpen: boolean
@@ -111,7 +110,7 @@ export default function HeroCard({
                   duration: 0.6,
                   ease,
                 }}
-                className="pointer-events-auto z-20 cursor-pointer bg-black px-12 py-3 font-medium text-white"
+                className="pointer-events-auto z-20 cursor-pointer rounded-3xl bg-black px-12 py-3 font-medium text-white"
               >
                 <motion.h1 layout="position" layoutId="contact-me-heading">
                   Contact me
