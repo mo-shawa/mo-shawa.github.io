@@ -11,9 +11,9 @@ export default function Testimonial({ text }: Props) {
   const [background, setBackground] = useState(
     gen({
       type: "rgb",
-      minB: 244,
-      minG: 244,
-      minR: 244,
+      minB: 245,
+      minG: 245,
+      minR: 245,
     })
   )
 
@@ -44,9 +44,9 @@ export default function Testimonial({ text }: Props) {
         setBackground(
           gen({
             type: "rgb",
-            minB: 244,
-            minG: 244,
-            minR: 244,
+            minB: 230,
+            minG: 230,
+            minR: 230,
           })
         )
       }}

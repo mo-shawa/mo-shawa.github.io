@@ -53,7 +53,13 @@ export default function Home() {
     else document.body.style.overflow = "auto"
   }, [selected, contactModalOpen])
 
-  if (shouldShowIntro) return <Loader />
+  if (shouldShowIntro)
+    return (
+      <Loader
+        contactModalOpen={contactModalOpen}
+        setContactModalOpen={setContactModalOpen}
+      />
+    )
 
   const projects = (
     <motion.section
@@ -96,7 +102,10 @@ export default function Home() {
 
   return (
     <>
-      <section className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
+      <motion.section
+        layout
+        className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]"
+      >
         <HeroCard
           contactModalOpen={contactModalOpen}
           setContactModalOpen={setContactModalOpen}
@@ -107,7 +116,7 @@ export default function Home() {
           transition={{ delay: 0.6 }}
           className="min-h-[30rem] rounded-3xl bg-[url('/me2.jpeg')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
         ></motion.div>
-      </section>
+      </motion.section>
       <motion.div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
         <AnimatePresence mode="wait">
           {currentDataSource === "projects" ? (

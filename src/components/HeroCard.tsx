@@ -15,7 +15,7 @@ import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
 
 const titleClasses =
-  "pointer-events-none z-10 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+  "pointer-events-none z-10 w-full text-2xl sm:text-3xl font-semibold leading-snug tracking-tight md:text-4xl lg:whitespace-nowrap "
 
 type Props = {
   contactModalOpen: boolean
@@ -42,20 +42,20 @@ export default function HeroCard({
     >
       <Poppers />
       {shouldShowIntro ? (
-        <motion.div>
-          <TextMask layoutId="hero-card-title-1" className={titleClasses}>
+        <motion.div className={titleClasses}>
+          <TextMask layoutId="hero-card-title-1">
             Hello, I&apos;m Mahmoud.
           </TextMask>
-          <TextMask layoutId="hero-card-title-2" className={titleClasses}>
+          <TextMask layoutId="hero-card-title-2">
             I&apos;m a Fullstack Developer and Educator.
           </TextMask>
         </motion.div>
       ) : (
         <motion.div className={titleClasses}>
-          <motion.h1 layoutId="hero-card-title-1" className={titleClasses}>
+          <motion.h1 layout="position" layoutId="hero-card-title-1">
             Hello, I&apos;m Mahmoud.
           </motion.h1>
-          <motion.h1 layoutId="hero-card-title-2" className={titleClasses}>
+          <motion.h1 layout="position" layoutId="hero-card-title-2">
             I&apos;m a Fullstack Developer and Educator.
           </motion.h1>
         </motion.div>
@@ -94,9 +94,8 @@ export default function HeroCard({
         <motion.div
           initial="hidden"
           animate="visible"
-          // layout="position"
           variants={heroCardVariants}
-          className="pointer-events-none relative flex flex-col items-center gap-4 self-center justify-self-end lg:flex-row lg:self-start"
+          className="pointer-events-none relative flex flex-col items-center gap-4 self-center justify-self-end md:flex-row md:self-start"
         >
           {!contactModalOpen && (
             <>
