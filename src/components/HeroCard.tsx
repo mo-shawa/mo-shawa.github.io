@@ -15,7 +15,7 @@ import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { useContext } from "react"
 
 const titleClasses =
-  "pointer-events-none z-20 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
+  "pointer-events-none z-10 w-full text-2xl font-semibold leading-snug tracking-tight md:text-4xl"
 
 type Props = {
   contactModalOpen: boolean
@@ -51,7 +51,7 @@ export default function HeroCard({
           </TextMask>
         </motion.div>
       ) : (
-        <motion.div>
+        <motion.div className={titleClasses}>
           <motion.h1 layoutId="hero-card-title-1" className={titleClasses}>
             Hello, I'm Mahmoud.
           </motion.h1>

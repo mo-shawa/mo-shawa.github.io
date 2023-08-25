@@ -46,7 +46,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           duration: 0.5,
           ease,
         }}
-        className="relative flex max-w-3xl flex-col gap-8 rounded-3xl bg-black p-12 lg:bg-scroll"
+        className="relative flex max-w-3xl flex-col gap-4 rounded-3xl bg-black p-12 sm:gap-8 lg:bg-scroll"
       >
         <motion.h1
           layout="position"
