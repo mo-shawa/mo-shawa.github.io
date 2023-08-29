@@ -86,8 +86,8 @@ export default function ProjectModal({ selected, setSelected }: Props) {
                 className="aspect-video"
                 src={selected.image}
                 alt={selected.name}
-                width={1920}
-                height={1080}
+                width={768}
+                height={432}
                 quality={100}
               />
             )}

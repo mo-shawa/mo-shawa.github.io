@@ -101,8 +101,8 @@ export default function ProjectPreview({
               className="aspect-video w-full  rounded-b-3xl"
               src={image}
               alt={name}
-              width={1920}
-              height={1080}
+              width={768}
+              height={432}
               quality={100}
             />
           )}
