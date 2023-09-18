@@ -102,8 +102,8 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           >
             <a
               className="flex items-center justify-center gap-2 rounded-3xl px-5 py-3 text-white transition-colors hover:bg-white/20"
-              download
-              href="/Mahmoud_El-Shawa_CV.pdf"
+              download="Mahmoud_Shawa-Resume"
+              href="/resume.pdf"
             >
               Resume
               <svg
