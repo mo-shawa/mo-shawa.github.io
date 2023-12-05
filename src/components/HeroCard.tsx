@@ -73,7 +73,7 @@ export default function HeroCard({
           to life. I started coding and freelancing web development in 2019.
           Most recently, I worked on{" "}
           <a
-            href="https://bountree.app"
+            href="https://bountree.io"
             className="pointer-events-auto text-blue-500 hover:underline"
             target="_blank"
           >
