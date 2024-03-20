@@ -149,13 +149,13 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             >
               <LinkedInSVG />
             </SocialButton>
-            <SocialButton
+            {/* <SocialButton
               bgColor="white"
               hoverColor="twitter"
               href="https://twitter.com/shawa_dev"
             >
               <TwitterSVG />
-            </SocialButton>
+            </SocialButton> */}
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}

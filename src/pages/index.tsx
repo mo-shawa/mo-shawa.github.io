@@ -92,7 +92,8 @@ export default function Home() {
       animate="visible"
       variants={milestonesContainerVariants}
       exit={{ opacity: 0 }}
-      className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]"
+      className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4"
+      // className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]" // four per line
     >
       {milestoneData.map((milestone, idx) => (
         <Milestones key={idx} milestone={milestone} />

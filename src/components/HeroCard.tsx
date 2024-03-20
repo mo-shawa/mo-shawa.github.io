@@ -125,24 +125,24 @@ export default function HeroCard({
                 <SocialButton
                   bgColor="white"
                   hoverColor="github"
-                  href="https://github.com/mo-shawa"
+                  href="https://github.com/joudelshawa"
                 >
                   <GithubSVG className="h-5 w-5" />
                 </SocialButton>
                 <SocialButton
                   bgColor="white"
                   hoverColor="linkedin"
-                  href="https://linkedin.com/in/mo-shawa"
+                  href="https://linkedin.com/in/joudelshawa"
                 >
                   <LinkedInSVG />
                 </SocialButton>
-                <SocialButton
+                {/* <SocialButton
                   bgColor="white"
                   hoverColor="twitter"
                   href="https://twitter.com/shawa_dev"
                 >
                   <TwitterSVG />
-                </SocialButton>
+                </SocialButton> */}
               </motion.div>
             </>
           )}

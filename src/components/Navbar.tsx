@@ -113,7 +113,7 @@ export default function Navbar() {
                 type="letter"
                 className="whitespace-nowrap text-sm font-semibold tracking-widest"
               >
-                SHAWA.DEV
+                JOUD.SHAWA.DEV
               </TextMask>
               {/* {logoHovered && (
                 <motion.span

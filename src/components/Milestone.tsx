@@ -2,7 +2,8 @@ import { Milestone } from "@/data/milestones"
 import { milestoneVariants } from "@/utils/framer"
 import { gen } from "culler"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import Link from "next/link"
+import React, { ReactNode, useState } from "react"
 
 type Props = {
   milestone: Milestone
@@ -34,13 +35,14 @@ export default function Milestones({ milestone }: Props) {
     }
   }
 
+  const Wrapper = ({children}: {children: React.ReactNode}) => milestone.href ? <Link className="flex flex-col justify-between" href={milestone.href} target="_blank">{children}</Link> : <div className="flex flex-col justify-between">{children}</div>
+
   return (
     <motion.div
       variants={milestoneVariants}
-      className={`col-span-1 row-span-1 flex cursor-pointer  flex-col justify-between rounded-3xl transition-colors duration-500 ${spanClass(
+      className={`col-span-1 row-span-1 border-4 border-transparent rounded-3xl transition-all duration-500 ${spanClass(
         milestone.text
-      )}`}
-      style={{ background }}
+      )} ${milestone.href && "hover:border-rose-200 cursor-pointer"}`}
       onClick={() => {
         setBackground(
           gen({
@@ -51,16 +53,18 @@ export default function Milestones({ milestone }: Props) {
           })
         )
       }}
+      style={{background}}
     >
-      <div className="h-min p-6 text-lg">
-        <p>{milestone.text}</p>
-      </div>
-
-      <div className="ml-auto pb-5 pr-5">
-        <motion.h2 className="text-xs font-thin">
-      {milestone.date}
-        </motion.h2>
-      </div>
+      <Wrapper>
+        <div className="h-min p-6 text-lg">
+          <p>{milestone.text}</p>
+        </div>
+        <div className="ml-auto pb-5 pr-5">
+          <motion.h2 className="text-xs font-thin">
+        {milestone.date}
+          </motion.h2>
+        </div>
+      </Wrapper>
     </motion.div>
   )
 }
