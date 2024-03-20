@@ -1,5 +1,5 @@
 import projectData from "@/data/projects"
-import milestoneData from "@/data/student-testimonials"
+import milestoneData from "@/data/milestones"
 import ProjectPreview from "@/components/ProjectPreview"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState, useContext } from "react"
@@ -7,14 +7,14 @@ import ProjectModal from "@/components/ProjectModal"
 import {
   ease,
   projectContainerVariants,
-  testimonialsContainerVariants,
+  milestonesContainerVariants,
 } from "@/utils/framer"
 import { genGradient } from "@/utils/culler"
 import HeroCard from "@/components/HeroCard"
 import Loader from "@/components/Loader"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { DataContext, DataContextType } from "@/contexts/dataContext"
-import Milestones from "@/components/Testimonial"
+import Milestones from "@/components/Milestone"
 import TextMask from "@/components/TextMask"
 import ContactModal from "@/components/ContactModal"
 
@@ -87,10 +87,10 @@ export default function Home() {
 
   const milestones = (
     <motion.section
-      key="testimonials-container"
+      key="milestones-container"
       initial="hidden"
       animate="visible"
-      variants={testimonialsContainerVariants}
+      variants={milestonesContainerVariants}
       exit={{ opacity: 0 }}
       className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]"
     >
@@ -114,7 +114,8 @@ export default function Home() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 }}
-          className="z-0 min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+          className="z-0 min-h-[30rem] rounded-3xl bg-[url('/me.jpg')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+          // className="z-0 min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
         ></motion.div>
       </motion.section>
       <motion.div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
@@ -129,21 +130,21 @@ export default function Home() {
             </TextMask>
           ) : (
             <TextMask
-              key="data-source-testimonials-heading"
+              key="data-source-milestones-heading"
               type="letter"
               className="text-3xl"
             >
-              Testimonials
+              Milestones
             </TextMask>
           )}
 
           {currentDataSource === "projects" ? (
             <motion.button
-              key="switch-to-testimonials"
-              onClick={() => setCurrentDataSource("testimonials")}
+              key="switch-to-milestones"
+              onClick={() => setCurrentDataSource("milestones")}
               {...dataButtonProps}
             >
-              Testimonials
+              Milestones
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"

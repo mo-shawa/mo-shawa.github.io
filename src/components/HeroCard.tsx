@@ -47,7 +47,7 @@ export default function HeroCard({
             Hello, I&apos;m Joud.
           </TextMask>
           <TextMask layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer and Educator.
+            I&apos;m an undergraduate student and ML enthusiast.
           </TextMask>
         </motion.div>
       ) : (
@@ -56,7 +56,7 @@ export default function HeroCard({
             Hello, I&apos;m Joud.
           </motion.h1>
           <motion.h1 layout="position" layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer and Educator.
+            I&apos;m an undergraduate student and ML enthusiast.
           </motion.h1>
         </motion.div>
       )}

@@ -130,7 +130,7 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
   },
 }
 
-export const testimonialsContainerVariants: AnimationProps["variants"] = {
+export const milestonesContainerVariants: AnimationProps["variants"] = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -140,7 +140,7 @@ export const testimonialsContainerVariants: AnimationProps["variants"] = {
   },
 }
 
-export const testimonialVariants: AnimationProps["variants"] = {
+export const milestoneVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
     y: 30,

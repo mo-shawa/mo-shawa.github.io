@@ -12,13 +12,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 export default function App({ Component, pageProps }: AppProps) {
   const [shouldShowIntro, setShouldShowIntro] = useState(true)
   const [currentDataSource, setCurrentDataSource] = useState<
-    "projects" | "testimonials"
+    "projects" | "milestones"
   >("projects")
   return (
     <>
       <Head>
-        <title>Joud Shawa&apos;s Portfolio</title>
-        <meta name="description" content="Joud Shawa's Portfolio" />
+        <title>Joud El-Shawa&apos;s Portfolio</title>
+        <meta name="description" content="Joud El-Shawa's Portfolio" />
       </Head>
       {/* About commented out code: Going with single page layout for now, may revert . */}
       {/* IntroContext would be used to prevent intro animation from playing when navigating between pages, and only on initial load. Will  */}

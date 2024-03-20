@@ -1,5 +1,5 @@
-import { Milestone } from "@/data/student-testimonials"
-import { testimonialVariants } from "@/utils/framer"
+import { Milestone } from "@/data/milestones"
+import { milestoneVariants } from "@/utils/framer"
 import { gen } from "culler"
 import { motion } from "framer-motion"
 import { useState } from "react"
@@ -36,7 +36,7 @@ export default function Milestones({ milestone }: Props) {
 
   return (
     <motion.div
-      variants={testimonialVariants}
+      variants={milestoneVariants}
       className={`col-span-1 row-span-1 flex cursor-pointer  flex-col justify-between rounded-3xl transition-colors duration-500 ${spanClass(
         milestone.text
       )}`}
