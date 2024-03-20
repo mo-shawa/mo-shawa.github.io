@@ -1,5 +1,5 @@
 import projectData from "@/data/projects"
-import testimonialData from "@/data/student-testimonials"
+import milestoneData from "@/data/student-testimonials"
 import ProjectPreview from "@/components/ProjectPreview"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState, useContext } from "react"
@@ -14,7 +14,7 @@ import HeroCard from "@/components/HeroCard"
 import Loader from "@/components/Loader"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import { DataContext, DataContextType } from "@/contexts/dataContext"
-import Testimonial from "@/components/Testimonial"
+import Milestones from "@/components/Testimonial"
 import TextMask from "@/components/TextMask"
 import ContactModal from "@/components/ContactModal"
 
@@ -85,7 +85,7 @@ export default function Home() {
     </motion.section>
   )
 
-  const testimonials = (
+  const milestones = (
     <motion.section
       key="testimonials-container"
       initial="hidden"
@@ -94,8 +94,8 @@ export default function Home() {
       exit={{ opacity: 0 }}
       className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]"
     >
-      {testimonialData.map((testimonial, idx) => (
-        <Testimonial key={idx} text={testimonial} />
+      {milestoneData.map((milestone, idx) => (
+        <Milestones key={idx} milestone={milestone} />
       ))}
     </motion.section>
   )
@@ -171,7 +171,7 @@ export default function Home() {
         </AnimatePresence>
       </motion.div>
       <AnimatePresence mode="sync">
-        {currentDataSource === "projects" ? projects : testimonials}
+        {currentDataSource === "projects" ? projects : milestones}
       </AnimatePresence>
       {contactModalOpen && (
         <ContactModal setContactModalOpen={setContactModalOpen} />

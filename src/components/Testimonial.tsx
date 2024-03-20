@@ -1,13 +1,14 @@
+import { Milestone } from "@/data/student-testimonials"
 import { testimonialVariants } from "@/utils/framer"
 import { gen } from "culler"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
 type Props = {
-  text: string
+  milestone: Milestone
 }
 
-export default function Testimonial({ text }: Props) {
+export default function Milestones({ milestone }: Props) {
   const [background, setBackground] = useState(
     gen({
       type: "rgb",
@@ -37,7 +38,7 @@ export default function Testimonial({ text }: Props) {
     <motion.div
       variants={testimonialVariants}
       className={`col-span-1 row-span-1 flex cursor-pointer  flex-col justify-between rounded-3xl transition-colors duration-500 ${spanClass(
-        text
+        milestone.text
       )}`}
       style={{ background }}
       onClick={() => {
@@ -52,12 +53,12 @@ export default function Testimonial({ text }: Props) {
       }}
     >
       <div className="h-min p-6 text-lg">
-        <p>{text}</p>
+        <p>{milestone.text}</p>
       </div>
 
       <div className="ml-auto pb-5 pr-5">
         <motion.h2 className="text-xs font-thin">
-          - Software Engineering Student
+      {milestone.date}
         </motion.h2>
       </div>
     </motion.div>

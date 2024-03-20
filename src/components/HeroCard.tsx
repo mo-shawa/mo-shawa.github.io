@@ -44,7 +44,7 @@ export default function HeroCard({
       {shouldShowIntro ? (
         <motion.div className={titleClasses}>
           <TextMask layoutId="hero-card-title-1">
-            Hello, I&apos;m Mahmoud.
+            Hello, I&apos;m Joud.
           </TextMask>
           <TextMask layoutId="hero-card-title-2">
             I&apos;m a Fullstack Developer and Educator.
@@ -53,7 +53,7 @@ export default function HeroCard({
       ) : (
         <motion.div className={titleClasses}>
           <motion.h1 layout="position" layoutId="hero-card-title-1">
-            Hello, I&apos;m Mahmoud.
+            Hello, I&apos;m Joud.
           </motion.h1>
           <motion.h1 layout="position" layoutId="hero-card-title-2">
             I&apos;m a Fullstack Developer and Educator.
@@ -83,7 +83,7 @@ export default function HeroCard({
           <a
             target="_blank"
             className="pointer-events-auto text-blue-500 hover:underline"
-            href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
+            href="https://generalassemb.ly/instructors/joud-el-shawa/28943"
           >
             Instructional Associate
           </a>{" "}

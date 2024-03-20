@@ -14,7 +14,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
   const copiedText = ["copied!", "👍", "👌", "👏", "🤙", "🤘", "🤞"]
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("mahmoud@shawa.dev")
+    navigator.clipboard.writeText("joud@shawa.dev")
     setEmailCopied(true)
     setTimeout(() => setEmailCopied(false), 2000)
   }
@@ -76,7 +76,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             onClick={copyEmail}
             className="cursor-pointer select-text font-bold text-white"
           >
-            👉 mahmoud@shawa.dev
+            👉 joud@shawa.dev
           </motion.span>
           <AnimatePresence>
             {emailCopied && (
@@ -102,7 +102,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           >
             <a
               className="flex items-center justify-center gap-2 rounded-3xl px-5 py-3 text-white transition-colors hover:bg-white/20"
-              download="Mahmoud_Shawa-Resume"
+              download="Joud_Shawa-Resume"
               href="/resume.pdf"
             >
               Resume
@@ -164,7 +164,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             className="flex items-center"
           >
             <motion.a
-              href="mailto:mahmoud@shawa.dev"
+              href="mailto:joud@shawa.dev"
               className="flex items-center justify-center gap-2 rounded-3xl px-5 py-3 text-white transition-colors hover:bg-white/20"
             >
               Email me
