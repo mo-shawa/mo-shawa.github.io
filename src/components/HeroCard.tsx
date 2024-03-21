@@ -44,11 +44,11 @@ export default function HeroCard({
       {shouldShowIntro ? (
         <motion.div className={titleClasses}>
           <TextMask layoutId="hero-card-title-1">
-            Hello, I&apos;m Joud.
+          Hi! I&apos;m Joud.
           </TextMask>
-          <TextMask layoutId="hero-card-title-2">
+          {/* <TextMask layoutId="hero-card-title-2">
             I&apos;m an undergraduate student and ML enthusiast.
-          </TextMask>
+          </TextMask> */}
         </motion.div>
       ) : (
         <motion.div className={titleClasses}>
