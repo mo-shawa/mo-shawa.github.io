@@ -53,10 +53,10 @@ export default function HeroCard({
       ) : (
         <motion.div className={titleClasses}>
           <motion.h1 layout="position" layoutId="hero-card-title-1">
-            Hello, I&apos;m Joud.
+            Hi! I&apos;m Joud.
           </motion.h1>
           <motion.h1 layout="position" layoutId="hero-card-title-2">
-            I&apos;m an undergraduate student and ML enthusiast.
+            {/* I&apos;m an undergraduate student and ML enthusiast. */}
           </motion.h1>
         </motion.div>
       )}
@@ -69,7 +69,14 @@ export default function HeroCard({
           layoutId="hero-card-description"
           layout="position"
         >
-          I have a passion for learning new things, and love seeing ideas come
+          I&apos;m an undergraduate student at Western University pursuing an Honors Specialization in Computer Science. 
+          I&apos;m set to graduate in April 2024, and am passionate about artificial intelligence (AI) and its potential to revolutionize the world we live in.
+
+          <br></br>
+          <br></br>
+          Over the past few years, I have worked on a variety of personal and professional projects in AI, check them out below!
+          
+          {/* I have a passion for learning new things, and love seeing ideas come
           to life. I started coding and freelancing web development in 2019.
           Most recently, I worked on{" "}
           <a
@@ -78,8 +85,8 @@ export default function HeroCard({
             target="_blank"
           >
             Bountree
-          </a>
-          . Before that, I was an{" "}
+          </a> */}
+          {/* . Before that, I was an{" "}
           <a
             target="_blank"
             className="pointer-events-auto text-blue-500 hover:underline"
@@ -87,7 +94,7 @@ export default function HeroCard({
           >
             Instructional Associate
           </a>{" "}
-          at General Assembly.
+          at General Assembly. */}
         </motion.p>
       )}
       {!shouldShowIntro && (
