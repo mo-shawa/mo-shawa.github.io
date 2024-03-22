@@ -1,32 +1,21 @@
-import projectData from "@/data/projects"
-import milestoneData from "@/data/milestones"
-import ProjectPreview from "@/components/ProjectPreview"
-import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState, useContext } from "react"
-import ProjectModal from "@/components/ProjectModal"
-import {
-  ease,
-  projectContainerVariants,
-  milestonesContainerVariants,
-} from "@/utils/framer"
-import { genGradient } from "@/utils/culler"
-import HeroCard from "@/components/HeroCard"
-import Loader from "@/components/Loader"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { DataContext, DataContextType } from "@/contexts/dataContext"
-import Milestones from "@/components/Milestone"
-import TextMask from "@/components/TextMask"
-import ContactModal from "@/components/ContactModal"
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { useContext, useEffect, useRef, useState } from 'react'
 
-const dataButtonProps = {
-  exit: { opacity: 0, x: 30, transition: { ease } },
-  initial: { opacity: 0, x: 30 },
-  animate: { opacity: 1, x: 0, transition: { ease } },
-  whileHover: { scale: 1.05 },
-  whileTap: { scale: 0.95 },
-  className:
-    "pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0",
-}
+import ContactModal from '@/components/ContactModal'
+import HeroCard from '@/components/HeroCard'
+import Loader from '@/components/Loader'
+import Milestones from '@/components/Milestone'
+import ProjectModal from '@/components/ProjectModal'
+import ProjectPreview from '@/components/ProjectPreview'
+import TextBubble from '@/components/Textbubble'
+import TextMask from '@/components/TextMask'
+import { DataContext, DataContextType } from '@/contexts/dataContext'
+import { IntroContext, IntroContextType } from '@/contexts/introContext'
+import milestoneData from '@/data/milestones'
+import projectData from '@/data/projects'
+import textBubbleData from '@/data/text-bubbles'
+import { genGradient } from '@/utils/culler'
+import { ease, milestonesContainerVariants, projectContainerVariants } from '@/utils/framer'
 
 export default function Home() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
@@ -48,6 +37,11 @@ export default function Home() {
     })
   })
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({ target: scrollContainerRef })
+
+  console.log("rendering home page")
   useEffect(() => {
     if (selected || contactModalOpen) document.body.style.overflow = "hidden"
     else document.body.style.overflow = "auto"
@@ -93,7 +87,6 @@ export default function Home() {
       variants={milestonesContainerVariants}
       exit={{ opacity: 0 }}
       className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4"
-      // className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]" // four per line
     >
       {milestoneData.map((milestone, idx) => (
         <Milestones key={idx} milestone={milestone} />
@@ -103,21 +96,29 @@ export default function Home() {
 
   return (
     <>
-      <motion.section
-        layout
-        className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]"
-      >
-        <HeroCard
-          contactModalOpen={contactModalOpen}
-          setContactModalOpen={setContactModalOpen}
-        />
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6 }}
-          className="z-0 min-h-[30rem] rounded-3xl bg-[url('/me.jpg')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
-          // className="z-0 min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
-        ></motion.div>
+      <motion.section ref={scrollContainerRef} layout className="h-[300vh]">
+        <motion.div className="sticky top-0  mx-auto mb-4 grid h-screen max-w-7xl grid-cols-1 items-center gap-4 lg:grid-cols-[2fr_1fr]">
+          <div
+            id="textbubble-container"
+            className="chat chat-end flex min-h-[30rem] flex-col gap-4"
+          >
+            {textBubbleData.map((data, index) => (
+              <TextBubble
+                index={index}
+                scrollYProgress={scrollYProgress}
+                key={index}
+              >
+                {data}
+              </TextBubble>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6 }}
+            className=" z-0 h-min min-h-[30rem] rounded-3xl bg-[url('/me.jpg')] bg-cover bg-center "
+          ></motion.div>
+        </motion.div>
       </motion.section>
       <motion.div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
         <AnimatePresence mode="wait">
@@ -180,4 +181,14 @@ export default function Home() {
       )}
     </>
   )
+}
+
+const dataButtonProps = {
+  exit: { opacity: 0, x: 30, transition: { ease } },
+  initial: { opacity: 0, x: 30 },
+  animate: { opacity: 1, x: 0, transition: { ease } },
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 0.95 },
+  className:
+    "pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0",
 }
