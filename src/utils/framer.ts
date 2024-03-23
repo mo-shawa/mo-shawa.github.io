@@ -2,6 +2,25 @@ import { AnimationProps } from 'framer-motion'
 
 export const ease = [0.6, 0.01, 0.05, 0.95]
 
+export const textBubbleVariants: AnimationProps["variants"] = {
+  hidden: {
+    opacity: 0,
+    x: 20,
+  },
+  exit: {
+    opacity: 0,
+    x: 20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+}
+
 export const heroCardVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,

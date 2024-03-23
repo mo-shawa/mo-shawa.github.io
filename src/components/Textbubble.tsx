@@ -1,29 +1,20 @@
-import { motion, MotionValue, useTransform } from 'framer-motion'
+import { motion, MotionValue, useAnimationControls, useTransform } from 'framer-motion'
+import { useState } from 'react'
+
+import { textBubbleVariants } from '@/utils/framer'
 
 type Props = {
   children: React.ReactNode
-  scrollYProgress: MotionValue<number>
-  index: number
+  visible: boolean
 }
 
-export default function TextBubble({
-  children,
-  scrollYProgress,
-  index,
-}: Props) {
-  console.log("TextBubble rendering")
-
-  const opacity = useTransform(
-    scrollYProgress,
-    [0.15 * index, 0.15 * (index + 1)],
-    [0, 1]
-  )
-
+export default function TextBubble({ children, visible }: Props) {
   return (
     <motion.div
       key={children?.toString()}
-      style={{ opacity }}
-      className="chat-bubble max-w-lg bg-primary text-xl opacity-0"
+      variants={textBubbleVariants}
+      animate={visible ? "visible" : "hidden"}
+      className="chat-bubble max-w-lg bg-primary text-xl"
     >
       {children}
     </motion.div>
