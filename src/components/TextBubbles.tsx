@@ -1,9 +1,9 @@
-import { AnimatePresence, MotionValue, useTransform } from 'framer-motion'
-import { useState } from 'react'
+import { AnimatePresence, MotionValue, useTransform } from "framer-motion"
+import { useState } from "react"
 
-import textBubbleData from '@/data/text-bubbles'
+import textBubbleData from "@/data/text-bubbles"
 
-import TextBubble from './Textbubble'
+import TextBubble from "./Textbubble"
 
 type Props = {
   scrollYProgress: MotionValue<number>
@@ -29,7 +29,7 @@ export default function TextBubbles({ scrollYProgress }: Props) {
   return (
     <div
       id="textbubble-container"
-      className="chat chat-end flex min-h-[30rem] flex-col gap-4"
+      className="flex min-h-[30rem] flex-col gap-4"
     >
       {textBubbleData.map((data, index) => (
         <TextBubble visible={visible[index]} key={index}>

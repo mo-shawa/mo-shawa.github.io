@@ -1,24 +1,23 @@
-import {
-    AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform
-} from 'framer-motion'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useScroll } from "framer-motion"
+import { useContext, useEffect, useRef, useState } from "react"
 
-import ContactModal from '@/components/ContactModal'
-import HeroCard from '@/components/HeroCard'
-import Loader from '@/components/Loader'
-import Milestones from '@/components/Milestone'
-import ProjectModal from '@/components/ProjectModal'
-import ProjectPreview from '@/components/ProjectPreview'
-import TextBubble from '@/components/Textbubble'
-import TextBubbles from '@/components/TextBubbles'
-import TextMask from '@/components/TextMask'
-import { DataContext, DataContextType } from '@/contexts/dataContext'
-import { IntroContext, IntroContextType } from '@/contexts/introContext'
-import milestoneData from '@/data/milestones'
-import projectData from '@/data/projects'
-import textBubbleData from '@/data/text-bubbles'
-import { genGradient } from '@/utils/culler'
-import { ease, milestonesContainerVariants, projectContainerVariants } from '@/utils/framer'
+import ContactModal from "@/components/ContactModal"
+import Loader from "@/components/Loader"
+import Milestones from "@/components/Milestone"
+import ProjectModal from "@/components/ProjectModal"
+import ProjectPreview from "@/components/ProjectPreview"
+import TextBubbles from "@/components/TextBubbles"
+import TextMask from "@/components/TextMask"
+import { DataContext, DataContextType } from "@/contexts/dataContext"
+import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import milestoneData from "@/data/milestones"
+import projectData from "@/data/projects"
+import { genGradient } from "@/utils/culler"
+import {
+  ease,
+  milestonesContainerVariants,
+  projectContainerVariants,
+} from "@/utils/framer"
 
 export default function Home() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
@@ -99,14 +98,17 @@ export default function Home() {
 
   return (
     <>
-      <motion.section ref={scrollContainerRef} layout className="h-[300vh]">
-        <motion.div className="sticky top-0  mx-auto mb-4 grid h-screen max-w-7xl grid-cols-1 items-center gap-4 lg:grid-cols-[2fr_1fr]">
+      <motion.section
+        ref={scrollContainerRef}
+        className="h-[300vh] overflow-x-clip bg-gradient-to-b from-pink-100 via-violet-100 to-white  px-4"
+      >
+        <motion.div className="sticky top-0  mx-auto mb-4 grid h-screen max-w-7xl grid-cols-1 items-center gap-4 md:grid-cols-[2fr_1fr]">
           <TextBubbles scrollYProgress={scrollYProgress} />
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
-            className=" z-0 h-min min-h-[30rem] rounded-3xl bg-[url('/me.jpg')] bg-cover bg-center "
+            className="z-0 hidden h-min min-h-[30rem] rounded-3xl bg-[url('/me.jpg')] bg-cover bg-center md:block "
           ></motion.div>
         </motion.div>
       </motion.section>

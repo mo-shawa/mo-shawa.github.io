@@ -1,14 +1,14 @@
-import '@/styles/globals.css'
+import "@/styles/globals.css"
 
-import { AnimatePresence, motion } from 'framer-motion'
-import { Plus_Jakarta_Sans } from 'next/font/google'
-import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from "framer-motion"
+import { Plus_Jakarta_Sans } from "next/font/google"
+import Head from "next/head"
+import { useEffect, useState } from "react"
 
-import Navbar from '@/components/Navbar'
-import { DataContext } from '@/contexts/dataContext'
-import { IntroContext } from '@/contexts/introContext'
-import Lenis from '@studio-freight/lenis'
+import Navbar from "@/components/Navbar"
+import { DataContext } from "@/contexts/dataContext"
+import { IntroContext } from "@/contexts/introContext"
+import Lenis from "@studio-freight/lenis"
 
 import type { AppProps } from "next/app"
 
@@ -20,16 +20,16 @@ export default function App({ Component, pageProps }: AppProps) {
     "projects" | "milestones"
   >("projects")
 
-  useEffect(() => {
-    const lenis = new Lenis({})
+  // useEffect(() => {
+  //   const lenis = new Lenis({})
 
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
+  //   function raf(time: number) {
+  //     lenis.raf(time)
+  //     requestAnimationFrame(raf)
+  //   }
 
-    requestAnimationFrame(raf)
-  }, [])
+  //   requestAnimationFrame(raf)
+  // }, [])
 
   return (
     <>
@@ -64,7 +64,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 },
               }}
             > */}
-          <main className={`px-4 ${plusJakartaSans.className}`}>
+          <main className={`${plusJakartaSans.className}`}>
             <Component {...pageProps} />
           </main>
           {/* </motion.div>
