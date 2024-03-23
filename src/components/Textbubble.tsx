@@ -14,7 +14,7 @@ export default function TextBubble({ children, visible }: Props) {
         variants={textBubbleVariants}
         initial="hidden"
         animate={visible ? "visible" : "hidden"}
-        className="chat-bubble max-w-lg bg-violet-500 md:text-xl"
+        className="chat-bubble max-w-lg  bg-[#0b122b] text-white md:text-xl"
       >
         {children}
       </motion.div>
