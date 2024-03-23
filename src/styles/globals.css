@@ -5,6 +5,8 @@
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 p {

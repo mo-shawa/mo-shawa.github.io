@@ -1,18 +1,17 @@
-import { motion } from "framer-motion"
-import Poppers from "./Poppers"
-import TextMask from "./TextMask"
+import { motion } from 'framer-motion'
+import { useContext } from 'react'
+
+import { IntroContext, IntroContextType } from '@/contexts/introContext'
 import {
-  ease,
-  heroCardVariants,
-  socialsContainerVariants,
-  contactModalButtonVariants,
-} from "@/utils/framer"
-import SocialButton from "./SocialButton"
-import GithubSVG from "../../public/github.svg"
-import LinkedInSVG from "../../public/linkedin.svg"
-import TwitterSVG from "../../public/twitter.svg"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { useContext } from "react"
+    contactModalButtonVariants, ease, heroCardVariants, socialsContainerVariants
+} from '@/utils/framer'
+
+import GithubSVG from '../../public/github.svg'
+import LinkedInSVG from '../../public/linkedin.svg'
+import TwitterSVG from '../../public/twitter.svg'
+import Poppers from './Poppers'
+import SocialButton from './SocialButton'
+import TextMask from './TextMask'
 
 const titleClasses =
   "pointer-events-none z-10 w-full text-2xl sm:text-3xl font-semibold leading-snug tracking-tight md:text-4xl lg:whitespace-nowrap "
@@ -32,7 +31,7 @@ export default function HeroCard({
     <motion.div
       layout
       layoutId="hero-card"
-      className={`relative flex max-w-5xl flex-col gap-16 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
+      className={`relative flex h-min max-w-5xl flex-col gap-16 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
         shouldShowIntro ? "items-center" : "min-h-[30rem] items-start"
       }`}
       transition={{
@@ -43,9 +42,7 @@ export default function HeroCard({
       <Poppers />
       {shouldShowIntro ? (
         <motion.div className={titleClasses}>
-          <TextMask layoutId="hero-card-title-1">
-          Hi! I&apos;m Joud.
-          </TextMask>
+          <TextMask layoutId="hero-card-title-1">Hi! I&apos;m Joud.</TextMask>
           {/* <TextMask layoutId="hero-card-title-2">
             I&apos;m an undergraduate student and ML enthusiast.
           </TextMask> */}
@@ -69,13 +66,14 @@ export default function HeroCard({
           layoutId="hero-card-description"
           layout="position"
         >
-          I&apos;m an undergraduate student at Western University pursuing an Honors Specialization in Computer Science. 
-          I&apos;m set to graduate in April 2024, and am passionate about artificial intelligence (AI) and its potential to revolutionize the world we live in.
-
+          I&apos;m an undergraduate student at Western University pursuing an
+          Honors Specialization in Computer Science. I&apos;m set to graduate in
+          April 2024, and am passionate about artificial intelligence (AI) and
+          its potential to revolutionize the world we live in.
           <br></br>
           <br></br>
-          Over the past few years, I have worked on a variety of personal and professional projects in AI, check them out below!
-          
+          Over the past few years, I have worked on a variety of personal and
+          professional projects in AI, check them out below!
           {/* I have a passion for learning new things, and love seeing ideas come
           to life. I started coding and freelancing web development in 2019.
           Most recently, I worked on{" "}
