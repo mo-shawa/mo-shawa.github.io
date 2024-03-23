@@ -16,6 +16,7 @@ export default function Timeline() {
     >
       {milestoneData.map((milestone, index) => (
         <motion.li
+          key={milestone.date}
           variants={milestoneVariants}
           initial="hidden"
           animate="visible"
