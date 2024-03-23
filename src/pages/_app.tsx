@@ -20,16 +20,16 @@ export default function App({ Component, pageProps }: AppProps) {
     "projects" | "milestones"
   >("projects")
 
-  // useEffect(() => {
-  //   const lenis = new Lenis({})
+  useEffect(() => {
+    const lenis = new Lenis({})
 
-  //   function raf(time: number) {
-  //     lenis.raf(time)
-  //     requestAnimationFrame(raf)
-  //   }
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
 
-  //   requestAnimationFrame(raf)
-  // }, [])
+    requestAnimationFrame(raf)
+  }, [])
 
   return (
     <>

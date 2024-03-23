@@ -3,41 +3,21 @@ import { useContext, useEffect, useRef, useState } from "react"
 
 import ContactModal from "@/components/ContactModal"
 import Loader from "@/components/Loader"
-import Milestones from "@/components/Milestone"
-import ProjectModal from "@/components/ProjectModal"
-import ProjectPreview from "@/components/ProjectPreview"
+import Projects from "@/components/Projects"
 import TextBubbles from "@/components/TextBubbles"
 import TextMask from "@/components/TextMask"
+import Timeline from "@/components/Timeline"
 import { DataContext, DataContextType } from "@/contexts/dataContext"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import milestoneData from "@/data/milestones"
-import projectData from "@/data/projects"
-import { genGradient } from "@/utils/culler"
-import {
-  ease,
-  milestonesContainerVariants,
-  projectContainerVariants,
-} from "@/utils/framer"
+import { ease } from "@/utils/framer"
 
 export default function Home() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
   const { currentDataSource, setCurrentDataSource } = useContext(
     DataContext
   ) as DataContextType
-  const [selected, setSelected] = useState<Project | null>(null)
   const [contactModalOpen, setContactModalOpen] = useState<boolean>(false)
-
-  const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
-    return projectData.map(() => {
-      return genGradient({
-        direction: "to bottom right",
-        type: "rgb",
-        minB: 242,
-        minG: 242,
-        minR: 242,
-      })
-    })
-  })
+  const [selected, setSelected] = useState<Project | null>(null)
 
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
@@ -57,45 +37,6 @@ export default function Home() {
       />
     )
 
-  const projects = (
-    <motion.section
-      key="projects-container"
-      initial="hidden"
-      animate="visible"
-      variants={projectContainerVariants}
-      exit={{ opacity: 0 }}
-      className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
-    >
-      {projectData.map((project, idx) => (
-        <ProjectPreview
-          selected={selected}
-          setSelected={setSelected}
-          key={project.name}
-          {...project}
-          gradient={gradients[idx]}
-        />
-      ))}
-      <AnimatePresence>
-        <ProjectModal selected={selected} setSelected={setSelected} />
-      </AnimatePresence>
-    </motion.section>
-  )
-
-  const milestones = (
-    <motion.section
-      key="milestones-container"
-      initial="hidden"
-      animate="visible"
-      variants={milestonesContainerVariants}
-      exit={{ opacity: 0 }}
-      className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4"
-    >
-      {milestoneData.map((milestone, idx) => (
-        <Milestones key={idx} milestone={milestone} />
-      ))}
-    </motion.section>
-  )
-
   return (
     <>
       <motion.section
@@ -105,9 +46,15 @@ export default function Home() {
         <motion.div className="sticky top-0  mx-auto mb-4 grid h-screen max-w-7xl grid-cols-1 items-center gap-4 md:grid-cols-[2fr_1fr]">
           <TextBubbles scrollYProgress={scrollYProgress} />
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
+            initial={{
+              x: 10,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+              transition: { ease, duration: 1 },
+            }}
             className="z-0 hidden h-min min-h-[30rem] rounded-3xl bg-[url('/me.jpg')] bg-cover bg-center md:block "
           ></motion.div>
         </motion.div>
@@ -165,8 +112,12 @@ export default function Home() {
           )}
         </AnimatePresence>
       </motion.div>
-      <AnimatePresence mode="sync">
-        {currentDataSource === "projects" ? projects : milestones}
+      <AnimatePresence mode="wait">
+        {currentDataSource === "projects" ? (
+          <Projects selected={selected} setSelected={setSelected} />
+        ) : (
+          <Timeline />
+        )}
       </AnimatePresence>
       {contactModalOpen && (
         <ContactModal setContactModalOpen={setContactModalOpen} />

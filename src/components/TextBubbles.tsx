@@ -19,7 +19,7 @@ export default function TextBubbles({ scrollYProgress }: Props) {
 
   useTransform(scrollYProgress, (value) => {
     const newVisible = visible.map((_, index) => {
-      if (value >= index * 0.15) return true
+      if (value >= index * 0.25) return true
       return false
     })
     if (JSON.stringify(newVisible) !== JSON.stringify(visible))
