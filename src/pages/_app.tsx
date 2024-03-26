@@ -1,41 +1,24 @@
 import "@/styles/globals.css"
-
-import { AnimatePresence, motion } from "framer-motion"
-import { Plus_Jakarta_Sans } from "next/font/google"
-import Head from "next/head"
-import { useEffect, useState } from "react"
-
-import Navbar from "@/components/Navbar"
-import { DataContext } from "@/contexts/dataContext"
-import { IntroContext } from "@/contexts/introContext"
-import Lenis from "@studio-freight/lenis"
-
 import type { AppProps } from "next/app"
-
+import { AnimatePresence, motion } from "framer-motion"
+import Navbar from "@/components/Navbar"
+import { IntroContext } from "@/contexts/introContext"
+import { DataContext } from "@/contexts/dataContext"
+import { useState } from "react"
+import Head from "next/head"
+import { Plus_Jakarta_Sans } from "next/font/google"
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function App({ Component, pageProps }: AppProps) {
   const [shouldShowIntro, setShouldShowIntro] = useState(true)
   const [currentDataSource, setCurrentDataSource] = useState<
-    "projects" | "milestones"
+    "projects" | "testimonials"
   >("projects")
-
-  useEffect(() => {
-    const lenis = new Lenis({})
-
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-  }, [])
-
   return (
     <>
       <Head>
-        <title>Joud El-Shawa&apos;s Portfolio</title>
-        <meta name="description" content="Joud El-Shawa's Portfolio" />
+        <title>Mahmoud Shawa&apos;s Portfolio</title>
+        <meta name="description" content="Mahmoud Shawa's Portfolio" />
       </Head>
       {/* About commented out code: Going with single page layout for now, may revert . */}
       {/* IntroContext would be used to prevent intro animation from playing when navigating between pages, and only on initial load. Will  */}
@@ -64,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 },
               }}
             > */}
-          <main className={`${plusJakartaSans.className}`}>
+          <main className={`mx-4 pt-16 ${plusJakartaSans.className}`}>
             <Component {...pageProps} />
           </main>
           {/* </motion.div>

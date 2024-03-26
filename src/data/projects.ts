@@ -1,4 +1,4 @@
-const projectData = [
+const projects = [
   {
     name: "Bountree",
     description:
@@ -83,4 +83,4 @@ const projectData = [
     image: "/projects/blackjack.webp",
   },
 ]
-export default projectData
+export default projects

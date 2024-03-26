@@ -1,34 +1,122 @@
-import { AnimatePresence, motion, useScroll } from "framer-motion"
-import { useContext, useEffect, useRef, useState } from "react"
-
-import ContactModal from "@/components/ContactModal"
-import Hero from "@/components/Hero"
-import Intro from "@/components/Intro"
-import Projects from "@/components/Projects"
-import TextMask from "@/components/TextMask"
-import Timeline from "@/components/Timeline"
-import { DataContext, DataContextType } from "@/contexts/dataContext"
+import projectData from "@/data/projects"
+import testimonialData from "@/data/student-testimonials"
+import ProjectPreview from "@/components/ProjectPreview"
+import { AnimatePresence, motion } from "framer-motion"
+import { useEffect, useState, useContext } from "react"
+import ProjectModal from "@/components/ProjectModal"
+import {
+  ease,
+  projectContainerVariants,
+  testimonialsContainerVariants,
+} from "@/utils/framer"
+import { genGradient } from "@/utils/culler"
+import HeroCard from "@/components/HeroCard"
+import Loader from "@/components/Loader"
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { ease } from "@/utils/framer"
+import { DataContext, DataContextType } from "@/contexts/dataContext"
+import Testimonial from "@/components/Testimonial"
+import TextMask from "@/components/TextMask"
+import ContactModal from "@/components/ContactModal"
+
+const dataButtonProps = {
+  exit: { opacity: 0, x: 30, transition: { ease } },
+  initial: { opacity: 0, x: 30 },
+  animate: { opacity: 1, x: 0, transition: { ease } },
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 0.95 },
+  className:
+    "pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0",
+}
 
 export default function Home() {
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
   const { currentDataSource, setCurrentDataSource } = useContext(
     DataContext
   ) as DataContextType
-  const [contactModalOpen, setContactModalOpen] = useState<boolean>(false)
   const [selected, setSelected] = useState<Project | null>(null)
+  const [contactModalOpen, setContactModalOpen] = useState<boolean>(false)
+
+  const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
+    return projectData.map(() => {
+      return genGradient({
+        direction: "to bottom right",
+        type: "rgb",
+        minB: 242,
+        minG: 242,
+        minR: 242,
+      })
+    })
+  })
 
   useEffect(() => {
     if (selected || contactModalOpen) document.body.style.overflow = "hidden"
     else document.body.style.overflow = "auto"
   }, [selected, contactModalOpen])
 
-  if (shouldShowIntro) return <Intro />
+  if (shouldShowIntro)
+    return (
+      <Loader
+        contactModalOpen={contactModalOpen}
+        setContactModalOpen={setContactModalOpen}
+      />
+    )
+
+  const projects = (
+    <motion.section
+      key="projects-container"
+      initial="hidden"
+      animate="visible"
+      variants={projectContainerVariants}
+      exit={{ opacity: 0 }}
+      className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
+    >
+      {projectData.map((project, idx) => (
+        <ProjectPreview
+          selected={selected}
+          setSelected={setSelected}
+          key={project.name}
+          {...project}
+          gradient={gradients[idx]}
+        />
+      ))}
+      <AnimatePresence>
+        <ProjectModal selected={selected} setSelected={setSelected} />
+      </AnimatePresence>
+    </motion.section>
+  )
+
+  const testimonials = (
+    <motion.section
+      key="testimonials-container"
+      initial="hidden"
+      animate="visible"
+      variants={testimonialsContainerVariants}
+      exit={{ opacity: 0 }}
+      className="mx-auto my-4 grid max-w-7xl  grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]"
+    >
+      {testimonialData.map((testimonial, idx) => (
+        <Testimonial key={idx} text={testimonial} />
+      ))}
+    </motion.section>
+  )
 
   return (
     <>
-      <Hero />
+      <motion.section
+        layout
+        className="mx-auto mb-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]"
+      >
+        <HeroCard
+          contactModalOpen={contactModalOpen}
+          setContactModalOpen={setContactModalOpen}
+        />
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          className="z-0 min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+        ></motion.div>
+      </motion.section>
       <motion.div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
         <AnimatePresence mode="wait">
           {currentDataSource === "projects" ? (
@@ -41,21 +129,21 @@ export default function Home() {
             </TextMask>
           ) : (
             <TextMask
-              key="data-source-milestones-heading"
+              key="data-source-testimonials-heading"
               type="letter"
               className="text-3xl"
             >
-              Milestones
+              Testimonials
             </TextMask>
           )}
 
           {currentDataSource === "projects" ? (
             <motion.button
-              key="switch-to-milestones"
-              onClick={() => setCurrentDataSource("milestones")}
+              key="switch-to-testimonials"
+              onClick={() => setCurrentDataSource("testimonials")}
               {...dataButtonProps}
             >
-              Milestones
+              Testimonials
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
@@ -82,26 +170,12 @@ export default function Home() {
           )}
         </AnimatePresence>
       </motion.div>
-      <AnimatePresence mode="wait">
-        {currentDataSource === "projects" ? (
-          <Projects selected={selected} setSelected={setSelected} />
-        ) : (
-          <Timeline />
-        )}
+      <AnimatePresence mode="sync">
+        {currentDataSource === "projects" ? projects : testimonials}
       </AnimatePresence>
       {contactModalOpen && (
         <ContactModal setContactModalOpen={setContactModalOpen} />
       )}
     </>
   )
-}
-
-const dataButtonProps = {
-  exit: { opacity: 0, x: 30, transition: { ease } },
-  initial: { opacity: 0, x: 30 },
-  animate: { opacity: 1, x: 0, transition: { ease } },
-  whileHover: { scale: 1.05 },
-  whileTap: { scale: 0.95 },
-  className:
-    "pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0",
 }

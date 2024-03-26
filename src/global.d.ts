@@ -1,7 +1,7 @@
-import projectData from "./data/projects"
+import projects from "./data/projects";
 
 // export {}
 
 declare global {
-  type Project = (typeof projectData)[number]
+  type Project = (typeof projects)[number];
 }
