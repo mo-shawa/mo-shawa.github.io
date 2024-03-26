@@ -14,7 +14,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
   const copiedText = ["copied!", "👍", "👌", "👏", "🤙", "🤘", "🤞"]
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("joud@shawa.dev")
+    navigator.clipboard.writeText("mahmoud@shawa.dev")
     setEmailCopied(true)
     setTimeout(() => setEmailCopied(false), 2000)
   }
@@ -76,7 +76,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             onClick={copyEmail}
             className="cursor-pointer select-text font-bold text-white"
           >
-            👉 joud@shawa.dev
+            👉 mahmoud@shawa.dev
           </motion.span>
           <AnimatePresence>
             {emailCopied && (
@@ -102,7 +102,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           >
             <a
               className="flex items-center justify-center gap-2 rounded-3xl px-5 py-3 text-white transition-colors hover:bg-white/20"
-              download="Joud_Shawa-Resume"
+              download="Mahmoud_Shawa-Resume"
               href="/resume.pdf"
             >
               Resume
@@ -138,24 +138,24 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             <SocialButton
               bgColor="white"
               hoverColor="github"
-              href="https://github.com/joudelshawa"
+              href="https://github.com/mo-shawa"
             >
               <GithubSVG className="h-5 w-5" />
             </SocialButton>
             <SocialButton
               bgColor="white"
               hoverColor="linkedin"
-              href="https://linkedin.com/in/joudelshawa"
+              href="https://linkedin.com/in/mo-shawa"
             >
               <LinkedInSVG />
             </SocialButton>
-            {/* <SocialButton
+            <SocialButton
               bgColor="white"
               hoverColor="twitter"
               href="https://twitter.com/shawa_dev"
             >
               <TwitterSVG />
-            </SocialButton> */}
+            </SocialButton>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
@@ -164,7 +164,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             className="flex items-center"
           >
             <motion.a
-              href="mailto:joud@shawa.dev"
+              href="mailto:mahmoud@shawa.dev"
               className="flex items-center justify-center gap-2 rounded-3xl px-5 py-3 text-white transition-colors hover:bg-white/20"
             >
               Email me
