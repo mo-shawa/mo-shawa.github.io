@@ -2,6 +2,21 @@ import { AnimationProps } from "framer-motion"
 
 export const ease = [0.6, 0.01, 0.05, 0.95]
 
+export const textBubbleVariants: AnimationProps["variants"] = {
+  hidden: {
+    opacity: 0,
+    x: 10,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease,
+    },
+  },
+}
+
 export const heroCardVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
@@ -130,7 +145,7 @@ export const projectPreviewVariants: AnimationProps["variants"] = {
   },
 }
 
-export const testimonialsContainerVariants: AnimationProps["variants"] = {
+export const milestonesContainerVariants: AnimationProps["variants"] = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -140,7 +155,7 @@ export const testimonialsContainerVariants: AnimationProps["variants"] = {
   },
 }
 
-export const testimonialVariants: AnimationProps["variants"] = {
+export const milestoneVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
     y: 30,

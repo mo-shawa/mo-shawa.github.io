@@ -1,13 +1,16 @@
 // import Link from "next/link"
-import { AnimatePresence, motion, useAnimate } from "framer-motion"
-// import { useRouter } from "next/router"
-import { ease } from "@/utils/framer"
-import { useContext, useEffect, useState } from "react"
-import { genGradient } from "@/utils/culler"
-import TextMask from "./TextMask"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import { AnimatePresence, motion, useAnimate } from 'framer-motion'
 // import { DataContext, DataContextType } from "@/contexts/dataContext"
-import { Plus_Jakarta_Sans } from "next/font/google"
+import { Plus_Jakarta_Sans } from 'next/font/google'
+import { useContext, useEffect, useState } from 'react'
+
+import { IntroContext, IntroContextType } from '@/contexts/introContext'
+import { genGradient } from '@/utils/culler'
+// import { useRouter } from "next/router"
+import { ease } from '@/utils/framer'
+
+import TextMask from './TextMask'
+
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Navbar() {
@@ -79,7 +82,7 @@ export default function Navbar() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ease, delay: shouldShowIntro ? 2 : 0, duration: 1 }}
-      className={`fixed inset-0 z-50 h-16 w-full text-slate-800  ${plusJakartaSans.className} flex items-center`}
+      className={`fixed top-0 z-50 h-16 w-full text-slate-800  ${plusJakartaSans.className} flex items-center`}
     >
       <motion.div className="relative mx-auto flex max-w-7xl items-center justify-center">
         <div className="flex items-center gap-2 rounded-3xl bg-white/70 p-4  filter backdrop-blur-xl">
@@ -113,7 +116,7 @@ export default function Navbar() {
                 type="letter"
                 className="whitespace-nowrap text-sm font-semibold tracking-widest"
               >
-                SHAWA.DEV
+                JOUD.SHAWA.DEV
               </TextMask>
               {/* {logoHovered && (
                 <motion.span

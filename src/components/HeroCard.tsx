@@ -1,18 +1,17 @@
-import { motion } from "framer-motion"
-import Poppers from "./Poppers"
-import TextMask from "./TextMask"
+import { motion } from 'framer-motion'
+import { useContext } from 'react'
+
+import { IntroContext, IntroContextType } from '@/contexts/introContext'
 import {
-  ease,
-  heroCardVariants,
-  socialsContainerVariants,
-  contactModalButtonVariants,
-} from "@/utils/framer"
-import SocialButton from "./SocialButton"
-import GithubSVG from "../../public/github.svg"
-import LinkedInSVG from "../../public/linkedin.svg"
-import TwitterSVG from "../../public/twitter.svg"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { useContext } from "react"
+    contactModalButtonVariants, ease, heroCardVariants, socialsContainerVariants
+} from '@/utils/framer'
+
+import GithubSVG from '../../public/github.svg'
+import LinkedInSVG from '../../public/linkedin.svg'
+import TwitterSVG from '../../public/twitter.svg'
+import Poppers from './Poppers'
+import SocialButton from './SocialButton'
+import TextMask from './TextMask'
 
 const titleClasses =
   "pointer-events-none z-10 w-full text-2xl sm:text-3xl font-semibold leading-snug tracking-tight md:text-4xl lg:whitespace-nowrap "
@@ -32,7 +31,7 @@ export default function HeroCard({
     <motion.div
       layout
       layoutId="hero-card"
-      className={`relative flex max-w-5xl flex-col gap-16 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
+      className={`relative flex h-min max-w-5xl flex-col gap-16 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
         shouldShowIntro ? "items-center" : "min-h-[30rem] items-start"
       }`}
       transition={{
@@ -43,20 +42,18 @@ export default function HeroCard({
       <Poppers />
       {shouldShowIntro ? (
         <motion.div className={titleClasses}>
-          <TextMask layoutId="hero-card-title-1">
-            Hello, I&apos;m Mahmoud.
-          </TextMask>
-          <TextMask layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer and Educator.
-          </TextMask>
+          <TextMask layoutId="hero-card-title-1">Hi! I&apos;m Joud.</TextMask>
+          {/* <TextMask layoutId="hero-card-title-2">
+            I&apos;m an undergraduate student and ML enthusiast.
+          </TextMask> */}
         </motion.div>
       ) : (
         <motion.div className={titleClasses}>
           <motion.h1 layout="position" layoutId="hero-card-title-1">
-            Hello, I&apos;m Mahmoud.
+            Hi! I&apos;m Joud.
           </motion.h1>
           <motion.h1 layout="position" layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer and Educator.
+            {/* I&apos;m an undergraduate student and ML enthusiast. */}
           </motion.h1>
         </motion.div>
       )}
@@ -69,7 +66,15 @@ export default function HeroCard({
           layoutId="hero-card-description"
           layout="position"
         >
-          I have a passion for learning new things, and love seeing ideas come
+          I&apos;m an undergraduate student at Western University pursuing an
+          Honors Specialization in Computer Science. I&apos;m set to graduate in
+          April 2024, and am passionate about artificial intelligence (AI) and
+          its potential to revolutionize the world we live in.
+          <br></br>
+          <br></br>
+          Over the past few years, I have worked on a variety of personal and
+          professional projects in AI, check them out below!
+          {/* I have a passion for learning new things, and love seeing ideas come
           to life. I started coding and freelancing web development in 2019.
           Most recently, I worked on{" "}
           <a
@@ -78,16 +83,16 @@ export default function HeroCard({
             target="_blank"
           >
             Bountree
-          </a>
-          . Before that, I was an{" "}
+          </a> */}
+          {/* . Before that, I was an{" "}
           <a
             target="_blank"
             className="pointer-events-auto text-blue-500 hover:underline"
-            href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
+            href="https://generalassemb.ly/instructors/joud-el-shawa/28943"
           >
             Instructional Associate
           </a>{" "}
-          at General Assembly.
+          at General Assembly. */}
         </motion.p>
       )}
       {!shouldShowIntro && (
@@ -125,24 +130,24 @@ export default function HeroCard({
                 <SocialButton
                   bgColor="white"
                   hoverColor="github"
-                  href="https://github.com/mo-shawa"
+                  href="https://github.com/joudelshawa"
                 >
                   <GithubSVG className="h-5 w-5" />
                 </SocialButton>
                 <SocialButton
                   bgColor="white"
                   hoverColor="linkedin"
-                  href="https://linkedin.com/in/mo-shawa"
+                  href="https://linkedin.com/in/joudelshawa"
                 >
                   <LinkedInSVG />
                 </SocialButton>
-                <SocialButton
+                {/* <SocialButton
                   bgColor="white"
                   hoverColor="twitter"
                   href="https://twitter.com/shawa_dev"
                 >
                   <TwitterSVG />
-                </SocialButton>
+                </SocialButton> */}
               </motion.div>
             </>
           )}
