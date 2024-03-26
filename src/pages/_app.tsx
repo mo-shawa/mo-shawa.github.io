@@ -15,7 +15,7 @@ import type { AppProps } from "next/app"
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [shouldShowIntro, setShouldShowIntro] = useState(false)
+  const [shouldShowIntro, setShouldShowIntro] = useState(true)
   const [currentDataSource, setCurrentDataSource] = useState<
     "projects" | "milestones"
   >("projects")

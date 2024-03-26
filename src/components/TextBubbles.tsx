@@ -32,7 +32,7 @@ export default function TextBubbles({ scrollYProgress }: Props) {
       className="flex min-h-[30rem] flex-col gap-4"
     >
       {textBubbleData.map((data, index) => (
-        <TextBubble visible={visible[index]} key={index}>
+        <TextBubble visible={visible[index]} key={index} index={index}>
           {data}
         </TextBubble>
       ))}
