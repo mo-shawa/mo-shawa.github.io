@@ -1,16 +1,19 @@
 import "@/styles/globals.css"
-import type { AppProps } from "next/app"
+
 import { AnimatePresence, motion } from "framer-motion"
-import Navbar from "@/components/Navbar"
-import { IntroContext } from "@/contexts/introContext"
-import { DataContext } from "@/contexts/dataContext"
-import { useState } from "react"
-import Head from "next/head"
 import { Plus_Jakarta_Sans } from "next/font/google"
+import Head from "next/head"
+import { useState } from "react"
+
+import Navbar from "@/components/Navbar"
+import { DataContext } from "@/contexts/dataContext"
+import { IntroContext } from "@/contexts/introContext"
+
+import type { AppProps } from "next/app"
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [shouldShowIntro, setShouldShowIntro] = useState(true)
+  const [shouldShowIntro, setShouldShowIntro] = useState(false)
   const [currentDataSource, setCurrentDataSource] = useState<
     "projects" | "testimonials"
   >("projects")

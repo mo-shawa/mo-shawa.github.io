@@ -1,18 +1,20 @@
 import { motion } from "framer-motion"
-import Poppers from "./Poppers"
-import TextMask from "./TextMask"
+import { useContext } from "react"
+
+import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import {
+  contactModalButtonVariants,
   ease,
   heroCardVariants,
   socialsContainerVariants,
-  contactModalButtonVariants,
 } from "@/utils/framer"
-import SocialButton from "./SocialButton"
+
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { useContext } from "react"
+import Poppers from "./Poppers"
+import SocialButton from "./SocialButton"
+import TextMask from "./TextMask"
 
 const titleClasses =
   "pointer-events-none z-10 w-full text-2xl sm:text-3xl font-semibold leading-snug tracking-tight md:text-4xl lg:whitespace-nowrap "
@@ -73,6 +75,14 @@ export default function HeroCard({
           to life. I started coding and freelancing web development in 2019.
           Most recently, I worked on{" "}
           <a
+            href="https://callmi.co"
+            className="pointer-events-auto text-blue-500 hover:underline"
+            target="_blank"
+          >
+            Callmi
+          </a>{" "}
+          and{" "}
+          <a
             href="https://bountree.io"
             className="pointer-events-auto text-blue-500 hover:underline"
             target="_blank"
@@ -109,7 +119,10 @@ export default function HeroCard({
                   duration: 0.6,
                   ease,
                 }}
-                className="pointer-events-auto z-20 cursor-pointer rounded-3xl bg-black px-12 py-3 font-medium text-white"
+                style={{
+                  borderRadius: 40,
+                }}
+                className="pointer-events-auto z-20 cursor-pointer  bg-black px-12 py-3 font-medium text-white"
               >
                 <motion.h1 layout="position" layoutId="contact-me-heading">
                   Contact me

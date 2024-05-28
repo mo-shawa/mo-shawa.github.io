@@ -1,10 +1,17 @@
 import { AnimatePresence, motion } from "framer-motion"
-import SocialButton from "./SocialButton"
+import { useState } from "react"
+
+import {
+  contactModalVariants,
+  ease,
+  socialsContainerVariants,
+} from "@/utils/framer"
+
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
 import TwitterSVG from "../../public/twitter.svg"
-import { ease, socialsContainerVariants } from "@/utils/framer"
-import { useState } from "react"
+import SocialButton from "./SocialButton"
+
 type Props = {
   setContactModalOpen: (open: boolean) => void
 }
@@ -25,6 +32,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
       className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll px-4"
     >
       <motion.div
+        key="contact-modal-bg"
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
@@ -36,17 +44,27 @@ export default function ContactModal({ setContactModalOpen }: Props) {
           duration: 0.5,
           ease,
         }}
+        exit={{ opacity: 0 }}
         onClick={() => setContactModalOpen(false)}
         className="absolute inset-0 bg-black/50 filter backdrop-blur-md"
-      ></motion.div>
+      />
       <motion.div
         layoutId="contact"
         onClick={(e) => e.stopPropagation()}
-        transition={{
-          duration: 0.5,
-          ease,
+        variants={contactModalVariants}
+        initial="initial"
+        animate="animate"
+        style={{
+          borderRadius: 40,
+          zIndex: 100,
         }}
-        className="relative flex max-w-3xl flex-col gap-4 rounded-3xl bg-black p-12 sm:gap-8 lg:bg-scroll"
+        transition={{
+          layout: {
+            duration: 0.5,
+            ease,
+          },
+        }}
+        className="relative flex max-w-3xl flex-col gap-4 bg-black p-12 sm:gap-8 lg:bg-scroll"
       >
         <motion.h1
           layout="position"

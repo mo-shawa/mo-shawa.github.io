@@ -1,22 +1,23 @@
+import { AnimatePresence, motion } from "framer-motion"
+import { useContext, useEffect, useState } from "react"
+
+import ContactModal from "@/components/ContactModal"
+import HeroCard from "@/components/HeroCard"
+import Intro from "@/components/Intro"
+import ProjectModal from "@/components/ProjectModal"
+import ProjectPreview from "@/components/ProjectPreview"
+import Testimonial from "@/components/Testimonial"
+import TextMask from "@/components/TextMask"
+import { DataContext, DataContextType } from "@/contexts/dataContext"
+import { IntroContext, IntroContextType } from "@/contexts/introContext"
 import projectData from "@/data/projects"
 import testimonialData from "@/data/student-testimonials"
-import ProjectPreview from "@/components/ProjectPreview"
-import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState, useContext } from "react"
-import ProjectModal from "@/components/ProjectModal"
+import { genGradient } from "@/utils/culler"
 import {
   ease,
   projectContainerVariants,
   testimonialsContainerVariants,
 } from "@/utils/framer"
-import { genGradient } from "@/utils/culler"
-import HeroCard from "@/components/HeroCard"
-import Loader from "@/components/Loader"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { DataContext, DataContextType } from "@/contexts/dataContext"
-import Testimonial from "@/components/Testimonial"
-import TextMask from "@/components/TextMask"
-import ContactModal from "@/components/ContactModal"
 
 const dataButtonProps = {
   exit: { opacity: 0, x: 30, transition: { ease } },
@@ -55,7 +56,7 @@ export default function Home() {
 
   if (shouldShowIntro)
     return (
-      <Loader
+      <Intro
         contactModalOpen={contactModalOpen}
         setContactModalOpen={setContactModalOpen}
       />
@@ -114,7 +115,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 }}
-          className="min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+          className="-z-10 min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
         ></motion.div>
       </motion.section>
       <motion.div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">

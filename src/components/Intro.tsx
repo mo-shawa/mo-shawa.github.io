@@ -1,15 +1,17 @@
 import { motion } from "framer-motion"
-import HeroCard from "./HeroCard"
-import { ease } from "@/utils/framer"
 import { useContext } from "react"
+
 import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import { ease } from "@/utils/framer"
+
+import HeroCard from "./HeroCard"
 
 type Props = {
   contactModalOpen: boolean
   setContactModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Loader({
+export default function Intro({
   contactModalOpen,
   setContactModalOpen,
 }: Props) {
