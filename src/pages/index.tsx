@@ -1,27 +1,19 @@
-import { AnimatePresence, motion } from "framer-motion"
-import { useContext, useEffect, useState } from "react"
+import { AnimatePresence, motion } from 'framer-motion'
+import { useContext, useEffect, useState } from 'react'
 
-import ContactModal from "@/components/ContactModal"
-import HeroCard from "@/components/HeroCard"
-import Intro from "@/components/Intro"
-import ProjectModal from "@/components/ProjectModal"
-import ProjectPreview from "@/components/ProjectPreview"
-import Testimonial from "@/components/Testimonial"
-import TextMask from "@/components/TextMask"
-import { DataContext, DataContextType } from "@/contexts/dataContext"
-import {
-  IntroContext,
-  IntroContextType,
-  useIntroContext,
-} from "@/contexts/introContext"
-import projectData from "@/data/projects"
-import testimonialData from "@/data/student-testimonials"
-import { genGradient } from "@/utils/culler"
-import {
-  ease,
-  projectContainerVariants,
-  testimonialsContainerVariants,
-} from "@/utils/framer"
+import ContactModal from '@/components/ContactModal'
+import HeroCard from '@/components/HeroCard'
+import Intro from '@/components/Intro'
+import ProjectModal from '@/components/ProjectModal'
+import ProjectPreview from '@/components/ProjectPreview'
+import Testimonial from '@/components/Testimonial'
+import TextMask from '@/components/TextMask'
+import { DataContext, DataContextType } from '@/contexts/dataContext'
+import { IntroContext, IntroContextType, useIntroContext } from '@/contexts/introContext'
+import projectData from '@/data/projects'
+import testimonialData from '@/data/student-testimonials'
+import { genGradient } from '@/utils/culler'
+import { ease, projectContainerVariants, testimonialsContainerVariants } from '@/utils/framer'
 
 const dataButtonProps = {
   exit: { opacity: 0, x: 30, transition: { ease } },
