@@ -1,11 +1,13 @@
-import GithubSVG from "../../public/github.svg"
-import { motion } from "framer-motion"
-import SocialButton from "./SocialButton"
-import Image from "next/image"
-import { projectPreviewVariants } from "@/utils/framer"
-import { genGradient } from "@/utils/culler"
-import CullerCard from "./CullerCard"
-import { useRef } from "react"
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { useRef } from 'react'
+
+import { genGradient } from '@/utils/culler'
+import { projectPreviewVariants } from '@/utils/framer'
+
+import GithubSVG from '../../public/github.svg'
+import CullerCard from './CullerCard'
+import SocialButton from './SocialButton'
 
 type ProjectPreviewProps = Project & {
   selected: Project | null
@@ -46,7 +48,7 @@ export default function ProjectPreview({
       initial="hidden"
       whileInView="visible"
       whileHover="hover"
-      className={`transform cursor-pointer overflow-hidden rounded-3xl`}
+      className={`relative cursor-pointer overflow-clip rounded-3xl`}
       variants={projectPreviewVariants}
     >
       <div className="relative h-full w-full bg-contain bg-fixed bg-center bg-no-repeat">
@@ -74,9 +76,11 @@ export default function ProjectPreview({
             layoutId={`socials-${name}`}
           >
             <motion.div layoutId={`github-${name}`}>
-              <SocialButton href={github} hoverColor="github">
-                <GithubSVG />
-              </SocialButton>
+              {github && (
+                <SocialButton href={github} hoverColor="github">
+                  <GithubSVG />
+                </SocialButton>
+              )}
             </motion.div>
             <motion.div layoutId={`deployment-${name}`}>
               <SocialButton hoverColor="github" href={deployment}>

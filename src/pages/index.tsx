@@ -9,7 +9,11 @@ import ProjectPreview from "@/components/ProjectPreview"
 import Testimonial from "@/components/Testimonial"
 import TextMask from "@/components/TextMask"
 import { DataContext, DataContextType } from "@/contexts/dataContext"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import {
+  IntroContext,
+  IntroContextType,
+  useIntroContext,
+} from "@/contexts/introContext"
 import projectData from "@/data/projects"
 import testimonialData from "@/data/student-testimonials"
 import { genGradient } from "@/utils/culler"
@@ -30,7 +34,7 @@ const dataButtonProps = {
 }
 
 export default function Home() {
-  const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
+  const { shouldShowIntro, introComplete, setIntroComplete } = useIntroContext()
   const { currentDataSource, setCurrentDataSource } = useContext(
     DataContext
   ) as DataContextType
@@ -62,14 +66,14 @@ export default function Home() {
       />
     )
 
-  const projects = (
+  const projects = introComplete && (
     <motion.section
       key="projects-container"
       initial="hidden"
       animate="visible"
       variants={projectContainerVariants}
       exit={{ opacity: 0 }}
-      className="mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
+      className="relative mx-auto my-4 grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2"
     >
       {projectData.map((project, idx) => (
         <ProjectPreview
@@ -114,11 +118,12 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6 }}
-          className="-z-10 min-h-[30rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-lg hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+          transition={{ delay: 0.6, duration: 1, ease }}
+          onAnimationComplete={() => setIntroComplete(true)}
+          className="min-h-[28rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-3xl  hover:shadow-xl hover:brightness-100 hover:grayscale-0"
         ></motion.div>
       </motion.section>
-      <motion.div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
+      <motion.div className=" mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
         <AnimatePresence mode="wait">
           {currentDataSource === "projects" ? (
             <TextMask

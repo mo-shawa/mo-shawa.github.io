@@ -29,7 +29,7 @@ export default function Poppers() {
                   ref={(node) => (ref.current[trueIdx] = node!)}
                   key={trueIdx}
                   onMouseOver={() => handleMouseOver(ref.current[trueIdx])}
-                  className={`aspect-square rounded-full  transition-colors duration-300`}
+                  className={`rounded- aspect-square mix-blend-multiply transition-colors duration-300`}
                 ></div>
               )
             })}

@@ -1,10 +1,12 @@
 import { motion } from "framer-motion"
-import SocialButton from "./SocialButton"
 import Image from "next/image"
-import GithubSVG from "../../public/github.svg"
-import Pill from "./Pill"
-import CullerCard from "./CullerCard"
+
 import { ease, techPillContainerVariants } from "@/utils/framer"
+
+import GithubSVG from "../../public/github.svg"
+import CullerCard from "./CullerCard"
+import Pill from "./Pill"
+import SocialButton from "./SocialButton"
 
 type Props = {
   selected: Project | null
@@ -108,15 +110,17 @@ export default function ProjectModal({ selected, setSelected }: Props) {
               ))}
             </motion.div>
             <motion.div className="flex flex-wrap justify-end gap-2 sm:gap-4">
-              <motion.div layoutId={`github-${selected.name}`}>
-                <SocialButton
-                  isProject
-                  href={selected.github}
-                  hoverColor="github"
-                >
-                  <GithubSVG />
-                </SocialButton>
-              </motion.div>
+              {selected.github && (
+                <motion.div layoutId={`github-${selected.name}`}>
+                  <SocialButton
+                    isProject
+                    href={selected.github}
+                    hoverColor="github"
+                  >
+                    <GithubSVG />
+                  </SocialButton>
+                </motion.div>
+              )}
               <motion.div layoutId={`deployment-${selected.name}`}>
                 <SocialButton
                   isProject

@@ -1,5 +1,15 @@
 const projects = [
   {
+    name: "Callmi",
+    description:
+      "Callmi lets you book MENA's most in-demand experts & get advice over a 1:1 video call. I was the Founding Engineer at Callmi, which was acquired by Brinc in 2024.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    deployment: "http://callmi.co/",
+    image: "/projects/callmi.webp",
+    year: 2023,
+    // tags: [],
+  },
+  {
     name: "Bountree",
     description:
       "Bountree is a global recruitment marketplace for deep tech startup jobs. It crowd-sources job roles to a network of recruiters, allowing anyone to earn rewards for successful referrals.",

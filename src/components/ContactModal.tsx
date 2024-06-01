@@ -1,11 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 
-import {
-  contactModalVariants,
-  ease,
-  socialsContainerVariants,
-} from "@/utils/framer"
+import { ease, socialsContainerVariants } from "@/utils/framer"
 
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
@@ -18,7 +14,6 @@ type Props = {
 
 export default function ContactModal({ setContactModalOpen }: Props) {
   const [emailCopied, setEmailCopied] = useState(false)
-  const copiedText = ["copied!", "👍", "👌", "👏", "🤙", "🤘", "🤞"]
 
   const copyEmail = () => {
     navigator.clipboard.writeText("mahmoud@shawa.dev")
@@ -29,7 +24,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
   return (
     <motion.div
       onClick={() => setContactModalOpen(false)}
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll px-4"
+      className="fixed inset-0 z-30 flex items-center justify-center overflow-y-scroll px-4"
     >
       <motion.div
         key="contact-modal-bg"
@@ -51,9 +46,6 @@ export default function ContactModal({ setContactModalOpen }: Props) {
       <motion.div
         layoutId="contact"
         onClick={(e) => e.stopPropagation()}
-        variants={contactModalVariants}
-        initial="initial"
-        animate="animate"
         style={{
           borderRadius: 40,
           zIndex: 100,
@@ -64,7 +56,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
             ease,
           },
         }}
-        className="relative flex max-w-3xl flex-col gap-4 bg-black p-12 sm:gap-8 lg:bg-scroll"
+        className="relative z-30 flex max-w-3xl flex-col gap-4 bg-black p-12 sm:gap-8 lg:bg-scroll"
       >
         <motion.h1
           layout="position"

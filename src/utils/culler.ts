@@ -1,4 +1,4 @@
-import { GenOptions, gen, Color } from "culler"
+import { Color, gen, GenOptions } from "culler"
 
 type GradientType = "linear-gradient" | "radial-gradiant"
 
@@ -23,7 +23,7 @@ export function genGradient(options: GradientOptions): Gradient {
     direction = "to bottom right",
     ...genOptions
   } = options
-  const color1 = gen(genOptions)
+  const color1 = "rgb(255, 255, 255)"
   const color2 = gen(genOptions)
 
   return `${gradientType}(${direction}, ${color1}, ${color2})`
@@ -32,8 +32,8 @@ export function genGradient(options: GradientOptions): Gradient {
 export function handleCullerCardMouseMove(
   evt: React.MouseEvent<HTMLDivElement, MouseEvent>,
   cullerRef: React.RefObject<HTMLDivElement>,
-  cursor: Coordinates,
-  setCursor: React.Dispatch<React.SetStateAction<Coordinates>>
+  cursor: React.MutableRefObject<Coordinates>,
+  setCursor: (newCursor: Coordinates) => void
 ) {
   const { current } = cullerRef
   if (!current) return
@@ -45,15 +45,15 @@ export function handleCullerCardMouseMove(
   const currentY = clientY - y
 
   if (
-    cursorMinChange(currentX, cursor.x, 50) ||
-    cursorMinChange(currentY, cursor.y, 50)
+    cursorMinChange(currentX, cursor.current.x, 50) ||
+    cursorMinChange(currentY, cursor.current.y, 50)
   ) {
     setCursor({ x: currentX, y: currentY })
     const color = gen({
       r: Math.abs(currentX - 155),
-      g: 50 + currentY / 10,
+      g: 50 + currentY / 5,
       b: currentY,
-      a: 0.3,
+      a: 0.4,
     })
 
     current.style.background = color

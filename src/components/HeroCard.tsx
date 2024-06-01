@@ -1,23 +1,20 @@
-import { motion } from "framer-motion"
-import { useContext } from "react"
+import { motion } from 'framer-motion'
+import { useContext } from 'react'
 
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import { IntroContext, IntroContextType } from '@/contexts/introContext'
 import {
-  contactModalButtonVariants,
-  ease,
-  heroCardVariants,
-  socialsContainerVariants,
-} from "@/utils/framer"
+    contactModalButtonVariants, ease, heroCardVariants, socialsContainerVariants
+} from '@/utils/framer'
 
-import GithubSVG from "../../public/github.svg"
-import LinkedInSVG from "../../public/linkedin.svg"
-import TwitterSVG from "../../public/twitter.svg"
-import Poppers from "./Poppers"
-import SocialButton from "./SocialButton"
-import TextMask from "./TextMask"
+import GithubSVG from '../../public/github.svg'
+import LinkedInSVG from '../../public/linkedin.svg'
+import TwitterSVG from '../../public/twitter.svg'
+import Poppers from './Poppers'
+import SocialButton from './SocialButton'
+import TextMask from './TextMask'
 
 const titleClasses =
-  "pointer-events-none z-10 w-full text-2xl sm:text-3xl font-semibold leading-snug tracking-tight md:text-4xl lg:whitespace-nowrap "
+  "pointer-events-none  w-full text-2xl sm:text-3xl font-semibold leading-snug tracking-tight md:text-4xl lg:whitespace-nowrap "
 
 type Props = {
   contactModalOpen: boolean
@@ -34,8 +31,8 @@ export default function HeroCard({
     <motion.div
       layout
       layoutId="hero-card"
-      className={`relative flex max-w-5xl flex-col gap-16 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
-        shouldShowIntro ? "items-center" : "min-h-[30rem] items-start"
+      className={`relative flex max-w-5xl flex-col gap-12 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
+        shouldShowIntro ? "items-center" : "min-h-[33vh] items-start"
       }`}
       transition={{
         duration: 1,
@@ -58,7 +55,7 @@ export default function HeroCard({
             Hello, I&apos;m Mahmoud.
           </motion.h1>
           <motion.h1 layout="position" layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer and Educator.
+            I&apos;m a Fullstack Developer.
           </motion.h1>
         </motion.div>
       )}
@@ -67,13 +64,10 @@ export default function HeroCard({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 1, duration: 2, ease } }}
           transition={{ delay: 1, duration: 1, ease }}
-          className="pointer-events-none z-10 max-w-xl flex-1 text-lg leading-relaxed tracking-wide"
-          layoutId="hero-card-description"
-          layout="position"
+          className="pointer-events-none z-10 max-w-xl flex-1 text-lg font-normal leading-relaxed tracking-wide"
         >
-          I have a passion for learning new things, and love seeing ideas come
-          to life. I started coding and freelancing web development in 2019.
-          Most recently, I worked on{" "}
+          I enjoy problem solving and making ideas come to life. I was Founding
+          Engineer at{" "}
           <a
             href="https://callmi.co"
             className="pointer-events-auto text-blue-500 hover:underline"
@@ -81,7 +75,15 @@ export default function HeroCard({
           >
             Callmi
           </a>{" "}
-          and{" "}
+          (acquired by{" "}
+          <a
+            href="https://www.linkedin.com/feed/update/urn:li:activity:7197098591293759488/"
+            className="pointer-events-auto text-blue-500 hover:underline"
+            target="_blank"
+          >
+            Brinc
+          </a>
+          ) and{" "}
           <a
             href="https://bountree.io"
             className="pointer-events-auto text-blue-500 hover:underline"
@@ -89,7 +91,7 @@ export default function HeroCard({
           >
             Bountree
           </a>
-          . Before that, I was an{" "}
+          . Previously, I was an{" "}
           <a
             target="_blank"
             className="pointer-events-auto text-blue-500 hover:underline"
@@ -122,7 +124,7 @@ export default function HeroCard({
                 style={{
                   borderRadius: 40,
                 }}
-                className="pointer-events-auto z-20 cursor-pointer  bg-black px-12 py-3 font-medium text-white"
+                className="pointer-events-auto relative  cursor-pointer bg-black px-12 py-3 font-medium text-white"
               >
                 <motion.h1 layout="position" layoutId="contact-me-heading">
                   Contact me

@@ -11,6 +11,7 @@ export const heroCardVariants: AnimationProps["variants"] = {
     opacity: 1,
     y: 0,
     transition: {
+      staggerChildren: 0.5,
       delay: 1.5,
     },
   },
@@ -43,14 +44,10 @@ export const contactModalButtonVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
     x: 20,
-    borderRadius: 50,
-    zIndex: 100,
   },
   visible: {
     opacity: 1,
     x: 0,
-    zIndex: 100,
-    borderRadius: 50,
     transition: {
       duration: 0.5,
       ease,
@@ -100,14 +97,11 @@ export const heroCardButtonVariants: AnimationProps["variants"] = {
 }
 
 export const projectContainerVariants: AnimationProps["variants"] = {
-  hidden: {
-    opacity: 0.999,
-  },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
       delay: 4,
-      delayChildren: 5.5,
+      delayChildren: 4.5,
       staggerChildren: 0.2,
     },
   },

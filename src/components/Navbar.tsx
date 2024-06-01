@@ -1,13 +1,16 @@
 // import Link from "next/link"
 import { AnimatePresence, motion, useAnimate } from "framer-motion"
-// import { useRouter } from "next/router"
-import { ease } from "@/utils/framer"
-import { useContext, useEffect, useState } from "react"
-import { genGradient } from "@/utils/culler"
-import TextMask from "./TextMask"
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
 // import { DataContext, DataContextType } from "@/contexts/dataContext"
 import { Plus_Jakarta_Sans } from "next/font/google"
+import { useContext, useEffect, useState } from "react"
+
+import { IntroContext, IntroContextType } from "@/contexts/introContext"
+import { genGradient } from "@/utils/culler"
+// import { useRouter } from "next/router"
+import { ease } from "@/utils/framer"
+
+import TextMask from "./TextMask"
+
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
 
 export default function Navbar() {
