@@ -27,7 +27,7 @@ const projects = [
     github: 'https://github.com/mo-shawa/bountree',
     deployment: 'http://bountree.app/',
     image: '/projects/bountree.webp',
-    year: 2023,
+    year: '2023',
     // tags: [],
   },
   {
@@ -38,7 +38,7 @@ const projects = [
     github: 'https://github.com/mo-shawa/culler',
     deployment: 'http://npmjs.com/package/culler',
     image: 'culler',
-    year: 2023,
+    year: '2023',
   },
   // {
   //   name: "sahba.space",
