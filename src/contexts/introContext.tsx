@@ -1,4 +1,4 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 import {
   createContext,
   Dispatch,
@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useState,
-} from "react"
+} from 'react'
 
 export const IntroContext = createContext<IntroContextType | null>(null)
 
@@ -22,14 +22,14 @@ export default function IntroContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [shouldShowIntro, setShouldShowIntro] = useState(false)
+  const [shouldShowIntro, setShouldShowIntro] = useState(true)
   const [introComplete, setIntroComplete] = useState(false)
 
   const router = useRouter()
 
   useEffect(() => {
     console.log(
-      "IntroContextProvider useEffect",
+      'IntroContextProvider useEffect',
       router.pathname,
       shouldShowIntro,
       introComplete
@@ -38,7 +38,7 @@ export default function IntroContextProvider({
 
   useEffect(() => {
     console.log(router.pathname)
-    if (router.pathname !== "/") {
+    if (router.pathname !== '/') {
       setShouldShowIntro(false)
       setIntroComplete(true)
     }
@@ -61,7 +61,7 @@ export function useIntroContext() {
   const context = useContext(IntroContext)
   if (context === null) {
     throw new Error(
-      "useIntroContext must be used within a IntroContextProvider"
+      'useIntroContext must be used within a IntroContextProvider'
     )
   }
   return context

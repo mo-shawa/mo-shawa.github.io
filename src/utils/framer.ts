@@ -100,7 +100,7 @@ export const projectContainerVariants: AnimationProps["variants"] = {
   hidden: {},
   visible: {
     transition: {
-      delay: 4,
+      delay: 5.5,
       delayChildren: 4.5,
       staggerChildren: 0.2,
     },

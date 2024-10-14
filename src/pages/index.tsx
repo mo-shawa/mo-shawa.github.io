@@ -9,11 +9,15 @@ import ProjectPreview from '@/components/ProjectPreview'
 import Testimonial from '@/components/Testimonial'
 import TextMask from '@/components/TextMask'
 import { DataContext, DataContextType } from '@/contexts/dataContext'
-import { IntroContext, IntroContextType, useIntroContext } from '@/contexts/introContext'
+import { useIntroContext } from '@/contexts/introContext'
 import projectData from '@/data/projects'
 import testimonialData from '@/data/student-testimonials'
 import { genGradient } from '@/utils/culler'
-import { ease, projectContainerVariants, testimonialsContainerVariants } from '@/utils/framer'
+import {
+  ease,
+  projectContainerVariants,
+  testimonialsContainerVariants,
+} from '@/utils/framer'
 
 const dataButtonProps = {
   exit: { opacity: 0, x: 30, transition: { ease } },
@@ -22,7 +26,7 @@ const dataButtonProps = {
   whileHover: { scale: 1.05 },
   whileTap: { scale: 0.95 },
   className:
-    "pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0",
+    'pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0',
 }
 
 export default function Home() {
@@ -36,8 +40,8 @@ export default function Home() {
   const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
     return projectData.map(() => {
       return genGradient({
-        direction: "to bottom right",
-        type: "rgb",
+        direction: 'to bottom right',
+        type: 'rgb',
         minB: 242,
         minG: 242,
         minR: 242,
@@ -46,8 +50,8 @@ export default function Home() {
   })
 
   useEffect(() => {
-    if (selected || contactModalOpen) document.body.style.overflow = "hidden"
-    else document.body.style.overflow = "auto"
+    if (selected || contactModalOpen) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'auto'
   }, [selected, contactModalOpen])
 
   if (shouldShowIntro)
@@ -117,7 +121,7 @@ export default function Home() {
       </motion.section>
       <motion.div className=" mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
         <AnimatePresence mode="wait">
-          {currentDataSource === "projects" ? (
+          {currentDataSource === 'projects' ? (
             <TextMask
               key="data-source-projects-heading"
               type="letter"
@@ -135,10 +139,10 @@ export default function Home() {
             </TextMask>
           )}
 
-          {currentDataSource === "projects" ? (
+          {currentDataSource === 'projects' ? (
             <motion.button
               key="switch-to-testimonials"
-              onClick={() => setCurrentDataSource("testimonials")}
+              onClick={() => setCurrentDataSource('testimonials')}
               {...dataButtonProps}
             >
               Testimonials
@@ -153,7 +157,7 @@ export default function Home() {
           ) : (
             <motion.button
               key="switch-to-projects"
-              onClick={() => setCurrentDataSource("projects")}
+              onClick={() => setCurrentDataSource('projects')}
               {...dataButtonProps}
             >
               Projects
@@ -169,7 +173,7 @@ export default function Home() {
         </AnimatePresence>
       </motion.div>
       <AnimatePresence mode="sync">
-        {currentDataSource === "projects" ? projects : testimonials}
+        {currentDataSource === 'projects' ? projects : testimonials}
       </AnimatePresence>
       {contactModalOpen && (
         <ContactModal setContactModalOpen={setContactModalOpen} />

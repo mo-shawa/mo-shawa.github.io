@@ -100,7 +100,7 @@ export default function ProjectPreview({
           </motion.div>
         </div>
         <motion.div layoutId={`image-${name}`}>
-          {image !== "culler" && (
+          {image !== 'culler' && (
             <Image
               className="aspect-video w-full  rounded-b-3xl"
               src={image}
@@ -110,7 +110,7 @@ export default function ProjectPreview({
               quality={100}
             />
           )}
-          {image === "culler" && <CullerCard />}
+          {image === 'culler' && <CullerCard />}
         </motion.div>
       </div>
     </motion.div>
