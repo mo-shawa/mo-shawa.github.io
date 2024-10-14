@@ -72,7 +72,7 @@ export default function HeroCard({
           I enjoy problem solving and making ideas come to life.
           <br />
           <br />
-          I'm the Lead Developer at{' '}
+          I&apos;m the Lead Developer at{' '}
           <a
             href="https://www.youtube.com/c/goodable"
             className="pointer-events-auto text-blue-500 hover:underline"
