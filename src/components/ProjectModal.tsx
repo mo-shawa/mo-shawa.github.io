@@ -1,12 +1,12 @@
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
-import { ease, techPillContainerVariants } from "@/utils/framer"
+import { ease, techPillContainerVariants } from '@/utils/framer'
 
-import GithubSVG from "../../public/github.svg"
-import CullerCard from "./CullerCard"
-import Pill from "./Pill"
-import SocialButton from "./SocialButton"
+import GithubSVG from '../../public/github.svg'
+import CullerCard from './CullerCard'
+import Pill from './Pill'
+import SocialButton from './SocialButton'
 
 type Props = {
   selected: Project | null
@@ -30,7 +30,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           },
         }}
         onClick={() => setSelected(null)}
-        className="absolute inset-0 bg-black/20 filter backdrop-blur-md"
+        className="absolute inset-0 bg-black/20 filter backdrop-blur-md dark:bg-black/50"
       ></motion.div>
       <motion.div
         layoutId={`card-${selected.name}`}
@@ -40,14 +40,14 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           ease,
         }}
       >
-        <div className="relative h-full max-h-screen max-w-3xl rounded-3xl bg-white bg-center bg-no-repeat lg:bg-scroll">
+        <div className="relative h-full max-h-screen max-w-3xl rounded-3xl bg-white bg-center bg-no-repeat dark:bg-zinc-900 lg:bg-scroll">
           <div className="flex flex-col gap-4 rounded-t-lg px-10 py-6">
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              className="absolute right-6 top-5 h-8 w-8 cursor-pointer rounded-full bg-white stroke-red-700 p-0.5 shadow transition-all duration-300 hover:bg-red-700 hover:stroke-white hover:shadow-lg"
+              className="absolute right-6 top-5 h-8 w-8 cursor-pointer rounded-full bg-white stroke-red-700 p-0.5 shadow transition-all duration-300 hover:bg-red-700 hover:stroke-white hover:shadow-lg dark:bg-zinc-800 dark:stroke-red-400 dark:hover:bg-red-600"
               onClick={() => setSelected(null)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
@@ -62,7 +62,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             </motion.svg>
 
             <motion.p
-              className="justify-self-start text-sm font-light text-gray-500"
+              className="justify-self-start text-sm font-light text-gray-500 dark:text-gray-400"
               layoutId={`year-${selected.name}`}
             >
               {selected.year}
@@ -83,7 +83,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             </motion.p>
           </div>
           <motion.div layoutId={`image-${selected.name}`}>
-            {selected.image !== "culler" && (
+            {selected.image !== 'culler' && (
               <Image
                 className="aspect-video"
                 src={selected.image}
@@ -93,7 +93,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
                 quality={100}
               />
             )}
-            {selected.image === "culler" && <CullerCard />}
+            {selected.image === 'culler' && <CullerCard />}
           </motion.div>
           <motion.div
             layoutId={`socials-${selected.name}`}

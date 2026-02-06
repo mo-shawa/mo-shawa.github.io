@@ -34,7 +34,7 @@ export default function HeroCard({
     <motion.div
       layout
       layoutId="hero-card"
-      className={`relative flex max-w-5xl flex-col gap-12 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 ${
+      className={`relative flex max-w-5xl flex-col gap-12 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-indigo-950/60 ${
         shouldShowIntro ? 'items-center' : 'min-h-[33vh] items-start'
       }`}
       transition={{
@@ -75,7 +75,7 @@ export default function HeroCard({
           I&apos;m the Lead Developer at{' '}
           <a
             href="https://www.youtube.com/c/goodable"
-            className="pointer-events-auto text-blue-500 hover:underline"
+            className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
             target="_blank"
           >
             Goodable
@@ -83,7 +83,7 @@ export default function HeroCard({
           . I was previously 2x Founding Engineer, most recently at{' '}
           <a
             href="https://callmi.co"
-            className="pointer-events-auto text-blue-500 hover:underline"
+            className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
             target="_blank"
           >
             Callmi
@@ -91,7 +91,7 @@ export default function HeroCard({
           (acquired by{' '}
           <a
             href="https://www.linkedin.com/feed/update/urn:li:activity:7197098591293759488/"
-            className="pointer-events-auto text-blue-500 hover:underline"
+            className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
             target="_blank"
           >
             Brinc
@@ -100,7 +100,7 @@ export default function HeroCard({
           <br /> Before that, I was an{' '}
           <a
             target="_blank"
-            className="pointer-events-auto text-blue-500 hover:underline"
+            className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
             href="https://generalassemb.ly/instructors/mahmoud-el-shawa/28943"
           >
             Instructional Associate

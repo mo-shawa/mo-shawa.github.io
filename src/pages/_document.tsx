@@ -24,6 +24,21 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                try {
+                  var s = localStorage.getItem('theme');
+                  var d = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var t = (s === 'light' || s === 'dark') ? s : (d ? 'dark' : 'light');
+                  if (t === 'dark') document.documentElement.classList.add('dark');
+                  else document.documentElement.classList.remove('dark');
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
         <Main />
         <NextScript />
       </body>

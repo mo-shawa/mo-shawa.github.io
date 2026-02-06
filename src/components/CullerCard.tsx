@@ -1,6 +1,6 @@
-import { useRef, useState } from "react"
+import { useRef, useState } from 'react'
 
-import { Coordinates, handleCullerCardMouseMove } from "@/utils/culler"
+import { Coordinates, handleCullerCardMouseMove } from '@/utils/culler'
 
 export default function CullerCard() {
   const ref = useRef<HTMLDivElement>(null)
@@ -14,15 +14,15 @@ export default function CullerCard() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-zinc-900">
       <div
         ref={ref}
-        className="relative aspect-video h-full w-full bg-slate-50 transition-colors duration-500"
+        className="relative aspect-video h-full w-full bg-slate-50 transition-colors duration-500 dark:bg-zinc-800"
         onMouseMove={(e) =>
           handleCullerCardMouseMove(e, ref, cursor, setCursor)
         }
       >
-        <h1 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-thin">
+        <h1 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-thin text-zinc-400 dark:text-zinc-500">
           Tap or mouse over
         </h1>
       </div>

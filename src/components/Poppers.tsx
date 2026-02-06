@@ -1,19 +1,34 @@
-import { gen } from "culler"
-import { useRef } from "react"
+import { gen } from 'culler'
+import { useRef } from 'react'
+import { useTheme } from '@/contexts/themeContext'
 
 export default function Poppers() {
   const ref = useRef<HTMLDivElement[]>([])
+  const { theme } = useTheme()
 
   function handleMouseOver(divRef: HTMLDivElement) {
     if (!divRef) return
-    divRef.style.backgroundColor = gen({
-      type: "rgb",
-      minB: 235,
-      minG: 235,
-      minR: 235,
-    })
+    if (theme === 'dark') {
+      divRef.style.backgroundColor = gen({
+        type: 'rgb',
+        minR: 30,
+        maxR: 80,
+        minG: 30,
+        maxG: 80,
+        minB: 40,
+        maxB: 100,
+        a: 0.6,
+      })
+    } else {
+      divRef.style.backgroundColor = gen({
+        type: 'rgb',
+        minB: 235,
+        minG: 235,
+        minR: 235,
+      })
+    }
     setTimeout(() => {
-      divRef.style.backgroundColor = "transparent"
+      divRef.style.backgroundColor = 'transparent'
     }, 300)
   }
 
@@ -29,7 +44,9 @@ export default function Poppers() {
                   ref={(node) => (ref.current[trueIdx] = node!)}
                   key={trueIdx}
                   onMouseOver={() => handleMouseOver(ref.current[trueIdx])}
-                  className={`rounded- aspect-square mix-blend-multiply transition-colors duration-300`}
+                  className={`aspect-square transition-colors duration-300 ${
+                    theme === 'dark' ? 'mix-blend-screen' : 'mix-blend-multiply'
+                  }`}
                 ></div>
               )
             })}

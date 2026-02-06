@@ -1,17 +1,19 @@
 // import Link from "next/link"
-import { AnimatePresence, motion, useAnimate } from "framer-motion"
+import { AnimatePresence, motion, useAnimate } from 'framer-motion'
 // import { DataContext, DataContextType } from "@/contexts/dataContext"
-import { Plus_Jakarta_Sans } from "next/font/google"
-import { useContext, useEffect, useState } from "react"
+import { Plus_Jakarta_Sans } from 'next/font/google'
+import { useContext, useEffect, useState } from 'react'
 
-import { IntroContext, IntroContextType } from "@/contexts/introContext"
-import { genGradient } from "@/utils/culler"
+import { IntroContext, IntroContextType } from '@/contexts/introContext'
+import { genGradient } from '@/utils/culler'
 // import { useRouter } from "next/router"
-import { ease } from "@/utils/framer"
+import { ease } from '@/utils/framer'
+import { useTheme } from '@/contexts/themeContext'
 
-import TextMask from "./TextMask"
+import TextMask from './TextMask'
+import ThemeToggle from './ThemeToggle'
 
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] })
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
 export default function Navbar() {
   {
@@ -21,18 +23,42 @@ export default function Navbar() {
   // const [logoHovered, setLogoHovered] = useState<boolean>(false)
   const [scope, animate] = useAnimate()
   const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
+  const { theme } = useTheme()
   // const { currentDataSource, setCurrentDataSource } = useContext(
   //   DataContext
   // ) as DataContextType
-  const [gradient, setGradient] = useState<string>(
-    genGradient({
-      direction: "to bottom right",
-      type: "rgb",
+
+  const orbGradientOptions = () => {
+    if (theme === 'dark') {
+      return {
+        direction: 'to bottom right' as const,
+        type: 'rgb' as const,
+        minB: 40,
+        minG: 40,
+        minR: 40,
+        maxB: 120,
+        maxG: 120,
+        maxR: 120,
+      }
+    }
+    return {
+      direction: 'to bottom right' as const,
+      type: 'rgb' as const,
       minB: 212,
       minG: 212,
       minR: 212,
-    })
+    }
+  }
+
+  const [gradient, setGradient] = useState<string>(
+    genGradient(orbGradientOptions())
   )
+
+  // Regenerate orb gradient on theme change
+  useEffect(() => {
+    setGradient(genGradient(orbGradientOptions()))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme])
 
   const orbAnimation = async () => {
     await animate(scope.current, {
@@ -44,15 +70,7 @@ export default function Navbar() {
       },
     })
 
-    setGradient(
-      genGradient({
-        direction: "to bottom right",
-        type: "rgb",
-        minB: 200,
-        minG: 200,
-        minR: 200,
-      })
-    )
+    setGradient(genGradient(orbGradientOptions()))
 
     await animate(scope.current, {
       opacity: 1,
@@ -82,10 +100,10 @@ export default function Navbar() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ease, delay: shouldShowIntro ? 2 : 0, duration: 1 }}
-      className={`fixed inset-0 z-50 h-16 w-full text-slate-800  ${plusJakartaSans.className} flex items-center`}
+      className={`fixed inset-0 z-50 h-16 w-full  ${plusJakartaSans.className} flex items-center`}
     >
       <motion.div className="relative mx-auto flex max-w-7xl items-center justify-center">
-        <div className="flex items-center gap-2 rounded-3xl bg-white/70 p-4  filter backdrop-blur-xl">
+        <div className="flex items-center gap-2 rounded-3xl bg-white/70 p-4  filter backdrop-blur-xl dark:bg-zinc-900/70 dark:text-zinc-100">
           <motion.div
             drag
             onClick={orbAnimation}
@@ -101,7 +119,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           />
-          <motion.div className="relative flex  items-start px-2">
+          <motion.div className="relative flex items-start">
             <div
               // onClick={(e) => {
               //   if (router.pathname === "/") {
@@ -127,6 +145,7 @@ export default function Navbar() {
               )} */}
             </div>
           </motion.div>
+          <ThemeToggle />
         </div>
         {/* <div className="text-md flex gap-12  ">
           {navLinks.map((link) => (

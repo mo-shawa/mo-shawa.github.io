@@ -59,7 +59,7 @@ export default function ProjectPreview({
           <motion.p
             layoutId={`year-${name}`}
             layout="position"
-            className="text-sm font-light text-gray-500"
+            className="text-sm font-light text-gray-500 dark:text-gray-400"
           >
             {year}
           </motion.p>
@@ -71,7 +71,7 @@ export default function ProjectPreview({
             {name}
           </motion.h2>
           <motion.div
-            className="absolute bottom-0 right-0 z-10 flex flex-col justify-evenly gap-4 rounded-br-3xl rounded-tl-3xl p-6 shadow"
+            className="absolute bottom-0 right-0 z-10 flex flex-col justify-evenly gap-4 rounded-br-3xl rounded-tl-3xl p-6 shadow dark:shadow-black/30"
             style={{ background: gradient }}
             layoutId={`socials-${name}`}
           >

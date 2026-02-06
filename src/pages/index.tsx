@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 
 import ContactModal from '@/components/ContactModal'
 import HeroCard from '@/components/HeroCard'
@@ -18,6 +18,7 @@ import {
   projectContainerVariants,
   testimonialsContainerVariants,
 } from '@/utils/framer'
+import { useTheme } from '@/contexts/themeContext'
 
 const dataButtonProps = {
   exit: { opacity: 0, x: 30, transition: { ease } },
@@ -26,7 +27,7 @@ const dataButtonProps = {
   whileHover: { scale: 1.05 },
   whileTap: { scale: 0.95 },
   className:
-    'pointer-events-auto rounded-full text-black px-6 py-3 font-medium bg-white border hover:bg-orange-200 hover:text-white transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0',
+    'pointer-events-auto rounded-full px-6 py-3 font-medium bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 hover:bg-orange-200 hover:text-white dark:hover:bg-indigo-900 dark:hover:text-indigo-100 dark:hover:border-indigo-800 transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0',
 }
 
 export default function Home() {
@@ -37,17 +38,33 @@ export default function Home() {
   const [selected, setSelected] = useState<Project | null>(null)
   const [contactModalOpen, setContactModalOpen] = useState<boolean>(false)
 
-  const [gradients] = useState<ReturnType<typeof genGradient>[]>(() => {
-    return projectData.map(() => {
-      return genGradient({
+  const { theme } = useTheme()
+  const gradients = useMemo<ReturnType<typeof genGradient>[]>(() => {
+    if (theme === 'dark') {
+      return projectData.map(() =>
+        genGradient({
+          direction: 'to bottom right',
+          type: 'rgb',
+          minR: 20,
+          maxR: 50,
+          minG: 20,
+          maxG: 50,
+          minB: 25,
+          maxB: 65,
+          base: 'rgb(24, 24, 27)',
+        })
+      )
+    }
+    return projectData.map(() =>
+      genGradient({
         direction: 'to bottom right',
         type: 'rgb',
         minB: 242,
         minG: 242,
         minR: 242,
       })
-    })
-  })
+    )
+  }, [theme])
 
   useEffect(() => {
     if (selected || contactModalOpen) document.body.style.overflow = 'hidden'
@@ -116,7 +133,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 1, ease }}
           onAnimationComplete={() => setIntroComplete(true)}
-          className="min-h-[28rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-3xl  hover:shadow-xl hover:brightness-100 hover:grayscale-0"
+          className="min-h-[28rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-3xl hover:shadow-xl  hover:brightness-100 hover:grayscale-0 dark:brightness-90"
         ></motion.div>
       </motion.section>
       <motion.div className=" mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
@@ -149,7 +166,7 @@ export default function Home() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
-                className="m-0 ml-1.5 mt-0.5 w-2.5 p-0 transition-colors duration-300 group-hover:fill-white"
+                className="m-0 ml-1.5 mt-0.5 w-2.5 fill-zinc-700 p-0 transition-colors duration-300 group-hover:fill-white dark:fill-zinc-300"
               >
                 <path d="M440.6 273.4c4.7-4.5 7.4-10.8 7.4-17.4s-2.7-12.8-7.4-17.4l-176-168c-9.6-9.2-24.8-8.8-33.9 .8s-8.8 24.8 .8 33.9L364.1 232 24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l340.1 0L231.4 406.6c-9.6 9.2-9.9 24.3-.8 33.9s24.3 9.9 33.9 .8l176-168z"></path>
               </svg>
@@ -164,7 +181,7 @@ export default function Home() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
-                className="m-0 ml-1.5 mt-0.5 w-2.5 p-0 transition-colors duration-300 group-hover:fill-white"
+                className="m-0 ml-1.5 mt-0.5 w-2.5 fill-zinc-700 p-0 transition-colors duration-300 group-hover:fill-white dark:fill-zinc-300"
               >
                 <path d="M440.6 273.4c4.7-4.5 7.4-10.8 7.4-17.4s-2.7-12.8-7.4-17.4l-176-168c-9.6-9.2-24.8-8.8-33.9 .8s-8.8 24.8 .8 33.9L364.1 232 24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l340.1 0L231.4 406.6c-9.6 9.2-9.9 24.3-.8 33.9s24.3 9.9 33.9 .8l176-168z"></path>
               </svg>

@@ -1,13 +1,13 @@
-import { motion, useMotionValue } from "framer-motion"
-import React, { useRef } from "react"
+import { motion, useMotionValue } from 'framer-motion'
+import React, { useRef } from 'react'
 
-import { heroCardButtonVariants, socialsVariants } from "@/utils/framer"
+import { heroCardButtonVariants, socialsVariants } from '@/utils/framer'
 
 export default function SocialButton({
   href,
   children,
-  hoverColor = "github",
-  bgColor = "white",
+  hoverColor = 'github',
+  bgColor = 'white',
   isProject = false,
 }: SocialButtonProps) {
   const cursorX = useMotionValue(0)
@@ -23,25 +23,17 @@ export default function SocialButton({
     cursorY.set(0)
   }
 
-  let bgColorClass
   let hoverColorClass
 
-  switch (bgColor) {
-    // may add more colors later
-    case "white":
-      bgColorClass = "bg-white"
-      break
-  }
-
   switch (hoverColor) {
-    case "github":
-      hoverColorClass = "hover:bg-github"
+    case 'github':
+      hoverColorClass = 'hover:bg-github dark:hover:bg-zinc-600'
       break
-    case "twitter":
-      hoverColorClass = "hover:bg-twitter"
+    case 'twitter':
+      hoverColorClass = 'hover:bg-twitter'
       break
-    case "linkedin":
-      hoverColorClass = "hover:bg-linkedin"
+    case 'linkedin':
+      hoverColorClass = 'hover:bg-linkedin'
       break
   }
 
@@ -58,9 +50,9 @@ export default function SocialButton({
       href={href}
       {...(!isProject && { variants: socialsVariants })}
       target="_blank"
-      className={`group flex h-10 w-10 items-center justify-center rounded-full border p-4 shadow-sm duration-200 ease-in-out ${bgColorClass} hover:shadow-md ${hoverColorClass} transition-all`}
+      className={`group flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white p-4 shadow-sm duration-200 ease-in-out hover:shadow-md dark:border-zinc-700 dark:bg-zinc-800 ${hoverColorClass} transition-all`}
     >
-      <div className="object- fill-black transition-colors duration-200 ease-in group-hover:fill-white">
+      <div className="object- fill-black transition-colors duration-200 ease-in group-hover:fill-white dark:fill-zinc-200">
         {children}
       </div>
     </motion.a>

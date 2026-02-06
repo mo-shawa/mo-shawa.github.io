@@ -1,14 +1,15 @@
-import { Color, gen, GenOptions } from "culler"
+import { Color, gen, GenOptions } from 'culler'
 
-type GradientType = "linear-gradient" | "radial-gradiant"
+type GradientType = 'linear-gradient' | 'radial-gradiant'
 
-type GradientDirection = "to bottom right" | "to bottom" | "to right"
+type GradientDirection = 'to bottom right' | 'to bottom' | 'to right'
 
 type Gradient = `${GradientType}(${GradientDirection}, ${Color}, ${Color})`
 
 type GradientOptions = GenOptions & {
   gradientType?: GradientType
   direction?: GradientDirection
+  base?: string
 }
 
 export type Coordinates = {
@@ -19,14 +20,15 @@ export type Coordinates = {
 // TODO: Implement in culler and replace this
 export function genGradient(options: GradientOptions): Gradient {
   const {
-    gradientType = "linear-gradient",
-    direction = "to bottom right",
+    gradientType = 'linear-gradient',
+    direction = 'to bottom right',
+    base,
     ...genOptions
   } = options
-  const color1 = "rgb(255, 255, 255)"
+  const color1 = base ?? 'rgb(255, 255, 255)'
   const color2 = gen(genOptions)
 
-  return `${gradientType}(${direction}, ${color1}, ${color2})`
+  return `${gradientType}(${direction}, ${color1}, ${color2})` as Gradient
 }
 
 export function handleCullerCardMouseMove(
