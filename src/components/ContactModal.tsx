@@ -5,7 +5,6 @@ import { ease, socialsContainerVariants } from "@/utils/framer"
 
 import GithubSVG from "../../public/github.svg"
 import LinkedInSVG from "../../public/linkedin.svg"
-import TwitterSVG from "../../public/twitter.svg"
 import SocialButton from "./SocialButton"
 
 type Props = {
@@ -158,13 +157,6 @@ export default function ContactModal({ setContactModalOpen }: Props) {
               href="https://linkedin.com/in/mo-shawa"
             >
               <LinkedInSVG />
-            </SocialButton>
-            <SocialButton
-              bgColor="white"
-              hoverColor="twitter"
-              href="https://twitter.com/shawa_dev"
-            >
-              <TwitterSVG />
             </SocialButton>
           </motion.div>
           <motion.div

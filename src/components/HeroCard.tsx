@@ -11,7 +11,6 @@ import {
 
 import GithubSVG from '../../public/github.svg'
 import LinkedInSVG from '../../public/linkedin.svg'
-import TwitterSVG from '../../public/twitter.svg'
 import Poppers from './Poppers'
 import SocialButton from './SocialButton'
 import TextMask from './TextMask'
@@ -49,7 +48,7 @@ export default function HeroCard({
             Hello, I&apos;m Mahmoud.
           </TextMask>
           <TextMask layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer.
+            I&apos;m a Fullstack Engineer.
           </TextMask>
         </motion.div>
       ) : (
@@ -58,7 +57,7 @@ export default function HeroCard({
             Hello, I&apos;m Mahmoud.
           </motion.h1>
           <motion.h1 layout="position" layoutId="hero-card-title-2">
-            I&apos;m a Fullstack Developer.
+            I&apos;m a Fullstack Engineer.
           </motion.h1>
         </motion.div>
       )}
@@ -72,15 +71,23 @@ export default function HeroCard({
           I enjoy problem solving and making ideas come to life.
           <br />
           <br />
-          I&apos;m the Lead Developer at{' '}
+          I&apos;m a Fullstack Engineer at{' '}
           <a
-            href="https://www.youtube.com/c/goodable"
+            href="https://nexxt.in"
+            className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
+            target="_blank"
+          >
+            Nexxt Intelligence
+          </a>
+          . I was previously Lead Developer at{' '}
+          <a
+            href="https://goodable.co"
             className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
             target="_blank"
           >
             Goodable
           </a>
-          . I was previously 2x Founding Engineer, most recently at{' '}
+          , and 2x Founding Engineer, most recently at{' '}
           <a
             href="https://callmi.co"
             className="pointer-events-auto text-blue-500 hover:underline dark:text-blue-400"
@@ -156,13 +163,6 @@ export default function HeroCard({
                   href="https://linkedin.com/in/mo-shawa"
                 >
                   <LinkedInSVG />
-                </SocialButton>
-                <SocialButton
-                  bgColor="white"
-                  hoverColor="twitter"
-                  href="https://twitter.com/shawa_dev"
-                >
-                  <TwitterSVG />
                 </SocialButton>
               </motion.div>
             </>

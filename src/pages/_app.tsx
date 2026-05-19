@@ -21,7 +21,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Mahmoud Shawa&apos;s Portfolio</title>
-        <meta name="description" content="Mahmoud Shawa's Portfolio" />
+        <meta
+          name="description"
+          content="Mahmoud Shawa is a Fullstack Engineer building human-in-the-loop AI products. 2x Founding Engineer with an exit"
+        />
       </Head>
       {/* About commented out code: Going with single page layout for now, may revert . */}
       {/* IntroContext would be used to prevent intro animation from playing when navigating between pages, and only on initial load. Will  */}

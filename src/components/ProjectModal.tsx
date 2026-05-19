@@ -126,6 +126,12 @@ export default function ProjectModal({ selected, setSelected }: Props) {
                   isProject
                   hoverColor="github"
                   href={selected.deployment}
+                  disabled={selected.deadDeployment}
+                  tooltip={
+                    selected.deadDeployment
+                      ? selected.deploymentTooltip
+                      : undefined
+                  }
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

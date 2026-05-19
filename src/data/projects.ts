@@ -1,12 +1,28 @@
 const projects = [
   {
+    name: 'Nexxt Intelligence',
+    description:
+      "Nexxt Intelligence is the research-technology company behind inca, a conversational AI platform for deeper insights. I'm a Fullstack Engineer working on human-in-the-loop AI projects including SmartCoding (automated verbatim coding into research themes) and SmartProbe Studio (an interface for researchers to collaborate with AI to design and refine conversational probes at scale).",
+    technologies: [
+      'TypeScript',
+      'Python',
+      'Terraform',
+      'AWS',
+      'FastAPI',
+      'PostgreSQL',
+    ],
+    deployment: 'https://nexxt.in',
+    image: '/projects/nexxt.webp',
+    year: '01/2025 - Present',
+  },
+  {
     name: 'Goodable',
     description:
       "Goodable is a media company that shares positive news stories from around the world. I'm the Lead Developer at Goodable, where I work on various projects including the Goodable mobile app, websites, and backend services.",
     technologies: ['React Native', 'TypeScript', 'AWS', 'Python', 'Django'],
     deployment: 'http://goodable.co/',
     image: '/projects/goodable.webp',
-    year: '06/2024 - Present',
+    year: '06/2024 - 11/2024',
     // tags: [],
   },
   {
@@ -15,8 +31,11 @@ const projects = [
       "Callmi lets you book MENA's most in-demand experts & get advice over a 1:1 video call. I was the Founding Engineer at Callmi, which was acquired by Brinc in 2024.",
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
     deployment: 'http://callmi.co/',
+    deadDeployment: true,
+    deploymentTooltip:
+      'Acquired by Brinc — sunset in 2026 and now redirects to their new project',
     image: '/projects/callmi.webp',
-    year: '10/2023 - Present',
+    year: '10/2023 - 12/2024',
     // tags: [],
   },
   {
@@ -26,6 +45,8 @@ const projects = [
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'MongoDB'],
     github: 'https://github.com/mo-shawa/bountree',
     deployment: 'http://bountree.app/',
+    deadDeployment: true,
+    deploymentTooltip: 'This project was sunset',
     image: '/projects/bountree.webp',
     year: '2023',
     // tags: [],

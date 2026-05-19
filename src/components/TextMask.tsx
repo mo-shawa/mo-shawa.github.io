@@ -22,7 +22,7 @@ export default function TextMask({
 
   return (
     <motion.div
-      className={`relative cursor-pointer overflow-hidden ${className}`}
+      className={`relative cursor-pointer overflow-hidden pb-[0.2em] ${className}`}
       initial="hidden"
       animate="visible"
       exit="exit"

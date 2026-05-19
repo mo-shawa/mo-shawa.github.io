@@ -20,6 +20,8 @@ export default function ProjectPreview({
   description,
   github,
   deployment,
+  deadDeployment,
+  deploymentTooltip,
   image,
   technologies,
   gradient,
@@ -34,10 +36,12 @@ export default function ProjectPreview({
       description,
       github,
       deployment,
+      deadDeployment,
+      deploymentTooltip,
       image,
       technologies,
       year,
-    })
+    } as Project)
   }
   return (
     <motion.div
@@ -83,7 +87,12 @@ export default function ProjectPreview({
               )}
             </motion.div>
             <motion.div layoutId={`deployment-${name}`}>
-              <SocialButton hoverColor="github" href={deployment}>
+              <SocialButton
+                hoverColor="github"
+                href={deployment}
+                disabled={deadDeployment}
+                tooltip={deadDeployment ? deploymentTooltip : undefined}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

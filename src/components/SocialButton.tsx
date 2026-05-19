@@ -5,6 +5,8 @@ import { heroCardButtonVariants, socialsVariants } from '@/utils/framer'
 
 export default function SocialButton({
   href,
+  disabled,
+  tooltip,
   children,
   hoverColor = 'github',
   bgColor = 'white',
@@ -37,22 +39,26 @@ export default function SocialButton({
       break
   }
 
+  const baseClasses = disabled
+    ? 'cursor-not-allowed opacity-40'
+    : 'hover:shadow-md'
+
   return (
     <motion.a
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={{
-        scale: 1.1,
-      }}
-      whileTap={{
-        scale: 0.95,
-      }}
-      href={href}
-      {...(!isProject && { variants: socialsVariants })}
-      target="_blank"
-      className={`group flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white p-4 shadow-sm duration-200 ease-in-out hover:shadow-md dark:border-zinc-700 dark:bg-zinc-800 ${hoverColorClass} transition-all`}
+      whileHover={disabled ? undefined : { scale: 1.1 }}
+      whileTap={disabled ? undefined : { scale: 0.95 }}
+      href={disabled ? undefined : href}
+      target={disabled ? undefined : '_blank'}
+      rel={disabled ? undefined : 'noopener noreferrer'}
+      title={tooltip}
+      aria-label={tooltip}
+      {...(!isProject && !disabled && { variants: socialsVariants })}
+      onClick={disabled ? (e) => e.preventDefault() : undefined}
+      className={`group flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white p-4 shadow-sm duration-200 ease-in-out dark:border-zinc-700 dark:bg-zinc-800 ${baseClasses} ${hoverColorClass} transition-all`}
     >
-      <div className="object- fill-black transition-colors duration-200 ease-in group-hover:fill-white dark:fill-zinc-200">
+      <div className="fill-black transition-colors duration-200 ease-in group-hover:fill-white dark:fill-zinc-200">
         {children}
       </div>
     </motion.a>
@@ -60,7 +66,9 @@ export default function SocialButton({
 }
 
 type SocialButtonProps = {
-  href: string
+  href?: string
+  disabled?: boolean
+  tooltip?: string
   children?: React.ReactNode
   hoverColor?: string
   bgColor?: string
