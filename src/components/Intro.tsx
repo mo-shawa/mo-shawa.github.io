@@ -22,7 +22,7 @@ export default function Intro({
       animate={{ opacity: 1 }}
       onAnimationComplete={() => setShouldShowIntro(false)}
       transition={{ duration: 2, ease }}
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-scroll px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto px-4"
     >
       <HeroCard
         contactModalOpen={contactModalOpen}

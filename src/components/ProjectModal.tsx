@@ -9,17 +9,15 @@ import Pill from './Pill'
 import SocialButton from './SocialButton'
 
 type Props = {
-  selected: Project | null
+  selected: Project
   setSelected: React.Dispatch<React.SetStateAction<Project | null>>
 }
 
 export default function ProjectModal({ selected, setSelected }: Props) {
-  if (!selected) return <></>
-
   return (
     <motion.div
       onClick={() => setSelected(null)}
-      className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center overflow-y-scroll px-4"
+      className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center overflow-y-auto px-4"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -29,6 +27,7 @@ export default function ProjectModal({ selected, setSelected }: Props) {
             delay: 0.5,
           },
         }}
+        exit={{ opacity: 0, transition: { duration: 0.3, ease } }}
         onClick={() => setSelected(null)}
         className="absolute inset-0 bg-black/20 filter backdrop-blur-md dark:bg-black/50"
       ></motion.div>
@@ -39,15 +38,19 @@ export default function ProjectModal({ selected, setSelected }: Props) {
           duration: 0.5,
           ease,
         }}
+        // Background and radius live on the animated element (radius in style)
+        // so Framer can scale-correct the corners during the morph.
+        style={{ borderRadius: 24 }}
+        className="bg-white dark:bg-zinc-900"
       >
-        <div className="relative h-full max-h-screen max-w-3xl rounded-3xl bg-white bg-center bg-no-repeat dark:bg-zinc-900 lg:bg-scroll">
+        <div className="relative h-full max-h-screen max-w-3xl bg-center bg-no-repeat lg:bg-scroll">
           <div className="flex flex-col gap-4 rounded-t-lg px-10 py-6">
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              className="absolute right-6 top-5 h-8 w-8 cursor-pointer rounded-full bg-white stroke-red-700 p-0.5 shadow transition-all duration-300 hover:bg-red-700 hover:stroke-white hover:shadow-lg dark:bg-zinc-800 dark:stroke-red-400 dark:hover:bg-red-600"
+              className="absolute right-6 top-5 h-8 w-8 cursor-pointer rounded-full bg-white stroke-red-700 p-0.5 shadow transition-[background-color,stroke,box-shadow] duration-300 hover:bg-red-700 hover:stroke-white hover:shadow-lg dark:bg-zinc-800 dark:stroke-red-400 dark:hover:bg-red-600"
               onClick={() => setSelected(null)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
@@ -63,11 +66,13 @@ export default function ProjectModal({ selected, setSelected }: Props) {
 
             <motion.p
               className="justify-self-start text-sm font-light text-gray-500 dark:text-gray-400"
+              layout="position"
               layoutId={`year-${selected.name}`}
             >
               {selected.year}
             </motion.p>
             <motion.h2
+              layout="position"
               layoutId={`title-${selected.name}`}
               className="text-3xl font-medium"
             >

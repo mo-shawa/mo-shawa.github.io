@@ -56,7 +56,7 @@ export default function SocialButton({
       aria-label={tooltip}
       {...(!isProject && !disabled && { variants: socialsVariants })}
       onClick={disabled ? (e) => e.preventDefault() : undefined}
-      className={`group flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white p-4 shadow-sm duration-200 ease-in-out dark:border-zinc-700 dark:bg-zinc-800 ${baseClasses} ${hoverColorClass} transition-all`}
+      className={`group flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white p-4 shadow-sm duration-200 ease-in-out dark:border-zinc-700 dark:bg-zinc-800 ${baseClasses} ${hoverColorClass} transition-[color,background-color,border-color,box-shadow]`}
     >
       <div className="fill-black transition-colors duration-200 ease-in group-hover:fill-white dark:fill-zinc-200">
         {children}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useContext } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
 import { IntroContext, IntroContextType } from '@/contexts/introContext'
 import {
@@ -27,13 +27,40 @@ export default function HeroCard({
   contactModalOpen,
   setContactModalOpen,
 }: Props) {
-  const { shouldShowIntro } = useContext(IntroContext) as IntroContextType
+  const { shouldShowIntro, introComplete } = useContext(
+    IntroContext
+  ) as IntroContextType
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  // The 400 hover cells are only an idle hover effect. Mounting them during
+  // the intro morph adds ~800 DOM operations to the swap commit and puts them
+  // inside the layer that is being rescaled every frame, so mount them once
+  // the intro choreography has settled.
+  const [showPoppers, setShowPoppers] = useState(introComplete)
+  useEffect(() => {
+    if (shouldShowIntro || showPoppers) return
+    const id = window.setTimeout(() => setShowPoppers(true), 3000)
+    return () => window.clearTimeout(id)
+  }, [shouldShowIntro, showPoppers])
+
+  // While the layout morph runs, Framer rescales this card every frame.
+  // will-change makes Chrome rasterize it once and scale the texture on the
+  // compositor instead of re-rasterizing the whole card each frame. Removed
+  // afterwards so the card is re-rasterized crisply at its final size.
+  const setWillChange = (value: 'transform' | 'auto') => {
+    if (cardRef.current) cardRef.current.style.willChange = value
+  }
 
   return (
     <motion.div
+      ref={cardRef}
       layout
       layoutId="hero-card"
-      className={`relative flex max-w-5xl flex-col gap-12 rounded-3xl bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-indigo-950/60 ${
+      onLayoutAnimationStart={() => setWillChange('transform')}
+      onLayoutAnimationComplete={() => setWillChange('auto')}
+      // Radius in style (not a class) so Framer can scale-correct it.
+      style={{ borderRadius: 24 }}
+      className={`relative flex max-w-5xl flex-col gap-12 bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-indigo-950/60 ${
         shouldShowIntro ? 'items-center' : 'min-h-[33vh] items-start'
       }`}
       transition={{
@@ -41,7 +68,7 @@ export default function HeroCard({
         ease,
       }}
     >
-      <Poppers />
+      {!shouldShowIntro && showPoppers && <Poppers />}
       {shouldShowIntro ? (
         <motion.div className={titleClasses}>
           <TextMask layoutId="hero-card-title-1">

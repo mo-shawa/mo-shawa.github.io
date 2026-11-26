@@ -17,7 +17,9 @@ export default function TextMask({
   type = "word",
   layoutId,
 }: TextMaskProps) {
-  const [key, setKey] = useState(crypto.randomUUID())
+  // Bumped on click to replay the animation. A counter avoids calling
+  // crypto.randomUUID() on every render (it also throws on non-HTTPS origins).
+  const [key, setKey] = useState(0)
   const splitOn = type === "word" ? " " : ""
 
   return (
@@ -27,7 +29,7 @@ export default function TextMask({
       animate="visible"
       exit="exit"
       key={key}
-      onClick={() => setKey(crypto.randomUUID())}
+      onClick={() => setKey((k) => k + 1)}
       variants={textMaskVariants}
       custom={delay}
       layoutId={layoutId}

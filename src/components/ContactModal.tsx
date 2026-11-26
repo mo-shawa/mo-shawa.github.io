@@ -23,7 +23,7 @@ export default function ContactModal({ setContactModalOpen }: Props) {
   return (
     <motion.div
       onClick={() => setContactModalOpen(false)}
-      className="fixed inset-0 z-30 flex items-center justify-center overflow-y-scroll px-4"
+      className="fixed inset-0 z-30 flex items-center justify-center overflow-y-auto px-4"
     >
       <motion.div
         key="contact-modal-bg"

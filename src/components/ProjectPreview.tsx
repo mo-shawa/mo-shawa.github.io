@@ -52,7 +52,9 @@ export default function ProjectPreview({
       initial="hidden"
       whileInView="visible"
       whileHover="hover"
-      className={`relative cursor-pointer overflow-clip rounded-3xl`}
+      // Radius in style (not a class) so Framer can scale-correct it.
+      style={{ borderRadius: 24 }}
+      className="relative cursor-pointer overflow-clip"
       variants={projectPreviewVariants}
     >
       <div className="relative h-full w-full bg-contain bg-fixed bg-center bg-no-repeat">

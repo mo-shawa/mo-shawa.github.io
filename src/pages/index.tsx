@@ -98,7 +98,13 @@ export default function Home() {
         />
       ))}
       <AnimatePresence>
-        <ProjectModal selected={selected} setSelected={setSelected} />
+        {selected && (
+          <ProjectModal
+            key={selected.name}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        )}
       </AnimatePresence>
     </motion.section>
   )
@@ -133,7 +139,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 1, ease }}
           onAnimationComplete={() => setIntroComplete(true)}
-          className="min-h-[28rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-all duration-500 hover:rounded-3xl hover:shadow-xl  hover:brightness-100 hover:grayscale-0 dark:brightness-90"
+          className="min-h-[28rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-[filter,box-shadow] duration-500 hover:rounded-3xl hover:shadow-xl  hover:brightness-100 hover:grayscale-0 dark:brightness-90"
         ></motion.div>
       </motion.section>
       <motion.div className=" mx-auto flex w-full max-w-7xl flex-col items-center gap-4 rounded-3xl p-4 transition-colors duration-500 sm:flex-row">
@@ -155,7 +161,8 @@ export default function Home() {
               Testimonials
             </TextMask>
           )}
-
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
           {currentDataSource === 'projects' ? (
             <motion.button
               key="switch-to-testimonials"
@@ -189,12 +196,17 @@ export default function Home() {
           )}
         </AnimatePresence>
       </motion.div>
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="wait">
         {currentDataSource === 'projects' ? projects : testimonials}
       </AnimatePresence>
-      {contactModalOpen && (
-        <ContactModal setContactModalOpen={setContactModalOpen} />
-      )}
+      <AnimatePresence>
+        {contactModalOpen && (
+          <ContactModal
+            key="contact-modal"
+            setContactModalOpen={setContactModalOpen}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }

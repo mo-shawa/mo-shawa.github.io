@@ -6,6 +6,9 @@
   /* Smooth theme transitions on key surfaces */
   html {
     color-scheme: light;
+    /* Keep the page width constant when the scrollbar appears (projects
+       mounting) or disappears (modal scroll lock) on classic-scrollbar systems. */
+    scrollbar-gutter: stable;
   }
   html.dark {
     color-scheme: dark;
