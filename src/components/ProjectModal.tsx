@@ -15,9 +15,12 @@ type Props = {
 
 export default function ProjectModal({ selected, setSelected }: Props) {
   return (
+    // layoutScroll: the card's morph back to the grid must account for how far
+    // this container was scrolled (tall content on small screens).
     <motion.div
+      layoutScroll
       onClick={() => setSelected(null)}
-      className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center overflow-y-auto px-4"
+      className="fixed inset-0 z-50 cursor-pointer overflow-y-auto px-4"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -29,132 +32,137 @@ export default function ProjectModal({ selected, setSelected }: Props) {
         }}
         exit={{ opacity: 0, transition: { duration: 0.3, ease } }}
         onClick={() => setSelected(null)}
-        className="absolute inset-0 bg-black/20 filter backdrop-blur-md dark:bg-black/50"
+        className="fixed inset-0 bg-black/20 filter backdrop-blur-md dark:bg-black/50"
       ></motion.div>
-      <motion.div
-        layoutId={`card-${selected.name}`}
-        onClick={(e) => e.stopPropagation()}
-        transition={{
-          duration: 0.5,
-          ease,
-        }}
-        // Background and radius live on the animated element (radius in style)
-        // so Framer can scale-correct the corners during the morph.
-        style={{ borderRadius: 24 }}
-        className="bg-white dark:bg-zinc-900"
-      >
-        <div className="relative h-full max-h-screen max-w-3xl bg-center bg-no-repeat lg:bg-scroll">
-          <div className="flex flex-col gap-4 rounded-t-lg px-10 py-6">
-            <motion.svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              className="absolute right-6 top-5 h-8 w-8 cursor-pointer rounded-full bg-white stroke-red-700 p-0.5 shadow transition-[background-color,stroke,box-shadow] duration-300 hover:bg-red-700 hover:stroke-white hover:shadow-lg dark:bg-zinc-800 dark:stroke-red-400 dark:hover:bg-red-600"
-              onClick={() => setSelected(null)}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </motion.svg>
+      {/* min-h-full + items-center centers short content but lets tall
+          content scroll from its top instead of being clipped. */}
+      <div className="flex min-h-full items-center justify-center py-8">
+        <motion.div
+          layoutId={`card-${selected.name}`}
+          onClick={(e) => e.stopPropagation()}
+          transition={{
+            duration: 0.5,
+            ease,
+          }}
+          // Background and radius live on the animated element (radius in
+          // style) so Framer can scale-correct the corners during the morph.
+          // relative + z-10 keeps it above the blurred overlay.
+          style={{ borderRadius: 24 }}
+          className="relative z-10 cursor-auto bg-white dark:bg-zinc-900"
+        >
+          <div className="relative h-full max-w-3xl bg-center bg-no-repeat lg:bg-scroll">
+            <div className="flex flex-col gap-4 rounded-t-lg px-6 py-6 sm:px-10">
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                className="absolute right-6 top-5 h-8 w-8 cursor-pointer rounded-full bg-white stroke-red-700 p-0.5 shadow transition-[background-color,stroke,box-shadow] duration-300 hover:bg-red-700 hover:stroke-white hover:shadow-lg dark:bg-zinc-800 dark:stroke-red-400 dark:hover:bg-red-600"
+                onClick={() => setSelected(null)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </motion.svg>
 
-            <motion.p
-              className="justify-self-start text-sm font-light text-gray-500 dark:text-gray-400"
-              layout="position"
-              layoutId={`year-${selected.name}`}
-            >
-              {selected.year}
-            </motion.p>
-            <motion.h2
-              layout="position"
-              layoutId={`title-${selected.name}`}
-              className="text-3xl font-medium"
-            >
-              {selected.name}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="font-light"
-            >
-              {selected.description}
-            </motion.p>
-          </div>
-          <motion.div layoutId={`image-${selected.name}`}>
-            {selected.image !== 'culler' && (
-              <Image
-                className="aspect-video"
-                src={selected.image}
-                alt={selected.name}
-                width={768}
-                height={432}
-                quality={100}
-              />
-            )}
-            {selected.image === 'culler' && <CullerCard />}
-          </motion.div>
-          <motion.div
-            layoutId={`socials-${selected.name}`}
-            className="z-20 flex w-full flex-row  items-center justify-end gap-4 rounded-b-3xl rounded-tl-3xl p-6"
-          >
-            <motion.div
-              className="flex h-full flex-row flex-wrap items-center justify-start gap-2 sm:gap-4"
-              initial="hidden"
-              animate="visible"
-              variants={techPillContainerVariants}
-            >
-              {selected.technologies.map((tech) => (
-                <Pill key={`${tech}-${selected.name}`}>{tech}</Pill>
-              ))}
+              <motion.p
+                className="justify-self-start text-sm font-light text-gray-500 dark:text-gray-400"
+                layout="position"
+                layoutId={`year-${selected.name}`}
+              >
+                {selected.year}
+              </motion.p>
+              <motion.h2
+                layout="position"
+                layoutId={`title-${selected.name}`}
+                className="text-3xl font-medium"
+              >
+                {selected.name}
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="font-light"
+              >
+                {selected.description}
+              </motion.p>
+            </div>
+            <motion.div layoutId={`image-${selected.name}`}>
+              {selected.image !== 'culler' && (
+                <Image
+                  className="aspect-video"
+                  src={selected.image}
+                  alt={selected.name}
+                  width={768}
+                  height={432}
+                  quality={100}
+                />
+              )}
+              {selected.image === 'culler' && <CullerCard />}
             </motion.div>
-            <motion.div className="flex flex-wrap justify-end gap-2 sm:gap-4">
-              {selected.github && (
-                <motion.div layoutId={`github-${selected.name}`}>
+            <motion.div
+              layoutId={`socials-${selected.name}`}
+              className="z-20 flex w-full flex-row  items-center justify-end gap-4 rounded-b-3xl rounded-tl-3xl p-6"
+            >
+              <motion.div
+                className="flex h-full flex-row flex-wrap items-center justify-start gap-2 sm:gap-4"
+                initial="hidden"
+                animate="visible"
+                variants={techPillContainerVariants}
+              >
+                {selected.technologies.map((tech) => (
+                  <Pill key={`${tech}-${selected.name}`}>{tech}</Pill>
+                ))}
+              </motion.div>
+              <motion.div className="flex flex-wrap justify-end gap-2 sm:gap-4">
+                {selected.github && (
+                  <motion.div layoutId={`github-${selected.name}`}>
+                    <SocialButton
+                      isProject
+                      href={selected.github}
+                      hoverColor="github"
+                    >
+                      <GithubSVG />
+                    </SocialButton>
+                  </motion.div>
+                )}
+                <motion.div layoutId={`deployment-${selected.name}`}>
                   <SocialButton
                     isProject
-                    href={selected.github}
                     hoverColor="github"
+                    href={selected.deployment}
+                    disabled={selected.deadDeployment}
+                    tooltip={
+                      selected.deadDeployment
+                        ? selected.deploymentTooltip
+                        : undefined
+                    }
                   >
-                    <GithubSVG />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="h-6 w-6"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </SocialButton>
                 </motion.div>
-              )}
-              <motion.div layoutId={`deployment-${selected.name}`}>
-                <SocialButton
-                  isProject
-                  hoverColor="github"
-                  href={selected.deployment}
-                  disabled={selected.deadDeployment}
-                  tooltip={
-                    selected.deadDeployment
-                      ? selected.deploymentTooltip
-                      : undefined
-                  }
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    className="h-6 w-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </SocialButton>
               </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   )
 }

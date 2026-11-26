@@ -2,6 +2,11 @@
 
 module.exports = {
   darkMode: 'class',
+  // hover: styles only on devices that can hover, so taps on phones don't
+  // leave buttons/photo stuck in their hover state.
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",

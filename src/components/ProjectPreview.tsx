@@ -51,6 +51,9 @@ export default function ProjectPreview({
       onClick={handleOnClick}
       initial="hidden"
       whileInView="visible"
+      // Animate in once. Without this Framer replays the entrance (fade +
+      // 30px slide) every time a card re-enters the viewport while scrolling.
+      viewport={{ once: true, amount: 0.15 }}
       whileHover="hover"
       // Radius in style (not a class) so Framer can scale-correct it.
       style={{ borderRadius: 24 }}
@@ -59,7 +62,7 @@ export default function ProjectPreview({
     >
       <div className="relative h-full w-full bg-contain bg-fixed bg-center bg-no-repeat">
         <div
-          className="rounded-t-lg px-10 py-6"
+          className="rounded-t-lg px-6 py-6 sm:px-10"
           style={{ background: gradient }}
         >
           <motion.p

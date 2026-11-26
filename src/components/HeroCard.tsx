@@ -61,7 +61,7 @@ export default function HeroCard({
       onLayoutAnimationComplete={() => setWillChange('auto')}
       // Radius in style (not a class) so Framer can scale-correct it.
       style={{ borderRadius: 24 }}
-      className={`relative flex max-w-5xl flex-col gap-12 bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-10 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-indigo-950/60 ${
+      className={`relative flex max-w-5xl flex-col gap-8 bg-gradient-to-br from-zinc-50 via-orange-50 to-blue-50 p-6 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-indigo-950/60 sm:gap-12 sm:p-10 ${
         shouldShowIntro ? 'items-center' : 'min-h-[33vh] items-start'
       }`}
       transition={{
@@ -150,51 +150,56 @@ export default function HeroCard({
           variants={heroCardVariants}
           className="pointer-events-none relative flex flex-col items-center gap-4 self-center justify-self-end md:flex-row md:self-start"
         >
-          {!contactModalOpen && (
-            <>
-              <motion.div
-                layoutId="contact"
-                onClick={() => setContactModalOpen(true)}
-                whileHover="hover"
-                whileTap="tap"
-                variants={contactModalButtonVariants}
-                transition={{
-                  duration: 0.6,
-                  ease,
-                }}
-                style={{
-                  borderRadius: 40,
-                }}
-                className="pointer-events-auto relative z-20 cursor-pointer bg-black px-12 py-3 font-medium text-white"
-              >
-                <motion.h1 layout="position" layoutId="contact-me-heading">
-                  Contact me
-                </motion.h1>
-              </motion.div>
-              <motion.div
-                layoutId="contact-me-links"
-                variants={socialsContainerVariants}
-                initial="hidden"
-                animate="visible"
-                className="pointer-events-auto flex items-center gap-4"
-              >
-                <SocialButton
-                  bgColor="white"
-                  hoverColor="github"
-                  href="https://github.com/mo-shawa"
-                >
-                  <GithubSVG className="h-5 w-5" />
-                </SocialButton>
-                <SocialButton
-                  bgColor="white"
-                  hoverColor="linkedin"
-                  href="https://linkedin.com/in/mo-shawa"
-                >
-                  <LinkedInSVG />
-                </SocialButton>
-              </motion.div>
-            </>
+          {contactModalOpen ? (
+            // While the button is morphed into the contact modal, hold its
+            // space so the hero (and everything below it) doesn't jump.
+            <div aria-hidden className="invisible px-12 py-3 font-medium">
+              Contact me
+            </div>
+          ) : (
+            <motion.div
+              layoutId="contact"
+              onClick={() => setContactModalOpen(true)}
+              whileHover="hover"
+              whileTap="tap"
+              variants={contactModalButtonVariants}
+              transition={{
+                duration: 0.6,
+                ease,
+              }}
+              style={{
+                borderRadius: 40,
+              }}
+              className="pointer-events-auto relative z-20 cursor-pointer bg-black px-12 py-3 font-medium text-white"
+            >
+              <motion.h1 layout="position" layoutId="contact-me-heading">
+                Contact me
+              </motion.h1>
+            </motion.div>
           )}
+          {/* Stays mounted while the contact modal is open (it used to
+              unmount and fade back in 1.5s after closing). */}
+          <motion.div
+            variants={socialsContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="pointer-events-auto flex items-center gap-4"
+          >
+            <SocialButton
+              bgColor="white"
+              hoverColor="github"
+              href="https://github.com/mo-shawa"
+            >
+              <GithubSVG className="h-5 w-5" />
+            </SocialButton>
+            <SocialButton
+              bgColor="white"
+              hoverColor="linkedin"
+              href="https://linkedin.com/in/mo-shawa"
+            >
+              <LinkedInSVG />
+            </SocialButton>
+          </motion.div>
         </motion.div>
       )}
     </motion.div>
