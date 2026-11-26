@@ -39,7 +39,8 @@ export default function HeroCard({
   const [showPoppers, setShowPoppers] = useState(introComplete)
   useEffect(() => {
     if (shouldShowIntro || showPoppers) return
-    const id = window.setTimeout(() => setShowPoppers(true), 3000)
+    // After the projects grid has mounted and finished its entrance.
+    const id = window.setTimeout(() => setShowPoppers(true), 4000)
     return () => window.clearTimeout(id)
   }, [shouldShowIntro, showPoppers])
 

@@ -30,6 +30,12 @@ const dataButtonProps = {
     'pointer-events-auto rounded-full px-6 py-3 font-medium bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 hover:bg-orange-200 hover:text-white dark:hover:bg-indigo-900 dark:hover:text-indigo-100 dark:hover:border-indigo-800 transition-colors duration-300 flex items-center justify-center gap-1 group mx-auto sm:ml-auto sm:mr-0',
 }
 
+// Mounting the projects grid costs ~50-150ms of main-thread work on a cold
+// visit. Wait until the hero's script-driven entrance (contact button and
+// button row, done ~2s after the morph starts) has finished, so the hitch
+// lands while only compositor-driven opacity fades are running.
+const PROJECTS_MOUNT_DELAY_MS = 900
+
 export default function Home() {
   const { shouldShowIntro, introComplete, setIntroComplete } = useIntroContext()
   const { currentDataSource, setCurrentDataSource } = useContext(
@@ -138,7 +144,12 @@ export default function Home() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 1, ease }}
-          onAnimationComplete={() => setIntroComplete(true)}
+          onAnimationComplete={() =>
+            window.setTimeout(
+              () => setIntroComplete(true),
+              PROJECTS_MOUNT_DELAY_MS
+            )
+          }
           className="min-h-[28rem] rounded-3xl bg-[url('/me2.webp')]  bg-cover bg-center brightness-125 grayscale saturate-[0.8] filter transition-[filter,box-shadow] duration-500 hover:rounded-3xl hover:shadow-xl  hover:brightness-100 hover:grayscale-0 dark:brightness-90"
         ></motion.div>
       </motion.section>

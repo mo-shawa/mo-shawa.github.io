@@ -107,16 +107,16 @@ export const projectContainerVariants: AnimationProps["variants"] = {
   },
 }
 
+// Card entrances use opacity + translate only. Animating scale (even 0.98 -> 1)
+// makes Chrome re-rasterize each image-heavy card on every frame.
 export const projectPreviewVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
     y: 30,
-    scale: 0.98,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
       duration: 0.8,
       ease,
@@ -144,12 +144,10 @@ export const testimonialVariants: AnimationProps["variants"] = {
   hidden: {
     opacity: 0,
     y: 30,
-    scale: 0.98,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
       duration: 0.8,
       ease,
